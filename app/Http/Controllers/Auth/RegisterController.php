@@ -49,9 +49,21 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'nombres' => ['required', 'string', 'max:255'],
+            'nombres' => ['required', 'string','alpha', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8', 'alpha_num','max:20','confirmed'],
+            'apellidos' => ['required', 'string', 'max:255', 'alpha',],
+            'Tipo de Documento de identidad'=> ['required', 'string', 'max:12', 'alpha',],
+            'Documento de identidad'=> ['required', 'string', 'max:255', 'alpha',],
+        '   cargo' =>['required', 'string', 'max:255', 'alpha',],
+            'nivel_educativo' =>['required', 'string', 'max:255', 'alpha',],
+            'formación'=>['required', 'string', 'max:255', 'alpha',],
+            'dirección'=>['required', 'string', 'max:255', 'alpha',],
+            'fecha_de_nacimiento'=>['required', 'date', 'alpha',],
+            'fecha_de_vinculación'=>['required', 'date', 'alpha',],
+           'is_admin'=>['required', 'boolean', 'alpha',],
+        
+
         ]);
     }
 
