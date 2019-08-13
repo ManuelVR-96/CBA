@@ -22,7 +22,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->integer('cédula')->nullable();
+            $table->string('Tipo de Documento de identidad')->nullable();
+            $table->integer('Documento de identidad')->nullable();
             $table->string('nombres');
            $table->string('apellidos')->nullable();
             $table->string('cargo')->nullable();

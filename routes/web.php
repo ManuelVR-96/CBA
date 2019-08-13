@@ -19,7 +19,7 @@ Route::get('/inicio','PageControler@inicio')->name('inicio');
 
 Route::get('/login','PageControler@login')->name('login');
 
-Route::get('/registro', 'PageControler@registro_op')->name('registro_op');
+Route::get('/registro', 'PageControler@registro')->name('registro');
 
 Route::post('/registro', 'PageControler@registrar_op')->name('registrar_op');
 

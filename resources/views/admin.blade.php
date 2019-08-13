@@ -27,7 +27,7 @@
 
   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-    <a class="navbar-brand mr-1" href="index.html">CENTRO DE BIENESTAR DE ANCIANOS SAN JOSÉ</a>
+    <a class="navbar-brand mr-1" href="{{ route('welcome') }}">CENTRO DE BIENESTAR DE ANCIANOS SAN JOSÉ</a>
 
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
       <i class="fas fa-bars"></i>
@@ -55,7 +55,15 @@
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
           <a class="dropdown-item" href="#">Configuracion</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Cerrar Sesión</a>
+          <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Cerrar sesion') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
         </div>
       </li>
     </ul>
@@ -79,7 +87,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
           <h6 class="dropdown-header">Opciones</h6>
-          <a class="dropdown-item" href="registro">Crear Usuario</a>
+          <a class="dropdown-item" href="{{ route('register') }}">Crear Usuario</a>
           <a class="dropdown-item" href="register.html">Consultar Usuarios</a>
           <a class="dropdown-item" href="forgot-password.html">Editar Usuario</a>
           <a class="dropdown-item" href="forgot-password.html">Eliminar Usuario</a>        
@@ -94,7 +102,7 @@
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
           <h6 class="dropdown-header">Opciones</h6>
           <a class="dropdown-item" href="forgot-password.html">Test Delta</a>
-          <a class="dropdown-item" href="registro_op">Crear Usuario</a>
+          <a class="dropdown-item" href="{{ route('registro') }}">Crear Usuario</a>
           <a class="dropdown-item" href="register.html">Consultar Usuarios</a>
           <a class="dropdown-item" href="forgot-password.html">Editar Usuario</a>
           <a class="dropdown-item" href="forgot-password.html">Eliminar Usuario</a>        

@@ -8,14 +8,14 @@ use Carbon\Carbon;
 class PageControler extends Controller
 {
     public function welcome(){
-    	return view ('welcome');
+    	return view ('inicio');
     }
 
-    public function inicio() {
+   /* public function inicio() {
     return view ('inicio');
-    }
+    }*/
 
-    public function registro_op(Request $request) {
+    public function registro(Request $request) {
    	 return view ('registro');
     }
 
