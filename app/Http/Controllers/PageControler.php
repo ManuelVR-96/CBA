@@ -15,7 +15,7 @@ class PageControler extends Controller
     return view ('inicio');
     }*/
 
-    public function registro(Request $request) {
+    public function registro() {
    	 return view ('registro');
     }
 

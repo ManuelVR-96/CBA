@@ -4,7 +4,7 @@ namespace CBA\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ClienteController extends Controller
+class MiembrosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,7 +23,7 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        //
+        return view('registro');
     }
 
     /**

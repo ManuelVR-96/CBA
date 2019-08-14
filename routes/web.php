@@ -37,6 +37,7 @@ Route::get('/user', function () {
     return view('user');
 });
 
+Route::resource('/miembros', 'MiembrosController');
 
 Auth::routes();
 
