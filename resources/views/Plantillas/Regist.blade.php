@@ -1,7 +1,3 @@
-
-@extends('layouts.app')
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,9 +23,9 @@
     <link href="vendor3/datepicker/daterangepicker.css" rel="stylesheet" media="all">
 
     <!-- Main CSS-->
-    <link href="{{ asset ('css/mainr.css') }}" rel="stylesheet" media="all">
+    <link href="css/mainr.css" rel="stylesheet" media="all">
 </head>
-@section('content')
+
 <body>
     <div class="page-wrapper bg-gra-02 p-t-100 p-b-100 font-poppins">
         <div class="wrapper wrapper--w960">
@@ -104,7 +100,7 @@
                                 <div class="input-group">
                                     <label class="label">Fecha de Vinculación</label>
                                     <div class="input-group-icon">
-                                        <input class="input--style-4" type="date" name="vinculacion">
+                                        <input class="input--style-4 js-datepicker" type="date" name="vinculacion">
                                         
 
                                     </div>
@@ -166,5 +162,3 @@
 
 </html>
 <!-- end document-->
-
-@endsection

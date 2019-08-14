@@ -102,7 +102,7 @@
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
           <h6 class="dropdown-header">Opciones</h6>
           <a class="dropdown-item" href="forgot-password.html">Test Delta</a>
-          <a class="dropdown-item" href="{{ route('registro') }}">Crear Usuario</a>
+          <a class="dropdown-item" href="{{ route('register') }}">Crear Usuario</a>
           <a class="dropdown-item" href="register.html">Consultar Usuarios</a>
           <a class="dropdown-item" href="forgot-password.html">Editar Usuario</a>
           <a class="dropdown-item" href="forgot-password.html">Eliminar Usuario</a>        
