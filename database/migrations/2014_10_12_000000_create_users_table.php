@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('Tipo de Documento de identidad')->nullable();
             $table->integer('Documento de identidad')->nullable();
             $table->string('nombres');
-           $table->string('apellidos')->nullable();
+            $table->string('apellidos')->nullable();
             $table->string('cargo')->nullable();
             $table->string('nivel_educativo')->nullable();
             $table->string('formación')->nullable();
@@ -33,7 +33,7 @@ class CreateUsersTable extends Migration
             $table->string('contraseña')->nullable();
             $table->date('fecha_de_nacimiento')->nullable();
             $table->date('fecha_de_vinculación')->nullable();
-           $table->boolean('is_admin')->default(false);
+            $table->string('is_admin')->default(false);
             $table->integer('telefono')->nullable();
 
         });

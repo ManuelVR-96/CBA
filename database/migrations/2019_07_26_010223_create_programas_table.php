@@ -18,7 +18,7 @@ class CreateProgramasTable extends Migration
             $table->timestamps();
             $table->date('agenda'); 
             $table->unsignedBigInteger('encargado')->nullable();
-            $table->foreign('encargado')->references('id')->on('operadors')->onDelete('set null');
+            $table->foreign('encargado')->references('id')->on('users')->onDelete('set null');
         });
     }
 

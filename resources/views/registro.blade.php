@@ -100,7 +100,7 @@
                                 <div class="input-group">
                                     <label class="label">Fecha de Vinculación</label>
                                     <div class="input-group-icon">
-                                        <input class="input--style-4 js-datepicker" type="date" name="vinculacion">
+                                        <input class="input--style-4" type="date" name="vinculacion">
                                         
 
                                     </div>
