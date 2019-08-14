@@ -38,6 +38,8 @@ Route::get('/user', function () {
 });
 
 Route::resource('/miembros', 'MiembrosController');
+Route::resource('/usuarios', 'UsuarioController');
+
 
 Auth::routes();
 
