@@ -23,7 +23,7 @@ class MiembrosController extends Controller
      */
     public function create()
     {
-        return view('registro');
+        return view('registroCliente');
     }
 
     /**
@@ -38,17 +38,17 @@ class MiembrosController extends Controller
             'nombres'=>'required',
             'cedula' =>'required'
         ]);
-            $nuevoCliente = new CBA\Cliente;
-            $nuevoCliente->cédula = $request->cedula;
+        $nuevoCliente = new CBA\Cliente;
+        $nuevoCliente->cédula = $request->cedula;
          $nuevoCliente->nombres = $request->nombres;
          $nuevoCliente->apellidos = $request->apellidos;
          $nuevoCliente->nivel_educativo = $request->nivel_educativo;
          $nuevoCliente->dirección = $request->direccion;
          $nuevoCliente->telefono = $request->telefono;
          $nuevoCliente->Lugar_de_nacimiento = $request->Lugar_de_nacimiento;
-         $nacimiento_ = Carbon::createFromFormat ('Y-m-d', $request->fecha_de_nacimiento);
+         $nacimiento_ = Carbon::createFromFormat('Y-m-d', $request->fecha_de_nacimiento);
          $nuevoCliente->fecha_de_nacimiento = $nacimiento_;
-         $vinculacion_ = Carbon::createFromFormat ('Y-m-d', $request->fecha_de_ingreso);
+         $vinculacion_ = Carbon::createFromFormat('Y-m-d', $request->fecha_de_ingreso);
          $nuevoCliente->fecha_de_ingreso = $request->vinculacion;
          $nuevoCliente->seguridad_social = $request->seguridad_social;
          $nuevoCliente->primer_acudiente = $request->primer_acudiente;

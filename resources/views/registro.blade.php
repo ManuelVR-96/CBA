@@ -1,170 +1,329 @@
 
 @extends('layouts.app')
 
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <!-- Required meta tags-->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Colorlib Templates">
-    <meta name="author" content="Colorlib">
-    <meta name="keywords" content="Colorlib Templates">
-
-    <!-- Title Page-->
-    <title>Registro</title>
-
-    <!-- Icons font CSS-->
-    <link href="vendor3/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-    <link href="vendor3/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-    <!-- Font special for pages-->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-    <!-- Vendor CSS-->
-    <link href="vendor3/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="vendor3/datepicker/daterangepicker.css" rel="stylesheet" media="all">
-
-    <!-- Main CSS-->
-    <link href="{{ asset ('css/mainr.css') }}" rel="stylesheet" media="all">
-</head>
 @section('content')
-<body>
-    <div class="page-wrapper bg-gra-02 p-t-100 p-b-100 font-poppins">
-        <div class="wrapper wrapper--w960">
-            <div class="card card-4">
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Formulario de Registro') }}</div>
+
                 <div class="card-body">
-                    <h2 class="title" align="center">Formulario de Registro</h2>
-                     @if ( session('mensaje') )
-                    <div class="alert alert-success" color="blue">{{ session('mensaje') }}</div>
-                    @endif
-                    <form action="{{ route('registrar_op') }}" method="POST">
-                       @csrf
-                       @error('nombres')
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                          El nombre es requerido
-                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        @enderror 
-                        @if ($errors->has('cedula'))
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                          La cédula es requerida
-                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        @endif
-                        <div class="row row-space">
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">No Identificación</label>
-                                    <input class="input--style-4" type="text" name="cedula">
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Nombres</label>
-                                    <input class="input--style-4" type="text" name="nombres">
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Apellidos</label>
-                                    <input class="input--style-4" type="text" name="apellidos">
-                                </div>
+                    <form method="POST" action="{{ route('register') }}">
+                        @csrf
+
+                        <div class="form-group row">
+                            <label for="id" class="col-md-4 col-form-label text-md-right">{{ __('No Identificación') }}</label>
+                            <div class="col-md-6">
+                                <input id="id" type="text" class="form-control @error('id') is-invalid @enderror" name="id" required autocomplete="id">
+
+                                <!-- @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror -->
                             </div>
                         </div>
 
-                        <div class="row row-space">
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Cargo</label>
-                                    <input class="input--style-4" type="text" name="cargo">
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Nivel Educativo</label>
-                                    <input class="input--style-4" type="text" name="nivel">
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Formación</label>
-                                    <input class="input--style-4" type="text" name="formacion">
-                                </div>
+                        <div class="form-group row">
+                            <label for="nombres" class="col-md-4 col-form-label text-md-right">{{ __('Nombres') }}</label>
+                            <div class="col-md-6">
+                                <input id="nombres" type="text" class="form-control @error('nombres') is-invalid @enderror" name="nombres" value="{{ old('nombres') }}" required autocomplete="nombres" autofocus>
+
+                                <!-- @error('nombres')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror -->
                             </div>
                         </div>
 
-                        <div class="row row-space">
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Fecha de Vinculación</label>
-                                    <div class="input-group-icon">
-                                        <input class="input--style-4" type="date" name="vinculacion">
-                                        
+                        <div class="form-group row">
+                            <label for="apellidos" class="col-md-4 col-form-label text-md-right">{{ __('Apellidos') }}</label>
+                            <div class="col-md-6">
+                                <input id="apellidos" type="text" class="form-control @error('apellidos') is-invalid @enderror" name="apellidos" value="{{ old('apellidos') }}" required autocomplete="apellidos" autofocus>
 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Fecha de Nacimiento</label>
-                                    <div class="input-group-icon">
-                                        <input class="input--style-4" type="date" name="nacimiento">
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Dirección</label>
-                                    <input class="input--style-4" type="text" name="direccion">
-                                </div>
+                                <!-- @error('apellidos')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror -->
                             </div>
                         </div>
-                        <div class="row row-space">
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Correo Electronico</label>
-                                    <input class="input--style-4" type="email" name="email">
-                                </div>
+
+                        <div class="form-group row">
+                            <label for="nivel" class="col-md-4 col-form-label text-md-right">{{ __('Nivel Educativo') }}</label>
+                            <div class="col-md-6">
+                                <select name="nivel" class="form-control @error('nivel') is-invalid @enderror" value="{{ old('nivel') }}" name="nivel">>
+                                    <option value="">--Seleccione el nivel--</option>
+                                    <option value="Primaria">Primaria</option>
+                                    <option value="Secundaria">Secundaria</option>
+                                    <option value="Tecnico Y/o Tecnologo">Tecnico Y/o Tecnologo</option>
+                                    <option value="Profesional">Profesional</option>
+                                    <option value="Postgrado">Postgrado</option>
+                                </select>
                             </div>
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Contraseña</label>
-                                    <input class="input--style-4" type="text" name="password">
-                                </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="direccion" class="col-md-4 col-form-label text-md-right">{{ __('Dirección') }}</label>
+                            <div class="col-md-6">
+                                <input id="direccion" type="text" class="form-control @error('direccion') is-invalid @enderror" name="direccion" value="{{ old('direccion') }}" required autocomplete="direccion" autofocus>
+
+                                <!-- @error('direccion')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror -->
                             </div>
-                           
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="telefono" class="col-md-4 col-form-label text-md-right">{{ __('Teléfono') }}</label>
+                            <div class="col-md-6">
+                                <input id="telefono" type="integer" class="form-control @error('telefono') is-invalid @enderror" name="telefono" value="{{ old('telefono') }}" required autocomplete="telefono" autofocus>
+
+                                <!-- @error('telefono')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror -->
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="lugar" class="col-md-4 col-form-label text-md-right">{{ __('Lugar de Nacimiento') }}</label>
+                            <div class="col-md-6">
+                                <input id="lugar" type="text" class="form-control @error('lugar') is-invalid @enderror" name="lugar" value="{{ old('lugar') }}" required autocomplete="lugar" autofocus>
+
+                                <!-- @error('lugar')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror -->
+                            </div>
+                        </div>
+
+                        <div class="form-group row">                            
+                            <label for="nacimiento" class="col-md-4 col-form-label text-md-right">{{ __('Fecha de Nacimiento') }}</label>
+                                <div class="col-md-6">
+                                    <input class="form-control @error('nacimiento') is-invalid @enderror" name="nacimiento" value="{{ old('nacimiento') }}" type="date">                                        
+                                </div>                           
+                        </div>
+
+                        <div class="form-group row">                            
+                        <label for="vinculacion" class="col-md-4 col-form-label text-md-right">{{ __('Fecha de Vinculación') }}</label>
+                            <div class="col-md-6">
+                            <input class="form-control @error('vinculacion') is-invalid @enderror" name="vinculacion" value="{{ old('vinculacion') }}" type="date">                                        
+                            </div>                           
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="seguridad" class="col-md-4 col-form-label text-md-right">{{ __('Seguridad Social') }}</label>
+                            <div class="col-md-6">
+                                <input id="seguridad" type="text" class="form-control @error('seguridad') is-invalid @enderror" name="seguridad" value="{{ old('seguridad') }}" required autocomplete="seguridad" autofocus>
+
+                                <!-- @error('seguridad')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror -->
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="primer_acudiente" class="col-md-4 col-form-label text-md-right">{{ __('Primer Acudiente') }}</label>
+                            <div class="col-md-6">
+                                <input id="primer_acudiente" type="text" class="form-control @error('primer_acudiente') is-invalid @enderror" name="primer_acudiente" value="{{ old('primer_acudiente') }}" required autocomplete="primer_acudiente" autofocus>
+
+                                <!-- @error('primer_acudiente')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror -->
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="segundo_acudiente" class="col-md-4 col-form-label text-md-right">{{ __('Segundo Acudiente') }}</label>
+                            <div class="col-md-6">
+                                <input id="segundo_acudiente" type="text" class="form-control @error('segundo_acudiente') is-invalid @enderror" name="segundo_acudiente" value="{{ old('segundo_acudiente') }}" required autocomplete="segundo_acudiente" autofocus>
+
+                                <!-- @error('segundo_acudiente')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror -->
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="servicio_funerario" class="col-md-4 col-form-label text-md-right">{{ __('Servicio Funerario') }}</label>
+                            <div class="col-md-6">
+                                <select name="servicio_funerario" class="form-control @error('servicio_funerario') is-invalid @enderror" value="{{ old('servicio_funerario') }}" name="servicio_funerario">>
+                                    <option value="">--Seleccione--</option>                                   
+                                    <option value="SI">SI</option>
+                                    <option value="NO">NO</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="entidad_funeraria" class="col-md-4 col-form-label text-md-right">{{ __('Entidad Funeraria') }}</label>
+                            <div class="col-md-6">
+                                <input id="entidad_funeraria" type="text" class="form-control @error('entidad_funeraria') is-invalid @enderror" name="entidad_funeraria" value="{{ old('entidad_funeraria') }}" required autocomplete="entidad_funeraria" autofocus>
+
+                                <!-- @error('entidad_funeraria')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror -->
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="dependencia_economica" class="col-md-4 col-form-label text-md-right">{{ __('Dependencia Económica') }}</label>
+                            <div class="col-md-6">
+                                <input id="dependencia_economica" type="text" class="form-control @error('dependencia_economica') is-invalid @enderror" name="dependencia_economica" value="{{ old('dependencia_economica') }}" required autocomplete="dependencia_economica" autofocus>
+
+                                <!-- @error('dependencia_economica')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror -->
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="dependencia_afectiva" class="col-md-4 col-form-label text-md-right">{{ __('Dependencia Afectiva') }}</label>
+                            <div class="col-md-6">
+                                <input id="dependencia_afectiva" type="text" class="form-control @error('dependencia_afectiva') is-invalid @enderror" name="dependencia_afectiva" value="{{ old('dependencia_afectiva') }}" required autocomplete="dependencia_afectiva" autofocus>
+
+                                <!-- @error('dependencia_afectiva')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror -->
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="relacion_familiar" class="col-md-4 col-form-label text-md-right">{{ __('Relación Familiar') }}</label>
+                            <div class="col-md-6">
+                                <input id="relacion_familiar" type="text" class="form-control @error('relacion_familiar') is-invalid @enderror" name="relacion_familiar" value="{{ old('relacion_familiar') }}" required autocomplete="relacion_familiar" autofocus>
+
+                                <!-- @error('relacion_familiar')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror -->
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="hobbies" class="col-md-4 col-form-label text-md-right">{{ __('Hobbies') }}</label>
+                            <div class="col-md-6">
+                                <Textarea id="hobbies" type="text" class="form-control @error('hobbies') is-invalid @enderror" name="hobbies" value="{{ old('hobbies') }}" required autocomplete="hobbies" autofocus></Textarea>
+
+                                <!-- @error('hobbies')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror -->
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="motivo_ingreso" class="col-md-4 col-form-label text-md-right">{{ __('Motivo Ingreso') }}</label>
+                            <div class="col-md-6">
+                                <Textarea id="motivo_ingreso" type="text" class="form-control @error('motivo_ingreso') is-invalid @enderror" name="motivo_ingreso" value="{{ old('motivo_ingreso') }}" required autocomplete="motivo_ingreso" autofocus></Textarea>
+
+                                <!-- @error('motivo_ingreso')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror -->
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="tipo_sangre" class="col-md-4 col-form-label text-md-right">{{ __('Tipo Sangre') }}</label>
+                            <div class="col-md-6">
+                                <input id="tipo_sangre" type="text" class="form-control @error('tipo_sangre') is-invalid @enderror" name="tipo_sangre" value="{{ old('tipo_sangre') }}" required autocomplete="tipo_sangre" autofocus>
+
+                                <!-- @error('tipo_sangre')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror -->
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="eps" class="col-md-4 col-form-label text-md-right">{{ __('EPS') }}</label>
+                            <div class="col-md-6">
+                                <input id="eps" type="text" class="form-control @error('eps') is-invalid @enderror" name="eps" value="{{ old('eps') }}" required autocomplete="eps" autofocus>
+
+                                <!-- @error('eps')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror -->
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="morbilidad" class="col-md-4 col-form-label text-md-right">{{ __('Morbilidad') }}</label>
+                            <div class="col-md-6">
+                                <input id="morbilidad" type="text" class="form-control @error('morbilidad') is-invalid @enderror" name="morbilidad" value="{{ old('morbilidad') }}" required autocomplete="morbilidad" autofocus>
+
+                                <!-- @error('morbilidad')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror -->
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="genero" class="col-md-4 col-form-label text-md-right">{{ __('Género') }}</label>
+                            <div class="col-md-6">
+                                <input id="genero" type="text" class="form-control @error('genero') is-invalid @enderror" name="genero" value="{{ old('genero') }}" required autocomplete="genero" autofocus>
+
+                                <!-- @error('genero')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror -->
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="medicinas" class="col-md-4 col-form-label text-md-right">{{ __('Medicinas') }}</label>
+                            <div class="col-md-6">
+                                <Textarea id="medicinas" type="text" class="form-control @error('medicinas') is-invalid @enderror" name="medicinas" value="{{ old('medicinas') }}" required autocomplete="medicinas" autofocus></Textarea>
+
+                                <!-- @error('medicinas')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror -->
+                            </div>
                         </div>
                       
-                        <div class="p-t-15" align="center">
-                            <button class="btn btn--radius-2 btn--blue" type="submit">Enviar</button>
-                            <a href="admin" class="btn btn--radius-2 btn--blue">Cancelar</a>       
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Registrarse') }}
+                                </button>
+                            </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Jquery JS-->
-    <script src="vendor3/jquery/jquery.min.js"></script>
-    <!-- Vendor JS-->
-    <script src="vendor3/select2/select2.min.js"></script>
-    <script src="vendor3/datepicker/moment.min.js"></script>
-    <script src="vendor3/datepicker/daterangepicker.js"></script>
-
-    <!-- Main JS-->
-    <script src="js/global.js"></script>
-
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
-
-</html>
-<!-- end document-->
-
+</div>
 @endsection
