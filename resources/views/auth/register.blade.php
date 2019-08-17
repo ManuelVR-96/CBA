@@ -53,10 +53,10 @@
                         <div class="form-group row">
                             <label for="nivel" class="col-md-4 col-form-label text-md-right">{{ __('Nivel Educativo') }}</label>
                             <div class="col-md-6">
-                                <select name="nivel" id="">
+                                <select name="nivel" id="nivel" type="text">
                                     <option value="">--Seleccione el nivel--</option>
-                                    <option value="">Primaria</option>
-                                    <option value="">Secundaria</option>
+                                    <option value="Primaria">Primaria</option>
+                                    <option value="Secundaria">Secundaria</option>
                                 </select>
                             </div>
                         </div>
@@ -64,7 +64,7 @@
                         <div class="form-group row">
                             <label for="formacion" class="col-md-4 col-form-label text-md-right">{{ __('Formación') }}</label>
                             <div class="col-md-6">
-                                <input id="formacion" type="text" class="form-control @error('formacion') is-invalid @enderror" name="formacion" value="{{ old('formacion') }}" required autocomplete="formacion" autofocus>
+                                <Textarea id="formacion" type="text" class="form-control @error('formacion') is-invalid @enderror" name="formacion" value="{{ old('formacion') }}" required autocomplete="formacion" autofocus></textarea>
 
                                 @error('formacion')
                                     <span class="invalid-feedback" role="alert">
@@ -130,10 +130,10 @@
                         <div class="form-group row">
                             <label for="rol" class="col-md-4 col-form-label text-md-right">{{ __('Rol') }}</label>
                             <div class="col-md-6">
-                                <select name="rol" id="">
+                                <select name="rol" id="", type="text">
                                     <option value="">--Seleccione el nivel--</option>
-                                    <option value="">Operador</option>
-                                    <option value="">Administrador</option>
+                                    <option value="Operador">Operador</option>
+                                    <option value="Administrador">Administrador</option>
                                 </select>
                             </div>
                         </div>

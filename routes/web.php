@@ -39,6 +39,9 @@ Route::get('/user', function () {
 
 Route::resource('/miembros', 'MiembrosController');
 Route::resource('/usuarios', 'UsuarioController');
+Route::resource('/programa', 'ProgramasController');
+Route::resource('/valoracion', 'ValoracionesController');
+
 
 
 Auth::routes();

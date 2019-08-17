@@ -3,8 +3,9 @@
 namespace CBA\Http\Controllers;
 
 use Illuminate\Http\Request;
+use CBA\Valoracion;
 
-class UsuarioController extends Controller
+class ValoracionesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        return view ('admin');
+        //
     }
 
     /**
@@ -23,7 +24,7 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        return view ('auth.register');
+        return view ('registro_valoracion');
     }
 
     /**
@@ -34,31 +35,18 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        $request ->validate ([
-            'nombres'=>'required',
-            'cedula' =>'required'
-        ]);
-            $nuevoOp = new CBA\User;
-            $nuevoOp->nombres = $request->nombres;
-            $nuevoOp->cédula = $request->id;
-         $nuevoOp->apellidos = $request->apellidos;
-         $nuevoOp->cargo = $request->cargo;
-         $nuevoOp->nivel_educativo = $request->nivel;
-         $nuevoOp->formación = $request->formacion;
-         $nuevoOp->dirección = $request->direccion;
-         $nuevoOp->contraseña = $request->password;
-         $nacimiento_ = Carbon::createFromFormat ('Y-m-d', $request->nacimiento);
-         echo($nacimiento_);
-         $nuevoOp->fecha_de_nacimiento = $nacimiento_;
-         $vinculacion_ = Carbon::createFromFormat ('Y-m-d', $request->vinculacion);
-         $nuevoOp->fecha_de_vinculación = $vinculacion_;
-         $nuevoOp->email = $request->email;
-         $nuevoOp->is_admin = $request->email;
-         $nuevoOp->telefono = $request->telefono;
+           $nuevoValoracion = new Valoracion();
+           $nuevoValoracion->cédula= $request->id;
+        $nuevoValoracion->médica=$request->medica;
+        $nuevoValoracion->fisioterapeuta=$request->fisio;
+        $nuevoValoracion->nutricionista=$request->nutricionista;
+        $nuevoValoracion->psicologo=$request->psicologo;
+        $nuevoValoracion->enfermera=$request->enfermera;
+        $nuevoValoracion->profesional_deporte=$request->profesional_deporte;
+        $nuevoValoracion->religiosas=$request->religiosas;
+           $nuevoValoracion->save();
     
-            $nuevoOp->save();
-    
-            return back()->with ('mensaje','Operador agregado correctamente');
+            return back()->with ('mensaje','Valoracion agregado correctamente');
     }
 
     /**

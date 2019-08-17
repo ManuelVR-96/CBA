@@ -4,7 +4,7 @@ namespace CBA\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class UsuarioController extends Controller
+class ProgramasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        return view ('admin');
+        //
     }
 
     /**
@@ -23,7 +23,7 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        return view ('auth.register');
+        return view ('registro');
     }
 
     /**
@@ -35,31 +35,17 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         $request ->validate ([
-            'nombres'=>'required',
-            'cedula' =>'required'
+    	
+            'encargado' =>'required'
         ]);
-            $nuevoOp = new CBA\User;
-            $nuevoOp->nombres = $request->nombres;
-            $nuevoOp->cédula = $request->id;
-         $nuevoOp->apellidos = $request->apellidos;
-         $nuevoOp->cargo = $request->cargo;
-         $nuevoOp->nivel_educativo = $request->nivel;
-         $nuevoOp->formación = $request->formacion;
-         $nuevoOp->dirección = $request->direccion;
-         $nuevoOp->contraseña = $request->password;
-         $nacimiento_ = Carbon::createFromFormat ('Y-m-d', $request->nacimiento);
-         echo($nacimiento_);
-         $nuevoOp->fecha_de_nacimiento = $nacimiento_;
-         $vinculacion_ = Carbon::createFromFormat ('Y-m-d', $request->vinculacion);
-         $nuevoOp->fecha_de_vinculación = $vinculacion_;
-         $nuevoOp->email = $request->email;
-         $nuevoOp->is_admin = $request->email;
-         $nuevoOp->telefono = $request->telefono;
+            $nuevoPrograma = new CBA\Programa;
+            $nuevoPrograma->agenda = $request->agenda;
+            $nuevoPrograma->encargado = $request->encargado;
+            $nuevoPrograma->save();
     
-            $nuevoOp->save();
+            return back()->with ('mensaje','Programa agregado correctamente');
+        }
     
-            return back()->with ('mensaje','Operador agregado correctamente');
-    }
 
     /**
      * Display the specified resource.
