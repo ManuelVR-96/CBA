@@ -67,7 +67,7 @@
                         <div class="form-group row">
                             <label for="formacion" class="col-md-4 col-form-label text-md-right">{{ __('Formación') }}</label>
                             <div class="col-md-6">
-                                <input id="formacion" type="text" class="form-control @error('formacion') is-invalid @enderror" name="formacion" value="{{ old('formacion') }}" required autocomplete="formacion" autofocus>
+                                <Textarea id="formacion" type="text" class="form-control @error('formacion') is-invalid @enderror" name="formacion" value="{{ old('formacion') }}" required autocomplete="formacion" autofocus></textarea>
 
                                 <!-- @error('formacion')
                                     <span class="invalid-feedback" role="alert">

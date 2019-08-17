@@ -16,14 +16,14 @@ class CreateValoracionsTable extends Migration
         Schema::create('valoracions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->integer('cédula');
-            $table->text('médica');
-            $table->text('fisioterapeuta');
-            $table->text('nutricionista');
-            $table->text('psicologo');
-            $table->text('enfermera');
-            $table->text('profesional_deporte');
-            $table->text('religiosas');
+            $table->integer('cédula')->nullable();
+            $table->text('médica')->nullable();
+            $table->text('fisioterapeuta')->nullable();
+            $table->text('nutricionista')->nullable();
+            $table->text('psicologo')->nullable();
+            $table->text('enfermera')->nullable();
+            $table->text('profesional_deporte')->nullable();
+            $table->text('religiosas')->nullable();
             //$table->text('acompañantes');
         });
     }

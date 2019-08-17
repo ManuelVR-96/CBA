@@ -11,10 +11,6 @@ class PageControler extends Controller
     	return view ('inicio');
     }
 
-   /* public function inicio() {
-    return view ('inicio');
-    }*/
-
     public function registro() {
    	 return view ('registro');
     }

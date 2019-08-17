@@ -22,19 +22,18 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->string('Tipo de Documento de identidad')->nullable();
-            $table->integer('Documento de identidad')->nullable();
+            #$table->string('Tipo de Documento de identidad')->nullable();
+            $table->string('cedula')->nullable();
             $table->string('nombres');
             $table->string('apellidos')->nullable();
             $table->string('cargo')->nullable();
             $table->string('nivel_educativo')->nullable();
             $table->string('formación')->nullable();
             $table->string('dirección')->nullable();
-            $table->string('contraseña')->nullable();
             $table->date('fecha_de_nacimiento')->nullable();
             $table->date('fecha_de_vinculación')->nullable();
-            $table->string('is_admin')->default(false);
-            $table->integer('telefono')->nullable();
+            $table->string('is_admin')->nullable();
+            $table->string('telefono')->nullable();
 
         });
     }

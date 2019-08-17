@@ -7,6 +7,12 @@ use CBA\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Auth;
+
+
+use Illuminate\Auth\Events\Registered;
+
 
 class RegisterController extends Controller
 {
@@ -51,17 +57,8 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'nombres' => ['required', 'string','alpha', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'alpha_num','max:20','confirmed'],
-            'apellidos' => ['required', 'string', 'max:255', 'alpha',],
-            'Tipo de Documento de identidad'=> ['required', 'string', 'max:12', 'alpha',],
-            'Documento de identidad'=> ['required', 'string', 'max:255', 'alpha',],
-        '   cargo' =>['required', 'string', 'max:255', 'alpha',],
-            'nivel_educativo' =>['required', 'string', 'max:255', 'alpha',],
-            'formación'=>['required', 'string', 'max:255', 'alpha',],
-            'dirección'=>['required', 'string', 'max:255', 'alpha',],
-            'fecha_de_nacimiento'=>['required', 'date', 'alpha',],
-            'fecha_de_vinculación'=>['required', 'date', 'alpha',],
-           'is_admin'=>['required', 'boolean', 'alpha',],
+            
+           
         
 
         ]);
@@ -74,28 +71,42 @@ class RegisterController extends Controller
      * @return \CBA\User
      */
     protected function create(array $data)
-    {
+    {  
         return User::create([
-            #'name' => $data['name'],
+        
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
            
             'nombres' =>$data['nombres'],
-            #'cédula' =>$data['cedula'],
-            'apellidos' => $data['apellidos'],
-           # 'cargo' => $data['cargo'];
-            #'nivel_educativo' => $data['nivel_educativo'];
-            #'formación' => $data['formacion'];
-            #'dirección' = $data['direccion'];
+            'cédula' =>$data['id'],
+            'apellidos' =>$data['apellidos'],
+            'cargo' => $data['Cargo'],
+            'nivel_educativo' =>$data['nivel'],
+            'formación' =>$data['formacion'],
+            'dirección' =>$data['direccion'],
+            'telefono' =>$data['telefono'],
+            'is_admin' =>$data['rol'],
             
      #$nacimiento_ = Carbon::createFromFormat ('Y-m-d', $request->nacimiento);
      #echo($nacimiento_);
-           # 'fecha_de_nacimiento' => $data['nacimiento'];
+        'fecha_de_nacimiento' => $data['nacimiento'],
      #$vinculacion_ = Carbon::createFromFormat ('Y-m-d', $request->vinculacion);
-            #'fecha_de_vinculación' = $data['vinculacion'];
-            #'email = $request->email;
+        'fecha_de_vinculación' => $data['vinculacion'],
+           
 
 
         ]);
+    }
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        #$this->guard()->login($user); // <- it's actually this line login the fresh user
+
+    return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath());
     }
 }
