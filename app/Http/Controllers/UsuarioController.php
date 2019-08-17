@@ -38,15 +38,9 @@ class UsuarioController extends Controller
             'nombres'=>'required',
             'cedula' =>'required'
         ]);
-<<<<<<< HEAD
-        $nuevoOp = new CBA\Operador;
-        $nuevoOp->nombres = $request->nombres;
-        $nuevoOp->cédula = $request->cedula;
-=======
             $nuevoOp = new CBA\User;
             $nuevoOp->nombres = $request->nombres;
             $nuevoOp->cédula = $request->id;
->>>>>>> Manuel
          $nuevoOp->apellidos = $request->apellidos;
          $nuevoOp->cargo = $request->cargo;
          $nuevoOp->nivel_educativo = $request->nivel;

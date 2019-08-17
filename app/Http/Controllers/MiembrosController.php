@@ -4,6 +4,9 @@ namespace CBA\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use CBA\Cliente;
+use Carbon\Carbon;
+
 class MiembrosController extends Controller
 {
     /**
@@ -23,7 +26,7 @@ class MiembrosController extends Controller
      */
     public function create()
     {
-        return view('registroCliente');
+        return view('registro');
     }
 
     /**
@@ -34,37 +37,23 @@ class MiembrosController extends Controller
      */
     public function store(Request $request)
     {
-        $request ->validate ([
-            'nombres'=>'required',
-            'cedula' =>'required'
-        ]);
-<<<<<<< HEAD
-        $nuevoCliente = new CBA\Cliente;
-        $nuevoCliente->cédula = $request->cedula;
-=======
-            $nuevoCliente = new CBA\Cliente;
-            $nuevoCliente->cédula = $request->id;
->>>>>>> Manuel
+        // $request ->validate ([
+        //     'nombres'=>'required',
+        //     'cédula' =>'required'
+        // ]);
+        $nuevoCliente = new Cliente();
+        $nuevoCliente->cédula = $request->id;
          $nuevoCliente->nombres = $request->nombres;
          $nuevoCliente->apellidos = $request->apellidos;
          $nuevoCliente->nivel_educativo = $request->nivel;
          $nuevoCliente->dirección = $request->direccion;
          $nuevoCliente->telefono = $request->telefono;
-<<<<<<< HEAD
-         $nuevoCliente->Lugar_de_nacimiento = $request->Lugar_de_nacimiento;
-         $nacimiento_ = Carbon::createFromFormat('Y-m-d', $request->fecha_de_nacimiento);
-         $nuevoCliente->fecha_de_nacimiento = $nacimiento_;
-         $vinculacion_ = Carbon::createFromFormat('Y-m-d', $request->fecha_de_ingreso);
-         $nuevoCliente->fecha_de_ingreso = $request->vinculacion;
-         $nuevoCliente->seguridad_social = $request->seguridad_social;
-=======
          $nuevoCliente->Lugar_de_nacimiento = $request->lugar;
          $nacimiento_ = Carbon::createFromFormat ('Y-m-d', $request->nacimiento);
          $nuevoCliente->fecha_de_nacimiento = $nacimiento_;
          $vinculacion_ = Carbon::createFromFormat ('Y-m-d', $request->vinculacion);
-         $nuevoCliente->fecha_de_ingreso = $request->vinculacion_;
+         $nuevoCliente->fecha_de_ingreso = $vinculacion_;
          $nuevoCliente->seguridad_social = $request->seguridad;
->>>>>>> Manuel
          $nuevoCliente->primer_acudiente = $request->primer_acudiente;
          $nuevoCliente->segundo_acudiente = $request->segundo_acudiente;
          $nuevoCliente->servicio_funerario = $request->servicio_funerario;
@@ -74,7 +63,7 @@ class MiembrosController extends Controller
          $nuevoCliente->relación_familiar = $request->relacion_familiar;
          $nuevoCliente->hobbies = $request->hobbies;
          $nuevoCliente->motivo_ingreso = $request->motivo_ingreso;
-         $nuevoCliente->Tipo_Sangre = $request->tipo_Sangre;
+         $nuevoCliente->Tipo_Sangre = $request->tipo_sangre;
          $nuevoCliente->EPS = $request->eps;
          $nuevoCliente->morbilidad = $request->morbilidad;
          $nuevoCliente->género = $request->genero;
