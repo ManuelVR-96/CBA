@@ -3,6 +3,8 @@
 namespace CBA\Http\Controllers;
 
 use Illuminate\Http\Request;
+use CBA\User;
+use CBA\Programa;
 
 class ProgramasController extends Controller
 {
@@ -13,7 +15,7 @@ class ProgramasController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -22,8 +24,9 @@ class ProgramasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view ('registro');
+    {   
+        $encargados = User::all();
+        return view ('programa', compact('encargados'));
     }
 
     /**
@@ -35,12 +38,13 @@ class ProgramasController extends Controller
     public function store(Request $request)
     {
         $request ->validate ([
-    	
+        
             'encargado' =>'required'
         ]);
-            $nuevoPrograma = new CBA\Programa;
+            $nuevoPrograma = new Programa();
             $nuevoPrograma->agenda = $request->agenda;
             $nuevoPrograma->encargado = $request->encargado;
+            $nuevoPrograma->descripcion = $request->descripcion;
             $nuevoPrograma->save();
     
             return back()->with ('mensaje','Programa agregado correctamente');

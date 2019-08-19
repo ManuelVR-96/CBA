@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProgramasTable extends Migration
+class CreateEspecialidadsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateProgramasTable extends Migration
      */
     public function up()
     {
-        Schema::create('programas', function (Blueprint $table) {
+        Schema::create('especialidads', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->date('agenda');
-            $table->text('descripcion');
-            $table->unsignedBigInteger('encargado')->nullable();
-            $table->foreign('encargado')->references('id')->on('users')->onDelete('set null');
+            $table ->string("Nombre");
         });
     }
 
@@ -30,6 +27,6 @@ class CreateProgramasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('programas');
+        Schema::dropIfExists('especialidads');
     }
 }

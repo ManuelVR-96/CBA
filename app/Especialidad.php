@@ -4,7 +4,7 @@ namespace CBA;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Programa extends Model
+class Especialidad extends Model
 {
     //
 }
