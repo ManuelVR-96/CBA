@@ -21,15 +21,30 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="descripcion" class="col-md-4 col-form-label text-md-right">{{ __('Descripción') }}</label>
+                            <div class="col-md-6">
+                                <input id="descripcion" type="text" class="form-control @error('descripcion') is-invalid @enderror" name="descripcion" value="{{ old('descripcion') }}" required autocomplete="descripcion" autofocus>
+
+                                <!-- @error('direccion')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror -->
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="encargado" class="col-md-4 col-form-label text-md-right">{{ __('Encargado') }}</label>
                             <div class="col-md-6">
-                                <input id="encargado" type="text" class="form-control @error('encar') is-invalid @enderror" name="encargado" value="{{ old('encargado') }}" required autocomplete="encargado" autofocus>
-
+                                <select id="encargado" type="text" class="form-control @error('encar') is-invalid @enderror" name="encargado" value="{{ old('encargado') }}" required autocomplete="encargado" autofocus>
+                                    <option value="Violador">Violador</option>
+                                    <option value="Drogadicto">Drogadicto</option>
                                 <!-- @error('encargado')
                                     <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror -->
+                                </select>
                             </div>
                         </div>
                       

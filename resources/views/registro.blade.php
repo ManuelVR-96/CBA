@@ -56,10 +56,9 @@
                             <label for="nivel" class="col-md-4 col-form-label text-md-right">{{ __('Nivel Educativo') }}</label>
                             <div class="col-md-6">
                                 <select name="nivel" class="form-control @error('nivel') is-invalid @enderror" value="{{ old('nivel') }}" name="nivel">>
-                                    <option value="">--Seleccione el nivel--</option>
                                     <option value="Primaria">Primaria</option>
                                     <option value="Secundaria">Secundaria</option>
-                                    <option value="Tecnico Y/o Tecnologo">Tecnico Y/o Tecnologo</option>
+                                    <option value="Tecnico/Tecnologo">Tecnico/Tecnologo</option>
                                     <option value="Profesional">Profesional</option>
                                     <option value="Postgrado">Postgrado</option>
                                 </select>
