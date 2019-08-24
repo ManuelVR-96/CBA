@@ -80,12 +80,12 @@ class RegisterController extends Controller
             'nombres' =>$data['nombres'],
             'cédula' =>$data['id'],
             'apellidos' =>$data['apellidos'],
-            'cargo' => $data['Cargo'],
+            'cargo' => $data['cargo'],
             'nivel_educativo' =>$data['nivel'],
             'formación' =>$data['formacion'],
             'dirección' =>$data['direccion'],
             'telefono' =>$data['telefono'],
-            'is_admin' =>$data['rol'],
+            'is_admin' =>$data['perfil'],
             
      #$nacimiento_ = Carbon::createFromFormat ('Y-m-d', $request->nacimiento);
      #echo($nacimiento_);

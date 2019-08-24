@@ -35,8 +35,8 @@ class ValoracionesController extends Controller
      */
     public function store(Request $request)
     {
-           $nuevoValoracion = new Valoracion();
-           $nuevoValoracion->cédula= $request->id;
+        $nuevoValoracion = new Valoracion();
+        $nuevoValoracion->cédula= $request->id;
         $nuevoValoracion->médica=$request->medica;
         $nuevoValoracion->fisioterapeuta=$request->fisio;
         $nuevoValoracion->nutricionista=$request->nutricionista;
@@ -44,9 +44,9 @@ class ValoracionesController extends Controller
         $nuevoValoracion->enfermera=$request->enfermera;
         $nuevoValoracion->profesional_deporte=$request->profesional_deporte;
         $nuevoValoracion->religiosas=$request->religiosas;
-           $nuevoValoracion->save();
+        $nuevoValoracion->save();
     
-            return back()->with ('mensaje','Valoracion agregado correctamente');
+        return back()->with ('mensaje','Valoracion agregado correctamente');
     }
 
     /**

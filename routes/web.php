@@ -42,7 +42,7 @@ Route::resource('/usuarios', 'UsuarioController');
 Route::resource('/programa', 'ProgramasController');
 Route::resource('/valoracion', 'ValoracionesController');
 
-
+Route::get('consultarUser/buscador', 'UsuarioController@buscador')->name('consultarUser.buscador');
 
 Auth::routes();
 

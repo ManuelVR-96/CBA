@@ -25,7 +25,7 @@ class PageControler extends Controller
    
     }
 
-public function agregar_programa(Request $request) {
+    public function agregar_programa(Request $request) {
    	 return view ('registro');
     }
 
@@ -66,7 +66,7 @@ public function agregar_valoracion(Request $request) {
     }
 
 
-
+    
     public function login() {
     return view ('login');
     }
