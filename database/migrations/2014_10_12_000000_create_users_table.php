@@ -32,7 +32,7 @@ class CreateUsersTable extends Migration
             $table->string('dirección')->nullable();
             $table->date('fecha_de_nacimiento')->nullable();
             $table->date('fecha_de_vinculación')->nullable();
-            $table->string('is_admin')->nullable();
+            $table->string('rol')->nullable();
             $table->string('telefono')->nullable();
 
         });

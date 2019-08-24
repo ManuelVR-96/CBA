@@ -6,9 +6,13 @@ use Illuminate\Http\Request;
 use App;
 use Carbon\Carbon;
 class PageControler extends Controller
+{   
+    public function __construct()
 {
+    $this->middleware('auth');
+}
     public function welcome(){
-    	return view ('inicio');
+    	return view ('admin');
     }
 
     public function registro() {
