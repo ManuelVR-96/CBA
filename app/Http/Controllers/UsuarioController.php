@@ -22,11 +22,11 @@ class UsuarioController extends Controller
     {  
         $nombre= $request->busqueda;
         if ($nombre==''){
-            $users = User::all();
+            $users = User::orderBy('nombres', 'ASC')->paginate(2);
             }
             else {
                 
-                $users = User::where('nombres', $nombre)->get();
+                $users = User::where('nombres', $nombre)->paginate(2);
             }
             return view('consultarUser', compact ('users'));
     }

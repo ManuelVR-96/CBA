@@ -15,10 +15,23 @@ class MiembrosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        
+    {   
+        $users = Cliente::orderBy('nombres', 'ASC')->paginate(2);
+        return view('consultarUser2', compact ('users')); 
     }
 
+    public function busqueda(Request $request)
+    {  
+        $nombre= $request->busqueda;
+        if ($nombre==''){
+            $users = Cliente::orderBy('nombres', 'ASC')->paginate(2);
+            }
+            else {
+                
+                $users = Cliente::where('nombres', $nombre)->paginate(2);
+            }
+            return view('consultarUser2', compact ('users'));
+    }
     /**
      * Show the form for creating a new resource.
      *
