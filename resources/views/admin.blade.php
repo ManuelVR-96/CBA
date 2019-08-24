@@ -80,6 +80,7 @@
           <span>Actualizar Pagina</span>
         </a>
       </li>
+      @if (auth()->user()->rol=="Administrador")
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-fw fa-folder"></i>
@@ -93,7 +94,7 @@
           <a class="dropdown-item" href="forgot-password.html">Eliminar Usuario</a>        
         </div>
       </li>
-
+      @endif
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-fw fa-folder"></i>

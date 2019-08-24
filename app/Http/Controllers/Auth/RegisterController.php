@@ -41,10 +41,10 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
+     public function __construct()
+     {
+         $this->middleware('admin');
+     }
 
     /**
      * Get a validator for an incoming registration request.
@@ -85,7 +85,7 @@ class RegisterController extends Controller
             'formación' =>$data['formacion'],
             'dirección' =>$data['direccion'],
             'telefono' =>$data['telefono'],
-            'is_admin' =>$data['perfil'],
+            'rol' =>$data['perfil'],
             
      #$nacimiento_ = Carbon::createFromFormat ('Y-m-d', $request->nacimiento);
      #echo($nacimiento_);

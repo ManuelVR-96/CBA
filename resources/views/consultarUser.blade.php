@@ -9,9 +9,12 @@
     <div class="container box">
         <div class="row justify-content-center">
             <div class="col-md-10">                
-                <div><a href="/register" class="btn btn-primary btn-sm">Crear Nuevo Usuario</a></div><br>        
+                <div><a href="/register" class="btn btn-primary btn-sm">Crear Nuevo Usuario</a></div><br>
+                <form method="POST" action="{{route('lista_nombres')}}">
+                @csrf        
                 <div class="input-group mb-3">
-                  <input type="text" class="form-control" id="texto" placeholder="Buscar" aria-label="Recipient's username" aria-describedby="basic-addon2">                  
+                
+                  <input type="text" class="form-control" id="busqueda" name="busqueda" placeholder="Buscar" aria-label="Recipient's username" aria-describedby="basic-addon2">                  
                 </div>
 
                 <div id="resultados"></div>  
@@ -42,15 +45,15 @@
                             </tr>
                             @endforeach
                         </tbody>
-                    </table>                                      
+                    </table> 
+                    {{$users->links()}}                                     
                 </div>
-                <div>                   
-                    {!! $users->render()!!}                                       
+                <div>                                                        
                 </div>                    
             </div>        
         </div>
     </div>
-    <script>
+    <!-- <script>
         window.addEventListener('load',function(){
             document.getElementById("texto").addEventListener("keyup", function(){
             if((document.getElementById("texto").value.length)>=2)
@@ -61,6 +64,6 @@
                 document.getElementById("resultados").innerHTML = ""
             })
         }); 
-    </script>
+    </script> -->
 
 @endsection

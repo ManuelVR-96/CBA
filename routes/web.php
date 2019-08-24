@@ -17,8 +17,6 @@ Route::get('/','PageControler@welcome')->name('welcome');
 
 Route::get('/inicio','PageControler@inicio')->name('inicio');
 
-Route::get('/login','PageControler@login')->name('login');
-
 Route::get('/registro', 'PageControler@registro')->name('registro');
 
 Route::post('/registro', 'PageControler@registrar_op')->name('registrar_op');
@@ -39,10 +37,12 @@ Route::get('/user', function () {
 
 Route::resource('/miembros', 'MiembrosController');
 Route::resource('/usuarios', 'UsuarioController');
+Route::post('/usuarios', 'UsuarioController@busqueda')->name('lista_nombres');
 Route::resource('/programa', 'ProgramasController');
 Route::resource('/valoracion', 'ValoracionesController');
 
 Route::get('consultarUser/buscador', 'UsuarioController@buscador')->name('consultarUser.buscador');
+
 
 Auth::routes();
 

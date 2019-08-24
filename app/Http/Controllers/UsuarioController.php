@@ -4,7 +4,6 @@ namespace CBA\Http\Controllers;
 
 use Illuminate\Http\Request;
 use CBA\User;
-use DB;
 
 class UsuarioController extends Controller
 {
@@ -14,9 +13,22 @@ class UsuarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $users = User::orderBy('nombres', 'ASC')->paginate(3);
-        return view('consultarUser')->with('users', $users);
+    {   
+        $users = User::orderBy('nombres', 'ASC')->paginate(2);
+        return view('consultarUser', compact ('users')); 
+    }
+
+    public function busqueda(Request $request)
+    {  
+        $nombre= $request->busqueda;
+        if ($nombre==' '){
+            $users = User::all();
+            }
+            else {
+                
+                $users = User::where('nombres', $nombre)->paginate(2);
+            }
+            return view('consultarUser', compact ('users'));
     }
 
     /**
@@ -72,7 +84,7 @@ class UsuarioController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -109,10 +121,10 @@ class UsuarioController extends Controller
         //
     }
 
-    public function buscador(Request $request)
-    {
-        $users = User::where("nombres","like",$request->texto."%")->take(2)->get();
-        return view("consultarUser.buscador",compact("nombres"));
-    }
+    // public function buscador(Request $request)
+    // {
+    //     $users = User::where("nombres","like",$request->texto."%")->take(2)->get();
+    //     return view("consultarUser.buscador",compact("nombres"));
+    // }
 
 }
