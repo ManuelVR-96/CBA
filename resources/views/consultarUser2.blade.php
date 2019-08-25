@@ -9,7 +9,7 @@
     <div class="container box">
         <div class="row justify-content-center">
             <div class="col-md-10">                
-                <div><a href="/registro" class="btn btn-primary btn-sm">Agregar nuevo miembro</a></div><br>
+                <div><a href="/miembros/create" class="btn btn-primary btn-sm">Agregar nuevo miembro</a></div><br>
                 <form method="POST" action="{{route('lista_abuelos')}}">
                 @csrf        
                 <div class="input-group mb-3">
@@ -41,7 +41,7 @@
                                 <td>{{ $item->cargo }}</td>
                                 <td>
                                                                   
-                                    <a href="" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
+                                    <a href="{{route('miembros.edit', $item->id)}}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
                                         
                                         <form action="{{route('miembros.eliminar', $item->id)}}" class="d-inline" method="POST">
                                          @csrf

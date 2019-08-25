@@ -40,6 +40,8 @@ Route::resource('/usuarios', 'UsuarioController');
 Route::post('/usuarios', 'UsuarioController@busqueda')->name('lista_nombres');
 Route::post('/miembros', 'MiembrosController@busqueda')->name('lista_abuelos');
 Route::delete('/miembros/{id}', 'MiembrosController@destroy')->name('miembros.eliminar');
+Route::post('/miembros/create', 'MiembrosController@store')->name('miembros.store');
+
 Route::resource('/programa', 'ProgramasController');
 Route::resource('/valoracion', 'ValoracionesController');
 

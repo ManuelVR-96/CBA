@@ -108,7 +108,9 @@ class MiembrosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $miembro = Cliente::findOrFail($id);
+
+        return view('actualizarMiembros', compact('miembro'));
     }
 
     /**
@@ -120,7 +122,37 @@ class MiembrosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $miembro = Cliente::findOrFail($id);
+        $miembro->cédula = $request->id;
+         $miembro->nombres = $request->nombres;
+         $miembro->apellidos = $request->apellidos;
+         $miembro->nivel_educativo = $request->nivel;
+         $miembro->dirección = $request->direccion;
+         $miembro->telefono = $request->telefono;
+         $miembro->Lugar_de_nacimiento = $request->lugar;
+         $nacimiento_ = Carbon::createFromFormat ('Y-m-d', $request->nacimiento);
+         $miembro->fecha_de_nacimiento = $nacimiento_;
+         $vinculacion_ = Carbon::createFromFormat ('Y-m-d', $request->vinculacion);
+         $miembro->fecha_de_ingreso = $vinculacion_;
+         $miembro->seguridad_social = $request->seguridad;
+         $miembro->primer_acudiente = $request->primer_acudiente;
+         $miembro->segundo_acudiente = $request->segundo_acudiente;
+         $miembro->servicio_funerario = $request->servicio_funerario;
+         $miembro->entidad_funeraria = $request->entidad_funeraria;
+         $miembro->dependencia_económica = $request->dependencia_economica;
+         $miembro->dependencia_afectiva = $request->dependencia_afectiva;
+         $miembro->relación_familiar = $request->relacion_familiar;
+         $miembro->hobbies = $request->hobbies;
+         $miembro->motivo_ingreso = $request->motivo_ingreso;
+         $miembro->Tipo_Sangre = $request->tipo_sangre;
+         $miembro->EPS = $request->eps;
+         $miembro->morbilidad = $request->morbilidad;
+         $miembro->género = $request->genero;
+         $miembro->medicinas = $request->medicinas;
+    
+        $miembro->save();
+        return back();
+
     }
 
     /**
