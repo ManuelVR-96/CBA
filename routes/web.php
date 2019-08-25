@@ -38,6 +38,7 @@ Route::get('/user', function () {
 Route::resource('/miembros', 'MiembrosController');
 Route::resource('/usuarios', 'UsuarioController');
 Route::post('/usuarios', 'UsuarioController@busqueda')->name('lista_nombres');
+Route::post('/miembros', 'MiembrosController@busqueda')->name('lista_abuelos');
 Route::resource('/programa', 'ProgramasController');
 Route::resource('/valoracion', 'ValoracionesController');
 

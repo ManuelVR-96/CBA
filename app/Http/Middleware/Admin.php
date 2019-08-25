@@ -14,10 +14,15 @@ class Admin
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {
-        if(auth()->user()->rol == "Administrador"){
+    { if (auth()->user()){
+        if(auth()->user()->rol == "Administrador")
+           {
             return $next($request);
           }
-            return redirect('/admin');
-    }
+          return redirect('/admin');
+        }
+      return redirect('/login');
+    
+  }
 }
+    

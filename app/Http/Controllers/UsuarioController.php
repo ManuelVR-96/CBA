@@ -21,8 +21,8 @@ class UsuarioController extends Controller
     public function busqueda(Request $request)
     {  
         $nombre= $request->busqueda;
-        if ($nombre==' '){
-            $users = User::all();
+        if ($nombre==''){
+            $users = User::orderBy('nombres', 'ASC')->paginate(2);
             }
             else {
                 
@@ -53,24 +53,23 @@ class UsuarioController extends Controller
             'nombres'=>'required',
             'cedula' =>'required'
         ]);
-        $nuevoOp = new CBA\User;
-        $nuevoOp->nombres = $request->nombres;
+        $nuevoOp = new CBA\User;        
         $nuevoOp->cedula = $request->id;
+        $nuevoOp->nombres = $request->nombres;
         $nuevoOp->apellidos = $request->apellidos;
         $nuevoOp->cargo = $request->cargo;
         $nuevoOp->nivel_educativo = $request->nivel;
         $nuevoOp->formación = $request->formacion;
-        $nuevoOp->dirección = $request->direccion;
-        $nuevoOp->contraseña = $request->password;
+        $nuevoOp->dirección = $request->direccion;        
         $nacimiento_ = Carbon::createFromFormat ('Y-m-d', $request->nacimiento);
         echo($nacimiento_);
         $nuevoOp->fecha_de_nacimiento = $nacimiento_;
         $vinculacion_ = Carbon::createFromFormat ('Y-m-d', $request->vinculacion);
         $nuevoOp->fecha_de_vinculación = $vinculacion_;
-        $nuevoOp->email = $request->email;
-        $nuevoOp->is_admin = $request->email;
         $nuevoOp->telefono = $request->telefono;
-
+        $nuevoOp->perfil = $request->perfil;
+        $nuevoOp->email = $request->email;
+        $nuevoOp->contraseña = $request->password;        
         $nuevoOp->save();
 
         return back()->with ('mensaje','Operador agregado correctamente');

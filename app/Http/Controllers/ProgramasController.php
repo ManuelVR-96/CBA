@@ -15,7 +15,8 @@ class ProgramasController extends Controller
      */
     public function index()
     {
-        
+        $programas = Programa::orderBy('nombre', 'ASC')->paginate(2);
+        return view('vistaPrograma', compact ('programas'));
     }
 
     /**
@@ -42,9 +43,10 @@ class ProgramasController extends Controller
             'encargado' =>'required'
         ]);
             $nuevoPrograma = new Programa();
-            $nuevoPrograma->agenda = $request->agenda;
+            $nuevoPrograma->nombre = $request->nombre;            
             $nuevoPrograma->encargado = $request->encargado;
             $nuevoPrograma->descripcion = $request->descripcion;
+            $nuevoPrograma->agenda = $request->agenda;
             $nuevoPrograma->save();
     
             return back()->with ('mensaje','Programa agregado correctamente');
