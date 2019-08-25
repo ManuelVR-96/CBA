@@ -9,7 +9,7 @@
     <div class="container box">
         <div class="row justify-content-center">
             <div class="col-md-10">                
-                <div><a href="/register" class="btn btn-primary btn-sm">Crear Nuevo Usuario</a></div><br>
+                <div><a href="/registro" class="btn btn-primary btn-sm">Agregar nuevo miembro</a></div><br>
                 <form method="POST" action="{{route('lista_abuelos')}}">
                 @csrf        
                 <div class="input-group mb-3">
@@ -34,13 +34,20 @@
                             @foreach ($users as $item)
                             <tr>
                                 <th>{{ $item->cedula}}</th>
-                                <td>{{ $item->nombres }}</td>
+                                <td>
+                                <a href = "{{route('miembros.show', $item)}}">{{ $item->nombres }}</a>
+                                </td>
                                 <td>{{ $item->apellidos }}</td>
                                 <td>{{ $item->cargo }}</td>
-                                <td>                                    
+                                <td>
+                                                                  
                                     <a href="" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
-
-                                    <a href="" class="btn btn-warning"><span class="glyphicon glyphicon-trash"></span></a>
+                                        
+                                        <form action="{{route('miembros.eliminar', $item->id)}}" class="d-inline" method="POST">
+                                         @csrf
+                                         @method("DELETE")  
+                                    <button type = "submmit" class="btn btn-warning"><span class="glyphicon glyphicon-trash"></span></button>
+                                    </form>
                                 </td>                             
                             </tr>
                             @endforeach

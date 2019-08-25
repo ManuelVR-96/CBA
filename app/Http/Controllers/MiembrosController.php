@@ -94,7 +94,9 @@ class MiembrosController extends Controller
      */
     public function show($id)
     {
-        //
+        $user= Cliente::findOrFail($id);
+
+        return view('perfilMiembro', compact('user'));
     }
 
     /**
@@ -128,6 +130,11 @@ class MiembrosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = Cliente::findOrFail($id);
+        $user->delete();
+        $users = Cliente::orderBy('nombres', 'ASC')->paginate(2);
+
+        return view('consultarUser2', compact('users'));
+
     }
 }
