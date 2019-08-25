@@ -135,7 +135,7 @@ class MiembrosController extends Controller
         $user->delete();
         $users = Cliente::orderBy('nombres', 'ASC')->paginate(2);
 
-        return view('consultarUser2', compact('users'));
+        return redirect()->to('/miembros');
 
     }
 }
