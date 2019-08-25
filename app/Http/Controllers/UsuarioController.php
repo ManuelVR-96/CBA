@@ -83,7 +83,9 @@ class UsuarioController extends Controller
      */
     public function show($id)
     {
-        
+        $user= User::findOrFail($id);
+
+        return view('perfilUsuario', compact('user'));  
     }
 
     /**
@@ -117,7 +119,11 @@ class UsuarioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+        #$user->delete();
+        $users = User::orderBy('nombres', 'ASC')->paginate(2);
+
+        return redirect()->to('/usuarios');
     }
 
     // public function buscador(Request $request)

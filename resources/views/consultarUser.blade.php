@@ -34,7 +34,7 @@
                             @foreach ($users as $item)
                             <tr>
                                 <th>{{ $item->cedula}}</th>
-                                <td>{{ $item->nombres }}</td>
+                                <td><a href = "{{route('usuarios.show', $item)}}">{{ $item->nombres }}</a></td>
                                 <td>{{ $item->apellidos }}</td>
                                 <td>{{ $item->cargo }}</td>
                                 <td>                                    
