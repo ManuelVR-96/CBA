@@ -28,8 +28,9 @@ Route::post('/miembros', 'MiembrosController@busqueda')->name('lista_abuelos');
 Route::post('/programas', 'ProgramasController@busqueda')->name('lista_programas');
 Route::delete('/miembros/{id}', 'MiembrosController@destroy')->name('miembros.eliminar');
 Route::delete('/programas/{id}', 'ProgramasController@destroy')->name('programas.eliminar');
-Route::post('/miembros/create', 'MiembrosController@store')->name('miembros.store');
+Route::post('/programas/create', 'ProgramasController@store')->name('programas.store');
 
+Route::post('/miembros/create', 'MiembrosController@store')->name('miembros.store');
 Route::resource('/valoracion', 'ValoracionesController');
 
 Auth::routes();

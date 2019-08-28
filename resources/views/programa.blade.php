@@ -10,7 +10,7 @@
                 <div class="card-header">{{ __('Formulario de Registro') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="/programas">
+                    <form method="POST" action="{{route('programas.store')}}">
                         @csrf                               
 
                         <div class="form-group row">
@@ -25,15 +25,16 @@
                                 @enderror
 
                             </div>
-                        </div> 
-                        
+                        </div>  
+
                         <div class="form-group row">
-                        <label for="encargado" class="col-md-4 col-form-label text-md-right">{{ __('Encargado') }}</label>
-                            <div class="col-md-6">                            
+                            <label for="encargado" class="col-md-4 col-form-label text-md-right">{{ __('Encargado') }}</label>
+                            <div class="col-md-6">
+                                
                                 <select id="encargado" type="text" class="form-control @error('encargado') is-invalid @enderror" name="encargado" value="{{ old('encargado') }}" required autocomplete="encargado" autofocus>
                                 <option value="null">--------</option>
                                     @foreach($encargados as $encargado)
-                                <option value="{{$encargado->id}}">{{$encargado->nombres}}</option>
+                                    <option value="{{$encargado->id}}">{{$encargado->nombres}}</option>
                                     @endforeach()
                                 @error('encargado')
                                     <span class="invalid-feedback" role="alert">
@@ -42,7 +43,7 @@
                                 @enderror
                                 </select>
                             </div>
-                        </div>                      
+                        </div>                       
 
                         <div class="form-group row">
                             <label for="descripcion" class="col-md-4 col-form-label text-md-right">{{ __('Descripción') }}</label>

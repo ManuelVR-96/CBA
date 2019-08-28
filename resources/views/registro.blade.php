@@ -15,7 +15,7 @@
                         <div class="form-group row">
                             <label for="id" class="col-md-4 col-form-label text-md-right">{{ __('No Identificación') }}</label>
                             <div class="col-md-6">
-                                <input id="id" type="integer" class="form-control @error('id') is-invalid @enderror" name="id" required autocomplete="id">
+                                <input id="id" type="text" class="form-control @error('id') is-invalid @enderror" name="id" required autocomplete="id">
 
                                 <!-- @error('password')
                                     <span class="invalid-feedback" role="alert">
