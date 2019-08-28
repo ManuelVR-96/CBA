@@ -54,37 +54,37 @@ class MiembrosController extends Controller
         //     'nombres'=>'required',
         //     'cédula' =>'required'
         // ]);
+        
         $nuevoCliente = new Cliente();
         $nuevoCliente->cédula = $request->id;
-         $nuevoCliente->nombres = $request->nombres;
-         $nuevoCliente->apellidos = $request->apellidos;
-         $nuevoCliente->nivel_educativo = $request->nivel;
-         $nuevoCliente->dirección = $request->direccion;
-         $nuevoCliente->telefono = $request->telefono;
-         $nuevoCliente->Lugar_de_nacimiento = $request->lugar;
-         $nacimiento_ = Carbon::createFromFormat ('Y-m-d', $request->nacimiento);
-         $nuevoCliente->fecha_de_nacimiento = $nacimiento_;
-         $vinculacion_ = Carbon::createFromFormat ('Y-m-d', $request->vinculacion);
-         $nuevoCliente->fecha_de_ingreso = $vinculacion_;
-         $nuevoCliente->seguridad_social = $request->seguridad;
-         $nuevoCliente->primer_acudiente = $request->primer_acudiente;
-         $nuevoCliente->segundo_acudiente = $request->segundo_acudiente;
-         $nuevoCliente->servicio_funerario = $request->servicio_funerario;
-         $nuevoCliente->entidad_funeraria = $request->entidad_funeraria;
-         $nuevoCliente->dependencia_económica = $request->dependencia_economica;
-         $nuevoCliente->dependencia_afectiva = $request->dependencia_afectiva;
-         $nuevoCliente->relación_familiar = $request->relacion_familiar;
-         $nuevoCliente->hobbies = $request->hobbies;
-         $nuevoCliente->motivo_ingreso = $request->motivo_ingreso;
-         $nuevoCliente->Tipo_Sangre = $request->tipo_sangre;
-         $nuevoCliente->EPS = $request->eps;
-         $nuevoCliente->morbilidad = $request->morbilidad;
-         $nuevoCliente->género = $request->genero;
-         $nuevoCliente->medicinas = $request->medicinas;
-    
-            $nuevoCliente->save();
-    
-            return back()->with ('mensaje','Abuelo agregado correctamente');
+        $nuevoCliente->nombres = $request->nombres;
+        $nuevoCliente->apellidos = $request->apellidos;
+        $nuevoCliente->nivel_educativo = $request->nivel;
+        $nuevoCliente->dirección = $request->direccion;
+        $nuevoCliente->telefono = $request->telefono;
+        $nuevoCliente->Lugar_de_nacimiento = $request->lugar;
+        $nacimiento_ = Carbon::createFromFormat ('Y-m-d', $request->nacimiento);
+        $nuevoCliente->fecha_de_nacimiento = $nacimiento_;
+        $vinculacion_ = Carbon::createFromFormat ('Y-m-d', $request->vinculacion);
+        $nuevoCliente->fecha_de_ingreso = $vinculacion_;
+        $nuevoCliente->seguridad_social = $request->seguridad;
+        $nuevoCliente->primer_acudiente = $request->primer_acudiente;
+        $nuevoCliente->segundo_acudiente = $request->segundo_acudiente;
+        $nuevoCliente->servicio_funerario = $request->servicio_funerario;
+        $nuevoCliente->entidad_funeraria = $request->entidad_funeraria;
+        $nuevoCliente->dependencia_económica = $request->dependencia_economica;
+        $nuevoCliente->dependencia_afectiva = $request->dependencia_afectiva;
+        $nuevoCliente->relación_familiar = $request->relacion_familiar;
+        $nuevoCliente->hobbies = $request->hobbies;
+        $nuevoCliente->motivo_ingreso = $request->motivo_ingreso;
+        $nuevoCliente->Tipo_Sangre = $request->tipo_sangre;
+        $nuevoCliente->EPS = $request->eps;
+        $nuevoCliente->morbilidad = $request->morbilidad;
+        $nuevoCliente->género = $request->genero;
+        $nuevoCliente->medicinas = $request->medicinas;    
+        $nuevoCliente->save();
+
+        return back()->with ('mensaje','Abuelo agregado correctamente');
     }
 
     /**

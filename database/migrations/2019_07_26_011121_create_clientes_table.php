@@ -14,8 +14,7 @@ class CreateClientesTable extends Migration
     public function up()
     {
         Schema::create('clientes', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
+            $table->bigIncrements('id');           
             $table->string('cédula')->nullable();
             $table->string('nombres')->nullable();
             $table->string('apellidos')->nullable();
@@ -40,6 +39,7 @@ class CreateClientesTable extends Migration
             $table->string('morbilidad')->nullable();
             $table->string('género')->nullable();
             $table->text('medicinas')->nullable();
+            $table->timestamps();
         });
     }
 

@@ -4,6 +4,7 @@ namespace CBA\Http\Controllers;
 
 use Illuminate\Http\Request;
 use CBA\User;
+use Carbon\Carbon;
 
 class UsuarioController extends Controller
 {
@@ -53,27 +54,26 @@ class UsuarioController extends Controller
             'nombres'=>'required',
             'cedula' =>'required'
         ]);
-            $nuevoOp = new CBA\User;
-            $nuevoOp->nombres = $request->nombres;
-            $nuevoOp->cédula = $request->id;
-         $nuevoOp->apellidos = $request->apellidos;
-         $nuevoOp->cargo = $request->cargo;
-         $nuevoOp->nivel_educativo = $request->nivel;
-         $nuevoOp->formación = $request->formacion;
-         $nuevoOp->dirección = $request->direccion;
-         $nuevoOp->contraseña = $request->password;
-         $nacimiento_ = Carbon::createFromFormat ('Y-m-d', $request->nacimiento);
-         echo($nacimiento_);
-         $nuevoOp->fecha_de_nacimiento = $nacimiento_;
-         $vinculacion_ = Carbon::createFromFormat ('Y-m-d', $request->vinculacion);
-         $nuevoOp->fecha_de_vinculación = $vinculacion_;
-         $nuevoOp->email = $request->email;
-         $nuevoOp->is_admin = $request->email;
-         $nuevoOp->telefono = $request->telefono;
-    
-            $nuevoOp->save();
-    
-            return back()->with ('mensaje','Operador agregado correctamente');
+        $nuevoOp = new CBA\User;        
+        $nuevoOp->cedula = $request->id;
+        $nuevoOp->nombres = $request->nombres;
+        $nuevoOp->apellidos = $request->apellidos;
+        $nuevoOp->cargo = $request->cargo;
+        $nuevoOp->nivel_educativo = $request->nivel;
+        $nuevoOp->formación = $request->formacion;
+        $nuevoOp->dirección = $request->direccion;        
+        $nacimiento_ = Carbon::createFromFormat ('Y-m-d', $request->nacimiento);
+        echo($nacimiento_);
+        $nuevoOp->fecha_de_nacimiento = $nacimiento_;
+        $vinculacion_ = Carbon::createFromFormat ('Y-m-d', $request->vinculacion);
+        $nuevoOp->fecha_de_vinculación = $vinculacion_;
+        $nuevoOp->telefono = $request->telefono;
+        $nuevoOp->perfil = $request->perfil;
+        $nuevoOp->email = $request->email;
+        $nuevoOp->contraseña = $request->password;        
+        $nuevoOp->save();
+
+        return back()->with ('mensaje','Operador agregado correctamente');
     }
 
     /**
@@ -121,7 +121,7 @@ class UsuarioController extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id);
-        #$user->delete();
+        $user->delete();
         $users = User::orderBy('nombres', 'ASC')->paginate(2);
 
         return redirect()->to('/usuarios');

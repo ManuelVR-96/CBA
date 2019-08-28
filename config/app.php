@@ -162,6 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+
         /*
          * Package Service Providers...
          */
@@ -174,7 +175,7 @@ return [
         // CBA\Providers\BroadcastServiceProvider::class,
         CBA\Providers\EventServiceProvider::class,
         CBA\Providers\RouteServiceProvider::class,
-
+        
     ],
 
     /*

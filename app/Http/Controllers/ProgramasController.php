@@ -5,6 +5,7 @@ namespace CBA\Http\Controllers;
 use Illuminate\Http\Request;
 use CBA\User;
 use CBA\Programa;
+use Carbon\Carbon;
 
 class ProgramasController extends Controller
 {
@@ -15,7 +16,21 @@ class ProgramasController extends Controller
      */
     public function index()
     {
-        
+        $users = Programa::orderBy('nombre', 'ASC')->paginate(2);
+        return view('vistaPrograma', compact ('users'));
+    }
+
+    public function busqueda(Request $request)
+    {  
+        $nombre= $request->busqueda;
+        if ($nombre==''){
+            $users = Programa::orderBy('nombre', 'ASC')->paginate(2);
+            }
+            else {
+                
+                $users = Programa::where('nombre', $nombre)->paginate(2);
+            }
+            return view('vistaPrograma', compact ('users'));
     }
 
     /**
@@ -24,9 +39,8 @@ class ProgramasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
-        $encargados = User::all();
-        return view ('programa', compact('encargados'));
+    {   $encargados= user::all();
+        return view ('programa', compact("encargados"));
     }
 
     /**
@@ -37,14 +51,16 @@ class ProgramasController extends Controller
      */
     public function store(Request $request)
     {
-        $request ->validate ([
-    	
-            'encargado' =>'required'
-        ]);
+        // $request ->validate ([
+        
+        //     'encargado' =>'required'
+        // ]);
+
             $nuevoPrograma = new Programa();
-            $nuevoPrograma->agenda = $request->agenda;
+            $nuevoPrograma->nombre = $request->nombre;            
             $nuevoPrograma->encargado = $request->encargado;
             $nuevoPrograma->descripcion = $request->descripcion;
+            $nuevoPrograma->agenda = $request->agenda;
             $nuevoPrograma->save();
     
             return back()->with ('mensaje','Programa agregado correctamente');
@@ -59,7 +75,9 @@ class ProgramasController extends Controller
      */
     public function show($id)
     {
-        //
+        $user= Programa::findOrFail($id);
+
+        return view('perfilPrograma', compact('user'));
     }
 
     /**
@@ -93,6 +111,10 @@ class ProgramasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = Programa::findOrFail($id);
+        $user->delete();
+        $users = Programa::orderBy('nombre', 'ASC')->paginate(2);
+
+        return redirect()->to('/programas');
     }
 }

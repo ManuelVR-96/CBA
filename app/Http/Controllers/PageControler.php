@@ -25,28 +25,28 @@ class PageControler extends Controller
    	 return view ('registro');
     }
 
-    public function registrar_user(Request $request) {
-   
-    }
+  public function registrar_user(Request $request) {
+ 
+  }
 
-public function agregar_programa(Request $request) {
-   	 return view ('registro');
-    }
+    // public function agregar_programa(Request $request) {
+   	//  return view ('registro');
+    // }
 
-    public function programa_form(Request $request) {
-    $request ->validate ([
+    // public function programa_form(Request $request) {
+    // $request ->validate ([
     	
-    	'encargado' =>'required'
-    ]);
-   	 $nuevoPrograma = new CBA\Programa;
-   	 $nuevoPrograma->agenda = $request->agenda;
-   	 $nuevoPrograma->encargado = $request->encargado;
-   	 $nuevoPrograma->save();
+    // 	'encargado' =>'required'
+    // ]);
+   	//  $nuevoPrograma = new CBA\Programa;
+   	//  $nuevoPrograma->agenda = $request->agenda;
+   	//  $nuevoPrograma->encargado = $request->encargado;
+   	//  $nuevoPrograma->save();
 
-   	 return back()->with ('mensaje','Programa agregado correctamente');
-    }
+   	//  return back()->with ('mensaje','Programa agregado correctamente');
+    // }
 
-public function agregar_valoracion(Request $request) {
+  public function agregar_valoracion(Request $request) {
    	 return view ('registro');
     }
 
@@ -70,7 +70,7 @@ public function agregar_valoracion(Request $request) {
     }
 
 
-
+    
     public function login() {
     return view ('login');
     }
