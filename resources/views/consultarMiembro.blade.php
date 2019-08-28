@@ -17,13 +17,16 @@
                   <input type="text" class="form-control" id="busqueda" name="busqueda" placeholder="Buscar" aria-label="Recipient's username" aria-describedby="basic-addon2">                  
                 </div>
 
+                <div id="resultados"></div>  
+            
                 <div class="table-responsive">                    
                     <table class="table table-striped table-bordered">
                         <thead>
                             <tr>
                             <th scope="col">Cedula</th>
                             <th scope="col">Nombre</th>
-                            <th scope="col">Apellido</th>                            
+                            <th scope="col">Apellido</th>
+                            <th scope="col">Cargo</th>
                             <th scope="col">Acción</th>
                             </tr>
                         </thead>
@@ -31,19 +34,43 @@
                             @foreach ($users as $item)
                             <tr>
                                 <th>{{ $item->cedula}}</th>
-                                <td><a href = "{{route('miembros.show', $item)}}">{{ $item->nombres }}</a></td>
-                                <td>{{ $item->apellidos }}</td>                                
-                                <td>                                                                  
+                                <td>
+                                <a href = "{{route('miembros.show', $item)}}">{{ $item->nombres }}</a>
+                                </td>
+                                <td>{{ $item->apellidos }}</td>
+                                <td>{{ $item->cargo }}</td>
+                                <td>
+                                                                  
                                     <a href="{{route('miembros.edit', $item->id)}}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
+                                        
+                                        <form action="{{route('miembros.eliminar', $item->id)}}" class="d-inline" method="POST">
+                                         @csrf
+                                         @method("DELETE")  
+                                    <button type = "submmit" class="btn btn-warning"><span class="glyphicon glyphicon-trash"></span></button>
+                                    </form>
                                 </td>                             
                             </tr>
                             @endforeach
                         </tbody>
                     </table> 
                     {{$users->links()}}                                     
-                </div>                   
+                </div>
+                <div>                                                        
+                </div>                    
             </div>        
         </div>
     </div>
+    <!-- <script>
+        window.addEventListener('load',function(){
+            document.getElementById("texto").addEventListener("keyup", function(){
+            if((document.getElementById("texto").value.length)>=2)
+                fetch('consultarUser.buscador?texto=${document.getElementById("texto").value}',{ method:'get'})
+                .then(response  =>  response.text() )
+                .then(html      =>  {document.getElementById("resultados").innerHTML = html  })
+            else
+                document.getElementById("resultados").innerHTML = ""
+            })
+        }); 
+    </script> -->
 
 @endsection
