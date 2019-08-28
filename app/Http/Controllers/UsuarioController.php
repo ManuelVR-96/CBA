@@ -4,6 +4,7 @@ namespace CBA\Http\Controllers;
 
 use Illuminate\Http\Request;
 use CBA\User;
+use Carbon\Carbon;
 
 class UsuarioController extends Controller
 {
@@ -120,16 +121,9 @@ class UsuarioController extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id);
-        #$user->delete();
+        $user->delete();
         $users = User::orderBy('nombres', 'ASC')->paginate(2);
 
         return redirect()->to('/usuarios');
     }
-
-    // public function buscador(Request $request)
-    // {
-    //     $users = User::where("nombres","like",$request->texto."%")->take(2)->get();
-    //     return view("consultarUser.buscador",compact("nombres"));
-    // }
-
 }

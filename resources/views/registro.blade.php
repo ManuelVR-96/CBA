@@ -250,8 +250,17 @@
                         <div class="form-group row">
                             <label for="tipo_sangre" class="col-md-4 col-form-label text-md-right">{{ __('Tipo Sangre') }}</label>
                             <div class="col-md-6">
-                                <input id="tipo_sangre" type="text" class="form-control @error('tipo_sangre') is-invalid @enderror" name="tipo_sangre" value="{{ old('tipo_sangre') }}" required autocomplete="tipo_sangre" autofocus>
-
+                                <select name="tipo_sangre" class="form-control @error('tipo_sangre') is-invalid @enderror" value="{{ old('tipo_sangre') }}" name="tipo_sangre">>
+                                    <option value="">--Seleccione--</option>                                   
+                                    <option value="A+">A+</option>
+                                    <option value="O+">O+</option>
+                                    <option value="B+">B+</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="O-">O-</option>
+                                    <option value="B-">B-</option>
+                                    <option value="AB-">AB-</option>
+                                </select>
                                 <!-- @error('tipo_sangre')
                                     <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -289,8 +298,12 @@
                         <div class="form-group row">
                             <label for="genero" class="col-md-4 col-form-label text-md-right">{{ __('Género') }}</label>
                             <div class="col-md-6">
-                                <input id="genero" type="text" class="form-control @error('genero') is-invalid @enderror" name="genero" value="{{ old('genero') }}" required autocomplete="genero" autofocus>
-
+                            <select name="genero" class="form-control @error('genero') is-invalid @enderror" value="{{ old('genero') }}" name="genero">>
+                                    <option value="">--Seleccione--</option>                                   
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="Femenino">Femenino</option>
+                                    <option value="Otros">Otros</option>                                    
+                                </select>
                                 <!-- @error('genero')
                                     <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

@@ -17,7 +17,7 @@ class MiembrosController extends Controller
     public function index()
     {   
         $users = Cliente::orderBy('nombres', 'ASC')->paginate(2);
-        return view('consultarUser2', compact ('users')); 
+        return view('consultarMiembro', compact ('users')); 
     }
 
     public function busqueda(Request $request)
@@ -30,7 +30,7 @@ class MiembrosController extends Controller
                 
                 $users = Cliente::where('nombres', $nombre)->paginate(2);
             }
-            return view('consultarUser2', compact ('users'));
+            return view('consultarMiembro', compact ('users'));
     }
     /**
      * Show the form for creating a new resource.
@@ -50,10 +50,10 @@ class MiembrosController extends Controller
      */
     public function store(Request $request)
     {
-        // $request ->validate ([
-        //     'nombres'=>'required',
-        //     'cédula' =>'required'
-        // ]);
+        $request ->validate ([
+            'nombres'=>'required',
+            'cédula' =>'required'
+        ]);
         $nuevoCliente = new Cliente();
         $nuevoCliente->cédula = $request->id;
         $nuevoCliente->nombres = $request->nombres;

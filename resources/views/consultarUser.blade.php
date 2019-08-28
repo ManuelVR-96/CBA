@@ -16,9 +16,7 @@
                 
                   <input type="text" class="form-control" id="busqueda" name="busqueda" placeholder="Buscar" aria-label="Recipient's username" aria-describedby="basic-addon2">                  
                 </div>
-
-                <div id="resultados"></div>  
-            
+                            
                 <div class="table-responsive">                    
                     <table class="table table-striped table-bordered">
                         <thead>
@@ -39,31 +37,14 @@
                                 <td>{{ $item->cargo }}</td>
                                 <td>                                    
                                     <a href="" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
-
-                                    <a href="" class="btn btn-warning"><span class="glyphicon glyphicon-trash"></span></a>
                                 </td>                             
                             </tr>
                             @endforeach
                         </tbody>
                     </table> 
                     {{$users->links()}}                                     
-                </div>
-                <div>                                                        
-                </div>                    
+                </div>               
             </div>        
         </div>
     </div>
-    <!-- <script>
-        window.addEventListener('load',function(){
-            document.getElementById("texto").addEventListener("keyup", function(){
-            if((document.getElementById("texto").value.length)>=2)
-                fetch('consultarUser.buscador?texto=${document.getElementById("texto").value}',{ method:'get'})
-                .then(response  =>  response.text() )
-                .then(html      =>  {document.getElementById("resultados").innerHTML = html  })
-            else
-                document.getElementById("resultados").innerHTML = ""
-            })
-        }); 
-    </script> -->
-
 @endsection

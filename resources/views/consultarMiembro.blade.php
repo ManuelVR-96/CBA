@@ -8,9 +8,9 @@
 
     <div class="container box">
         <div class="row justify-content-center">
-            <div class="col-md-10">
-                <div><a href="/programas/create" class="btn btn-primary btn-sm">Agregar nuevo programa</a></div><br>
-                <form method="POST" action="{{route('lista_programas')}}">
+            <div class="col-md-10">                
+                <div><a href="/miembros/create" class="btn btn-primary btn-sm">Agregar nuevo miembro</a></div><br>
+                <form method="POST" action="{{route('lista_abuelos')}}">
                 @csrf        
                 <div class="input-group mb-3">
                 
@@ -21,30 +21,29 @@
                     <table class="table table-striped table-bordered">
                         <thead>
                             <tr>
+                            <th scope="col">Cedula</th>
                             <th scope="col">Nombre</th>
-                            <th scope="col">Encargado</th>
-                            <th scope="col">Descripción</th>
-                            <th scope="col">Agenda</th>
+                            <th scope="col">Apellido</th>                            
                             <th scope="col">Acción</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($users as $item)
                             <tr>
-                                <td><a href = "{{route('programas.show', $item)}}">{{ $item->nombre}}</a></td>
-                                <td>{{ $item->encargado}}</td>
-                                <td>{{ $item->descripcion}}</td>
-                                <td>{{ $item->agenda}}</td>
-                                <td>                                    
-                                    <a href="" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
+                                <th>{{ $item->cedula}}</th>
+                                <td><a href = "{{route('miembros.show', $item)}}">{{ $item->nombres }}</a></td>
+                                <td>{{ $item->apellidos }}</td>                                
+                                <td>                                                                  
+                                    <a href="{{route('miembros.edit', $item->id)}}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
                                 </td>                             
                             </tr>
                             @endforeach
-                        </tbody>                        
-                    </table>
-                    {{$users->links()}}                                                        
-                </div>                
+                        </tbody>
+                    </table> 
+                    {{$users->links()}}                                     
+                </div>                   
             </div>        
         </div>
     </div>
+
 @endsection

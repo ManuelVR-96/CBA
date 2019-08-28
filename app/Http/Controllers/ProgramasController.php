@@ -5,6 +5,7 @@ namespace CBA\Http\Controllers;
 use Illuminate\Http\Request;
 use CBA\User;
 use CBA\Programa;
+use Carbon\Carbon;
 
 class ProgramasController extends Controller
 {
@@ -15,8 +16,21 @@ class ProgramasController extends Controller
      */
     public function index()
     {
-        $programas = Programa::orderBy('nombre', 'ASC')->paginate(2);
-        return view('vistaPrograma', compact ('programas'));
+        $users = Programa::orderBy('nombre', 'ASC')->paginate(2);
+        return view('vistaPrograma', compact ('users'));
+    }
+
+    public function busqueda(Request $request)
+    {  
+        $nombre= $request->busqueda;
+        if ($nombre==''){
+            $users = Programa::orderBy('nombre', 'ASC')->paginate(2);
+            }
+            else {
+                
+                $users = Programa::where('nombre', $nombre)->paginate(2);
+            }
+            return view('vistaPrograma', compact ('users'));
     }
 
     /**
@@ -26,8 +40,7 @@ class ProgramasController extends Controller
      */
     public function create()
     {   
-        $encargados = User::all();
-        return view ('programa', compact('encargados'));
+        return view ('programa');
     }
 
     /**
@@ -38,10 +51,11 @@ class ProgramasController extends Controller
      */
     public function store(Request $request)
     {
-        $request ->validate ([
+        // $request ->validate ([
         
-            'encargado' =>'required'
-        ]);
+        //     'encargado' =>'required'
+        // ]);
+
             $nuevoPrograma = new Programa();
             $nuevoPrograma->nombre = $request->nombre;            
             $nuevoPrograma->encargado = $request->encargado;
@@ -61,7 +75,9 @@ class ProgramasController extends Controller
      */
     public function show($id)
     {
-        //
+        $user= Programa::findOrFail($id);
+
+        return view('perfilPrograma', compact('user'));
     }
 
     /**
@@ -95,6 +111,10 @@ class ProgramasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = Programa::findOrFail($id);
+        $user->delete();
+        $users = Programa::orderBy('nombre', 'ASC')->paginate(2);
+
+        return redirect()->to('/programas');
     }
 }
