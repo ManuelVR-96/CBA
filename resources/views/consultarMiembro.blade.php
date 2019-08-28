@@ -39,15 +39,8 @@
                                 </td>
                                 <td>{{ $item->apellidos }}</td>
                                 <td>{{ $item->cargo }}</td>
-                                <td>
-                                                                  
+                                <td>                                                                  
                                     <a href="{{route('miembros.edit', $item->id)}}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
-                                        
-                                        <form action="{{route('miembros.eliminar', $item->id)}}" class="d-inline" method="POST">
-                                         @csrf
-                                         @method("DELETE")  
-                                    <button type = "submmit" class="btn btn-warning"><span class="glyphicon glyphicon-trash"></span></button>
-                                    </form>
                                 </td>                             
                             </tr>
                             @endforeach

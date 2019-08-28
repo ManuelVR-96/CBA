@@ -39,8 +39,9 @@ class ProgramasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
-        return view ('programa');
+    { 
+        $encargados = user::all();  
+        return view ('programa', compact("encargados"));
     }
 
     /**
