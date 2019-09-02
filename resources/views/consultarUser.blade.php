@@ -36,7 +36,7 @@
                                 <td>{{ $item->apellidos }}</td>
                                 <td>{{ $item->cargo }}</td>
                                 <td>                                    
-                                    <a href="" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
+                                    <a href="{{route('usuarios.edit', $item)}}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
                                 </td>                             
                             </tr>
                             @endforeach

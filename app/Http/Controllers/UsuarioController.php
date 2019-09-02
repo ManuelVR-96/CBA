@@ -97,7 +97,9 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $usuario = User::findOrFail($id);
+
+        return view('actualizarUsuarios', compact('usuario'));
     }
 
     /**
@@ -108,8 +110,26 @@ class UsuarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {   $nuevoOp = User::findOrFail($id);
+        $nuevoOp->cedula = $request->id;
+        $nuevoOp->nombres = $request->nombres;
+        $nuevoOp->apellidos = $request->apellidos;
+        $nuevoOp->cargo = $request->cargo;
+        $nuevoOp->nivel_educativo = $request->nivel;
+        $nuevoOp->formación = $request->formacion;
+        $nuevoOp->dirección = $request->direccion;        
+        $nacimiento_ = Carbon::createFromFormat ('Y-m-d', $request->nacimiento);
+        echo($nacimiento_);
+        $nuevoOp->fecha_de_nacimiento = $nacimiento_;
+        $vinculacion_ = Carbon::createFromFormat ('Y-m-d', $request->vinculacion);
+        $nuevoOp->fecha_de_vinculación = $vinculacion_;
+        $nuevoOp->telefono = $request->telefono;
+        $nuevoOp->rol = $request->perfil;
+        $nuevoOp->email = $request->email;
+        $nuevoOp->password = $request->password;        
+        $nuevoOp->save();
+
+        return back();
     }
 
     /**

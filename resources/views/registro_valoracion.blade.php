@@ -12,111 +12,72 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="id" class="col-md-4 col-form-label text-md-right">{{ __('No Identificación') }}</label>
+                            <label for="encargado" class="col-md-4 col-form-label text-md-right">{{ __('Miembro') }}</label>
                             <div class="col-md-6">
-                                <input id="id" type="text" class="form-control @error('id') is-invalid @enderror" name="id" required autocomplete="id">
-
-                                @error('password')
+                                
+                                <select id="miembro" type="text" class="form-control @error('miembro') is-invalid @enderror" name="miembro" value="{{ old('encargado') }}" required autocomplete="miembro" autofocus>
+                                <option value="null">--------</option>
+                                    @foreach($miembros as $miembro)
+                                    <option value="{{$miembro->id}}">{{$miembro->nombres}}</option>
+                                    @endforeach()
+                                @error('miembro')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                    <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="encargado" class="col-md-4 col-form-label text-md-right">{{ __('Encargado') }}</label>
+                            <div class="col-md-6">
+                                
+                                <select id="encargado" type="text" class="form-control @error('encargado') is-invalid @enderror" name="encargado" value="{{ old('encargado') }}" required autocomplete="encargado" autofocus>
+                                <option value="null">--------</option>
+                                    @foreach($encargados as $encargado)
+                                    <option value="{{$encargado->id}}">{{$encargado->nombres}}</option>
+                                    @endforeach()
+                                @error('encargado')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="encargado" class="col-md-4 col-form-label text-md-right">{{ __('Especialidad') }}</label>
+                            <div class="col-md-6">
+                                
+                                <select id="encargado" type="text" class="form-control @error('encargado') is-invalid @enderror" name="especialidad" value="{{ old('encargado') }}" required autocomplete="encargado" autofocus>
+                                <option value="null">--------</option>
+                                    @foreach($especialidades as $especialidad)
+                                    <option value="{{$especialidad->id}}">{{$especialidad->Nombre}}</option>
+                                    @endforeach()
+                                @error('especialidad')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                </select>
                             </div>
                         </div>
 
                       
                         <div class="form-group row">
-                            <label for="medica" class="col-md-4 col-form-label text-md-right">{{ __('Médica') }}</label>
+                            <label for="medica" class="col-md-4 col-form-label text-md-right">{{ __('Descripción') }}</label>
                             <div class="col-md-6">
-                                <Textarea id="medica" type="text" class="form-control @error('medica') is-invalid @enderror" name="medica" value="{{ old('medica') }}" required autocomplete="medica" autofocus></textarea>
+                                <Textarea id="descripcion" type="text" class="form-control @error('descripcion') is-invalid @enderror" name="descripcion" value="{{ old('descripcion') }}" required autocomplete="medica" autofocus></textarea>
 
-                                @error('medica')
+                                @error('Descripción')
                                     <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="fisio" class="col-md-4 col-form-label text-md-right">{{ __('Fisioterapia') }}</label>
-                            <div class="col-md-6">
-                                <Textarea id="fisio" type="text" class="form-control @error('formacion') is-invalid @enderror" name="fisio" value="{{ old('fisio') }}" required autocomplete="fisio" autofocus></textarea>
-
-                                @error('fisio')
-                                    <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="formacion" class="col-md-4 col-form-label text-md-right">{{ __('Nutricional') }}</label>
-                            <div class="col-md-6">
-                                <Textarea id="formacion" type="text" class="form-control @error('formacion') is-invalid @enderror" name="formacion" value="{{ old('formacion') }}" required autocomplete="formacion" autofocus></textarea>
-
-                                @error('formacion')
-                                    <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="formacion" class="col-md-4 col-form-label text-md-right">{{ __('Psicológica') }}</label>
-                            <div class="col-md-6">
-                                <Textarea id="formacion" type="text" class="form-control @error('formacion') is-invalid @enderror" name="formacion" value="{{ old('formacion') }}" required autocomplete="formacion" autofocus></textarea>
-
-                                @error('formacion')
-                                    <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="formacion" class="col-md-4 col-form-label text-md-right">{{ __('Enfermera') }}</label>
-                            <div class="col-md-6">
-                                <Textarea id="formacion" type="text" class="form-control @error('formacion') is-invalid @enderror" name="formacion" value="{{ old('formacion') }}" required autocomplete="formacion" autofocus></textarea>
-
-                                @error('formacion')
-                                    <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="formacion" class="col-md-4 col-form-label text-md-right">{{ __('Profesional deporte') }}</label>
-                            <div class="col-md-6">
-                                <Textarea id="formacion" type="text" class="form-control @error('formacion') is-invalid @enderror" name="formacion" value="{{ old('formacion') }}" required autocomplete="formacion" autofocus></textarea>
-
-                                @error('formacion')
-                                    <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="formacion" class="col-md-4 col-form-label text-md-right">{{ __('Religiosa') }}</label>
-                            <div class="col-md-6">
-                                <Textarea id="formacion" type="text" class="form-control @error('formacion') is-invalid @enderror" name="formacion" value="{{ old('formacion') }}" required autocomplete="formacion" autofocus></textarea>
-
-                                @error('formacion')
-                                    <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                       
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

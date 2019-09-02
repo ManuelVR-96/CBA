@@ -27,6 +27,7 @@ return array(
     'CBA\\Http\\Controllers\\UsuarioController' => $baseDir . '/app/Http/Controllers/UsuarioController.php',
     'CBA\\Http\\Controllers\\ValoracionesController' => $baseDir . '/app/Http/Controllers/ValoracionesController.php',
     'CBA\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
+    'CBA\\Http\\Middleware\\Admin' => $baseDir . '/app/Http/Middleware/Admin.php',
     'CBA\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'CBA\\Http\\Middleware\\CheckForMaintenanceMode' => $baseDir . '/app/Http/Middleware/CheckForMaintenanceMode.php',
     'CBA\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',
