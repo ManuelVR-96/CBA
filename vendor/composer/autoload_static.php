@@ -421,6 +421,7 @@ class ComposerStaticInitb617d01cedc5fa5611123edee5f073b3
         'CBA\\Http\\Controllers\\UsuarioController' => __DIR__ . '/../..' . '/app/Http/Controllers/UsuarioController.php',
         'CBA\\Http\\Controllers\\ValoracionesController' => __DIR__ . '/../..' . '/app/Http/Controllers/ValoracionesController.php',
         'CBA\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
+        'CBA\\Http\\Middleware\\Admin' => __DIR__ . '/../..' . '/app/Http/Middleware/Admin.php',
         'CBA\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'CBA\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',
         'CBA\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',

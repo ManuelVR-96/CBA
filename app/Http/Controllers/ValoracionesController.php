@@ -4,6 +4,9 @@ namespace CBA\Http\Controllers;
 
 use Illuminate\Http\Request;
 use CBA\Valoracion;
+use CBA\User;
+use CBA\Especialidad;
+use CBA\Cliente;
 
 class ValoracionesController extends Controller
 {
@@ -24,7 +27,10 @@ class ValoracionesController extends Controller
      */
     public function create()
     {
-        return view ('registro_valoracion');
+        $encargados= user::all();
+        $especialidades= Especialidad::all();
+        $miembros= Cliente::all();
+        return view ('registro_valoracion', compact("encargados", "especialidades", "miembros"));
     }
 
     /**
@@ -34,16 +40,18 @@ class ValoracionesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   #return $request;
         $nuevoValoracion = new Valoracion();
-        $nuevoValoracion->cédula= $request->id;
-        $nuevoValoracion->médica=$request->medica;
-        $nuevoValoracion->fisioterapeuta=$request->fisio;
-        $nuevoValoracion->nutricionista=$request->nutricionista;
-        $nuevoValoracion->psicologo=$request->psicologo;
-        $nuevoValoracion->enfermera=$request->enfermera;
-        $nuevoValoracion->profesional_deporte=$request->profesional_deporte;
-        $nuevoValoracion->religiosas=$request->religiosas;
+        $nuevoValoracion->paciente= $request->miembro;
+        $nuevoValoracion->encargado= $request->encargado;
+        $nuevoValoracion->especialidad= $request->especialidad;
+        $nuevoValoracion->Descripción=$request->descripcion;
+        // $nuevoValoracion->fisioterapeuta=$request->fisio;
+        // $nuevoValoracion->nutricionista=$request->nutricionista;
+        // $nuevoValoracion->psicologo=$request->psicologo;
+        // $nuevoValoracion->enfermera=$request->enfermera;
+        // $nuevoValoracion->profesional_deporte=$request->profesional_deporte;
+        // $nuevoValoracion->religiosas=$request->religiosas;
         $nuevoValoracion->save();
     
         return back()->with ('mensaje','Valoracion agregado correctamente');
