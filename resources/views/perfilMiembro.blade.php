@@ -9,13 +9,13 @@
           <div class="panel-body">
                <form action="{{route('miembros.eliminar', $user)}}" class="d-inline" method="POST">
                     @csrf
-                    @method("DELETE")  
+                    @method("DELETE")
                     <div class="form-horizontal">
                          <div class="col-sm-6">
                               <div class="form-group row">
                                    <label class="col-sm-5">Cédula</label>
                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" value="{{$user->cédula}}">                              
+                                        <input type="text" class="form-control" value="{{$user->cédula}}">
                                    </div>
                               </div>
 
@@ -67,7 +67,7 @@
                                         <input type="date" class="form-control" value="{{$user->fecha_de_ingreso}}">
                                    </div>
                               </div>
-                    
+
                               <div class="form-group row">
                                    <label class="col-sm-5 col-form-label">Seguridad Social</label>
                                    <div class="col-sm-6">
@@ -89,6 +89,7 @@
                                    </div>
                               </div>
                          </div>
+                         
                          <div class="col-sm-6">
                               <div class="form-group row">
                                    <label class="col-sm-5 col-form-label">Servicio Funerario</label>
@@ -174,7 +175,7 @@
                                    </div>
                               </div>
                          </div>
-                         
+
                          <div align="center">
                               <button class='btn btn-danger' type="submit" name="eliminar" onclick="return confirm('¿Confirma que desea ELIMINAR de manera permanente el registro?')"></span>Eliminar Registro</button>
                          </div>
@@ -183,4 +184,3 @@
           </div>
      </div>
 @endsection
-

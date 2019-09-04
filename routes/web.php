@@ -23,15 +23,20 @@ Route::get('/user', function () {
 Route::resource('/miembros', 'MiembrosController');
 Route::resource('/usuarios', 'UsuarioController');
 Route::resource('/programas', 'ProgramasController');
+Route::resource('/valoraciones', 'ValoracionesController');
+
 Route::post('/usuarios', 'UsuarioController@busqueda')->name('lista_nombres');
 Route::post('/miembros', 'MiembrosController@busqueda')->name('lista_abuelos');
 Route::post('/programas', 'ProgramasController@busqueda')->name('lista_programas');
+Route::post('/valoraciones', 'ValoracionesController@busqueda')->name('lista_valoraciones');
+
 Route::delete('/miembros/{id}', 'MiembrosController@destroy')->name('miembros.eliminar');
 Route::delete('/programas/{id}', 'ProgramasController@destroy')->name('programas.eliminar');
-Route::post('/programas/create', 'ProgramasController@store')->name('programas.store');
+Route::delete('/valoraciones/{id}', 'ValoracionesController@destroy')->name('valoraciones.eliminar');
 
+Route::post('/programas/create', 'ProgramasController@store')->name('programas.store');
 Route::post('/miembros/create', 'MiembrosController@store')->name('miembros.store');
-Route::resource('/valoracion', 'ValoracionesController');
+Route::post('/valoraciones/create', 'ValoracionesController@store')->name('valoraciones.store');
 
 Auth::routes();
 

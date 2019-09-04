@@ -7,6 +7,7 @@ use CBA\Valoracion;
 use CBA\User;
 use CBA\Especialidad;
 use CBA\Cliente;
+use Carbon\Carbon;
 
 class ValoracionesController extends Controller
 {
@@ -17,9 +18,22 @@ class ValoracionesController extends Controller
      */
     public function index()
     {
-        //
+        $users = Valoracion::orderBy('paciente', 'ASC')->paginate(2);
+        return view('vistaValoracion', compact ('users'));
     }
 
+    public function busqueda(Request $request)
+    {
+        $nombre= $request->busqueda;
+        if ($nombre==''){
+            $users = Valoracion::orderBy('paciente', 'ASC')->paginate(2);
+            }
+            else {
+
+                $users = Valoracion::where('paciente', $nombre)->paginate(2);
+            }
+            return view('vistaValoracion', compact ('users'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -27,9 +41,9 @@ class ValoracionesController extends Controller
      */
     public function create()
     {
-        $encargados= user::all();
-        $especialidades= Especialidad::all();
-        $miembros= Cliente::all();
+        $encargados = User::all();
+        $especialidades = Especialidad::all();
+        $miembros = Cliente::all();
         return view ('registro_valoracion', compact("encargados", "especialidades", "miembros"));
     }
 
@@ -45,15 +59,8 @@ class ValoracionesController extends Controller
         $nuevoValoracion->paciente= $request->miembro;
         $nuevoValoracion->encargado= $request->encargado;
         $nuevoValoracion->especialidad= $request->especialidad;
-        $nuevoValoracion->Descripción=$request->descripcion;
-        // $nuevoValoracion->fisioterapeuta=$request->fisio;
-        // $nuevoValoracion->nutricionista=$request->nutricionista;
-        // $nuevoValoracion->psicologo=$request->psicologo;
-        // $nuevoValoracion->enfermera=$request->enfermera;
-        // $nuevoValoracion->profesional_deporte=$request->profesional_deporte;
-        // $nuevoValoracion->religiosas=$request->religiosas;
+        $nuevoValoracion->descripción=$request->descripcion;
         $nuevoValoracion->save();
-    
         return back()->with ('mensaje','Valoracion agregado correctamente');
     }
 
@@ -65,7 +72,8 @@ class ValoracionesController extends Controller
      */
     public function show($id)
     {
-        //
+        $user= Valoracion::findOrFail($id);
+        return view('perfilValoracion', compact('user'));
     }
 
     /**
@@ -76,7 +84,8 @@ class ValoracionesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $valoracion = Valoracion::findOrFail($id);
+        return view('actualizarValoracion', compact('valoracion'));
     }
 
     /**
@@ -88,7 +97,13 @@ class ValoracionesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $miembro = Valoracion::findOrFail($id);
+        $miembro->paciente = $request->miembro;
+        $miembro->encargado = $request->encargado;
+        $miembro->especialidad = $request->especialidad;
+        $miembro->descripción = $request->descripcion;
+        $miembro->save();
+        return back();
     }
 
     /**
@@ -99,6 +114,9 @@ class ValoracionesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = Valoracion::findOrFail($id);
+        $user->delete();
+        $users = Valoracion::orderBy('paciente', 'ASC')->paginate(2);
+        return redirect()->to('/valoraciones');
     }
 }

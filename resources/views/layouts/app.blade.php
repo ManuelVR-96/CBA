@@ -8,21 +8,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'CENTRO DE BIENESTAR DE ANCIANOS SAN JOSÉ') }}</title>
-
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-
-
-
     <!-- Main CSS-->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">   
     
 </head>
 <body>
@@ -77,7 +69,6 @@
                 </div>
             </div>
         </nav>
-
         <main class="py-4">
             @yield('content')
         </main>

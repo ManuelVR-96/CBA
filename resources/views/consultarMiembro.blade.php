@@ -8,49 +8,45 @@
 
     <div class="container box">
         <div class="row justify-content-center">
-            <div class="col-md-10">                
+            <div class="col-md-10">
                 <div><a href="/miembros/create" class="btn btn-primary btn-sm">Agregar nuevo miembro</a></div><br>
                 <form method="POST" action="{{route('lista_abuelos')}}">
-                @csrf        
+                @csrf
                 <div class="input-group mb-3">
-                
-                  <input type="text" class="form-control" id="busqueda" name="busqueda" placeholder="Buscar" aria-label="Recipient's username" aria-describedby="basic-addon2">                  
+
+                  <input type="text" class="form-control" id="busqueda" name="busqueda" placeholder="Buscar" aria-label="Recipient's username" aria-describedby="basic-addon2">
                 </div>
 
-                <div id="resultados"></div>  
-            
-                <div class="table-responsive">                    
+                <div class="table-responsive">
                     <table class="table table-striped table-bordered">
                         <thead>
                             <tr>
                             <th scope="col">Cedula</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Apellido</th>
-                            <th scope="col">Cargo</th>
+                            <th scope="col">Teléfono</th>
                             <th scope="col">Acción</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($users as $item)
                             <tr>
-                                <th>{{ $item->cedula}}</th>
+                                <th>{{$item->cédula}}</th>
+                                <td><a href = "{{route('miembros.show', $item)}}">{{ $item->nombres }}</a></td>
+                                <td>{{$item->apellidos }}</td>
+                                <td>{{$item->telefono}}</td>
                                 <td>
-                                <a href = "{{route('miembros.show', $item)}}">{{ $item->nombres }}</a>
-                                </td>
-                                <td>{{ $item->apellidos }}</td>
-                                <td>{{ $item->cargo }}</td>
-                                <td>                                                                  
                                     <a href="{{route('miembros.edit', $item->id)}}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
-                                </td>                             
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
-                    </table> 
-                    {{$users->links()}}                                     
+                    </table>
+                    {{$users->links()}}
                 </div>
-                <div>                                                        
-                </div>                    
-            </div>        
+                <div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- <script>
@@ -63,7 +59,7 @@
             else
                 document.getElementById("resultados").innerHTML = ""
             })
-        }); 
+        });
     </script> -->
 
 @endsection

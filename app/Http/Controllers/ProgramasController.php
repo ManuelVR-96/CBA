@@ -21,13 +21,13 @@ class ProgramasController extends Controller
     }
 
     public function busqueda(Request $request)
-    {  
+    {
         $nombre= $request->busqueda;
         if ($nombre==''){
             $users = Programa::orderBy('nombre', 'ASC')->paginate(2);
             }
             else {
-                
+
                 $users = Programa::where('nombre', $nombre)->paginate(2);
             }
             return view('vistaPrograma', compact ('users'));
@@ -39,7 +39,7 @@ class ProgramasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   $encargados= user::all();
+    {   $encargados= User::all();
         return view ('programa', compact("encargados"));
     }
 
@@ -52,20 +52,20 @@ class ProgramasController extends Controller
     public function store(Request $request)
     {
         // $request ->validate ([
-        
+
         //     'encargado' =>'required'
         // ]);
 
             $nuevoPrograma = new Programa();
-            $nuevoPrograma->nombre = $request->nombre;            
+            $nuevoPrograma->nombre = $request->nombre;
             $nuevoPrograma->encargado = $request->encargado;
             $nuevoPrograma->descripcion = $request->descripcion;
             $nuevoPrograma->agenda = $request->agenda;
             $nuevoPrograma->save();
-    
+
             return back()->with ('mensaje','Programa agregado correctamente');
         }
-    
+
 
     /**
      * Display the specified resource.
