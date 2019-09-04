@@ -17,7 +17,7 @@ class ValoracionesController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**

@@ -4,6 +4,7 @@ namespace CBA\Http\Controllers;
 
 use Illuminate\Http\Request;
 use CBA\User;
+use CBA\Especialidad;
 use CBA\Programa;
 use Carbon\Carbon;
 
@@ -40,7 +41,8 @@ class ProgramasController extends Controller
      */
     public function create()
     {   $encargados= user::all();
-        return view ('programa', compact("encargados"));
+        $especialidades= Especialidad::all();
+        return view ('programa', compact("encargados", "especialidades"));
     }
 
     /**
@@ -60,6 +62,7 @@ class ProgramasController extends Controller
             $nuevoPrograma->nombre = $request->nombre;            
             $nuevoPrograma->encargado = $request->encargado;
             $nuevoPrograma->descripcion = $request->descripcion;
+            $nuevoPrograma->especialidad= $request->especialidad;
             $nuevoPrograma->agenda = $request->agenda;
             $nuevoPrograma->save();
     
@@ -88,7 +91,13 @@ class ProgramasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $encargados= user::all();
+        $especialidades= Especialidad::all();
+        $programa = Programa::findOrFail($id);
+        
+        #return $programa->encargado;
+        
+        return view('actualizarProgramas', compact('encargados', 'especialidades', 'programa'));
     }
 
     /**
@@ -100,7 +109,16 @@ class ProgramasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $Programa = Programa::findOrFail($id);
+        $Programa->nombre = $request->nombre;            
+        $Programa->encargado = $request->encargado;
+        $Programa->descripcion = $request->descripcion;
+        $Programa->especialidad= $request->especialidad;
+        $Programa->agenda = $request->agenda;
+        $Programa->save();
+        #return $Programa->encargado_;
+
+        return back()->with ('mensaje','Programa agregado correctamente');
     }
 
     /**

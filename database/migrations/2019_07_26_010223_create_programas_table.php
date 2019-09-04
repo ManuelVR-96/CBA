@@ -17,7 +17,9 @@ class CreateProgramasTable extends Migration
             $table->bigIncrements('id');            
             $table->text('nombre');
             $table->unsignedBigInteger('encargado')->nullable();
-            $table->foreign('encargado')->references('id')->on('users')->onDelete('set null');            
+            $table->foreign('encargado')->references('id')->on('users')->onDelete('set null');
+            $table->unsignedBigInteger('especialidad')->nullable();
+            $table->foreign('especialidad')->references('id')->on('especialidads')->onDelete('set null');
             $table->text('descripcion');
             $table->date('agenda');
             $table->timestamps();

@@ -24,6 +24,7 @@
                             <th scope="col">Nombre</th>
                             <th scope="col">Encargado</th>
                             <th scope="col">Descripción</th>
+                            <th scope="col">Especialidad</th>
                             <th scope="col">Agenda</th>
                             <th scope="col">Acción</th>
                             </tr>
@@ -34,9 +35,10 @@
                                 <td><a href = "{{route('programas.show', $item)}}">{{ $item->nombre}}</a></td>
                                 <td>{{ $item->encargado}}</td>
                                 <td>{{ $item->descripcion}}</td>
+                                <td>{{ $item->especialidad}}</td>
                                 <td>{{ $item->agenda}}</td>
                                 <td>                                    
-                                    <a href="" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
+                                    <a href="{{route('programas.edit', $item)}}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
                                 </td>                             
                             </tr>
                             @endforeach

@@ -1,40 +1,39 @@
+
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Registro valoracion') }}</div>
+                <div class="card-header">{{ __('Formulario de Registro') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="/valoracion">
+                    <form method="POST" action="{{route('programas.update', $programa->id)}}">
                         @csrf
+                        @method('PUT')                               
 
                         <div class="form-group row">
-                            <label for="encargado" class="col-md-4 col-form-label text-md-right">{{ __('Miembro') }}</label>
+                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
                             <div class="col-md-6">
-                                
-                                <select id="miembro" type="text" class="form-control @error('miembro') is-invalid @enderror" name="miembro" value="{{ old('encargado') }}" required autocomplete="miembro" autofocus>
-                                <option value="null">--------</option>
-                                    @foreach($miembros as $miembro)
-                                    <option value="{{$miembro->id}}">{{$miembro->nombres}}</option>
-                                    @endforeach()
-                                @error('miembro')
+                                <input id="nombre" type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre" value="{{ $programa->nombre }}" required autocomplete="nombre" autofocus>
+
+                                @error('nombre')
                                     <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
+                                        <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                                </select>
+
                             </div>
-                        </div>
+                        </div>  
 
                         <div class="form-group row">
                             <label for="encargado" class="col-md-4 col-form-label text-md-right">{{ __('Encargado') }}</label>
                             <div class="col-md-6">
                                 
-                                <select id="encargado" type="text" class="form-control @error('encargado') is-invalid @enderror" name="encargado" value="{{ old('encargado') }}" required autocomplete="encargado" autofocus>
-                                <option value="null">--------</option>
+                                <select id="encargado" type="text" class="form-control @error('encargado') is-invalid @enderror" name="encargado" value="{{ $programa->encargado }}" required autocomplete="encargado" autofocus>
+                                <option value="{{$programa->encargado}}">{{$programa->encargado_->nombres}}</option>
                                     @foreach($encargados as $encargado)
                                     <option value="{{$encargado->id}}">{{$encargado->nombres}}</option>
                                     @endforeach()
@@ -45,6 +44,20 @@
                                 @enderror
                                 </select>
                             </div>
+                        </div>                       
+
+                        <div class="form-group row">
+                            <label for="descripcion" class="col-md-4 col-form-label text-md-right">{{ __('Descripción') }}</label>
+                            <div class="col-md-6">
+                                <Textarea id="descripcion" type="text" class="form-control @error('descripcion') is-invalid @enderror" name="descripcion" value="{{ $programa->descripcion }}" required autocomplete="descripcion" autofocus>{{ $programa->descripcion }}</textarea>
+
+                                @error('descripcion')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                
+                            </div>
                         </div>
 
                         <div class="form-group row">
@@ -52,7 +65,7 @@
                             <div class="col-md-6">
                                 
                                 <select id="encargado" type="text" class="form-control @error('encargado') is-invalid @enderror" name="especialidad" value="{{ old('encargado') }}" required autocomplete="encargado" autofocus>
-                                <option value="null">--------</option>
+                                <option value="{{ $programa->especialidad }}">{{ $programa->especialidad_->Nombre}}</option>
                                     @foreach($especialidades as $especialidad)
                                     <option value="{{$especialidad->id}}">{{$especialidad->Nombre}}</option>
                                     @endforeach()
@@ -65,24 +78,17 @@
                             </div>
                         </div>
 
-                      
-                        <div class="form-group row">
-                            <label for="medica" class="col-md-4 col-form-label text-md-right">{{ __('Descripción') }}</label>
-                            <div class="col-md-6">
-                                <Textarea id="descripcion" type="text" class="form-control @error('descripcion') is-invalid @enderror" name="descripcion" value="{{ old('descripcion') }}" required autocomplete="medica" autofocus></textarea>
-
-                                @error('Descripción')
-                                    <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                        <div class="form-group row">                            
+                            <label for="agenda" class="col-md-4 col-form-label text-md-right">{{ __('Agenda') }}</label>
+                                <div class="col-md-6">
+                                    <input class="form-control @error('agenda') is-invalid @enderror" name="agenda" value="{{ $programa->agenda }}" type="date">                                        
+                                </div>                           
                         </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Guardar') }}
+                                    {{ __('Actualizar') }}
                                 </button>
                             </div>
                         </div>

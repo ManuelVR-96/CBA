@@ -59,6 +59,24 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="encargado" class="col-md-4 col-form-label text-md-right">{{ __('Especialidad') }}</label>
+                            <div class="col-md-6">
+                                
+                                <select id="encargado" type="text" class="form-control @error('encargado') is-invalid @enderror" name="especialidad" value="{{ old('encargado') }}" required autocomplete="encargado" autofocus>
+                                <option value="null">--------</option>
+                                    @foreach($especialidades as $especialidad)
+                                    <option value="{{$especialidad->id}}">{{$especialidad->Nombre}}</option>
+                                    @endforeach()
+                                @error('especialidad')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="form-group row">                            
                             <label for="agenda" class="col-md-4 col-form-label text-md-right">{{ __('Agenda') }}</label>
                                 <div class="col-md-6">
