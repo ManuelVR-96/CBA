@@ -11,6 +11,7 @@
                     @csrf
                     @method("DELETE")  
                     <div class="form-horizontal">
+
                          <div class="col-sm-6">
                               <div class="form-group row">
                                    <label class="col-sm-5">Cédula</label>
@@ -20,9 +21,16 @@
                               </div>
 
                               <div class="form-group row">
+                                   <label class="col-sm-5">Foto</label>
+                                   <div class="col-sm-6">
+                                        <img src = "/uploads/avatar/{{$user->avatar}}" style="weight: 10px, height:10px ">
+                                   </div>
+                              </div>
+
+                              <div class="form-group row">
                                    <label class="col-sm-5">Nombres</label>
                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" value="{{$user->nombres}}">
+                                        <p> {{$user->nombres}}</p>
                                    </div>
                               </div>
 
@@ -43,7 +51,7 @@
                               <div class="form-group row">
                                    <label class="col-sm-5 col-form-label">Dirección</label>
                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" value="{{$user->dirección}}">
+                                        <a type="text" class="form-control" value="{{$user->dirección}}"></a>
                                    </div>
                               </div>
 
@@ -128,7 +136,7 @@
                               <div class="form-group row">
                                    <label class="col-sm-5 col-form-label">Hobbies</label>
                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" value="{{$user->hobbies}}">
+                                        <a> {{$user->hobbies}}</a>
                                    </div>
                               </div>
 

@@ -113,9 +113,9 @@ class ProgramasController extends Controller
      */
     public function show($id)
     {
-        $programa= Programa::findOrFail($id);
+        $programas= Programa::findOrFail($id);
 
-        return view('perfilPrograma', compact('programa'));
+        return view('perfilPrograma', compact('programas'));
     }
 
     /**
