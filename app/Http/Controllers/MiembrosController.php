@@ -22,14 +22,45 @@ class MiembrosController extends Controller
 
     public function busqueda(Request $request)
     {  
-        $nombre= $request->busqueda;
-        if ($nombre==''){
+        $entrada= $request->busqueda;
+        $tipo = $request->tipo_busqueda;
+        if ($tipo=="Nombre"){
+        if ($entrada==''){
             $users = Cliente::orderBy('nombres', 'ASC')->paginate(2);
             }
             else {
                 
-                $users = Cliente::where('nombres', $nombre)->paginate(2);
+                $users = Cliente::where('nombres', 'like', '%' . $entrada . '%')->paginate(2);
             }
+        }
+
+        elseif ($tipo=="Cédula"){
+            if ($entrada==''){
+            $users = Cliente::orderBy('cédula', 'ASC')->paginate(2);
+            }
+            else {
+                
+                $users = Cliente::where('cédula', $entrada)->paginate(2);
+            }
+        }
+
+        elseif ($tipo=="Apellidos"){
+            if ($entrada==''){
+            $users = Cliente::orderBy('apellidos', 'ASC')->paginate(2);
+            }
+            else {
+                
+                $users = Cliente::where('apellidos', 'like', '%' . $entrada . '%')->paginate(2);
+            }
+        }
+
+        else{
+        
+                $users = Cliente::where('nombres', $entrada)->paginate(2);
+            
+        }
+        
+
             return view('consultarMiembro', compact ('users'));
     }
     /**

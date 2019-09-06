@@ -77,7 +77,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),           
             'nombres' =>$data['nombres'],
-            'cédula' =>$data['id'],
+            'cedula' =>$data['id'],
             'apellidos' =>$data['apellidos'],
             'cargo' => $data['cargo'],
             'nivel_educativo' =>$data['nivel'],

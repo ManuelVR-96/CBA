@@ -11,11 +11,28 @@
             <div class="col-md-10">                
                 <div><a href="/register" class="btn btn-primary btn-sm">Crear Nuevo Usuario</a></div><br>
                 <form method="POST" action="{{route('lista_nombres')}}">
-                @csrf        
+                @csrf  
+                <div class="form-group row">
+                            <label for="tipo_sangre" class="col-md-4 col-form-label text-md-right">{{ __('Buscar por') }}</label>
+                            <div class="col-md-6">
+                                <select name="tipo_busqueda" class="form-control @error('tipo_sangre') is-invalid @enderror" value="{{ old('tipo_sangre') }}" name="tipo_busqueda" type="text">>
+                                    <option value=" ">--Seleccione--</option>                                   
+                                    <option value="Cédula">Cédula</option>
+                                    <option value="Nombre">Nombre</option>
+                                    <option value="Apellidos">Apellidos</option>  
+                                </select>
+                                <!-- @error('tipo_sangre')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror -->
+                            </div>
+                        </div>      
                 <div class="input-group mb-3">
-                
+
                   <input type="text" class="form-control" id="busqueda" name="busqueda" placeholder="Buscar" aria-label="Recipient's username" aria-describedby="basic-addon2">                  
                 </div>
+                
                             
                 <div class="table-responsive">                    
                     <table class="table table-striped table-bordered">
