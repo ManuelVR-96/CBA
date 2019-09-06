@@ -92,8 +92,8 @@ class MiembrosController extends Controller
         if($request->hasFile('avatar')){
             $avatar = $request->file('avatar');
             $filename = time().'.' . $avatar->getClientOriginalExtension();
-            return($filename);
-            Image::make($avatar)->resize(300,300)->save(public_path('/uploads/avatar' . $filename));
+            #return($filename);
+            Image::make($avatar)->resize(300,300)->save(public_path('/uploads/avatar/' . $filename));
             $nuevoCliente->avatar = $filename;
         }
         $nuevoCliente->nombres = $request->nombres;

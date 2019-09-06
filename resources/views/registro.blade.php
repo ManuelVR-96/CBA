@@ -9,7 +9,7 @@
                 <div class="card-header">{{ __('Formulario de Registro') }}</div>
 
                 <div class="card-body">
-                    <form enctype= "multipart/form-data" method="POST" action="{{route('miembros.store')}}">
+                    <form enctype="multipart/form-data" method="POST" action="{{route('miembros.store')}}">
                         @csrf
 
                         <div class="form-group row">
