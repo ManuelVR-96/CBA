@@ -7,39 +7,40 @@
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
      <div class="panel panel-default">
           <div class="panel-body">
-               <form action="{{route('valoraciones.eliminar', $user)}}" class="d-inline" method="POST">
+               <form action="{{route('valoraciones.eliminar', $valoraciones)}}" class="d-inline" method="POST">
                     @csrf
                     @method("DELETE")
                     <div class="form-horizontal">
+                    <fieldset disabled>
                          <div class="col-sm-6">
                               <div class="form-group row">
                                    <label class="col-sm-5">Paciente</label>
                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" value="{{$user->paciente}}">
+                                        <input type="text" class="form-control" value="{{$valoraciones->paciente}}">
                                    </div>
                               </div>
 
                                <div class="form-group row">
                                    <label class="col-sm-5 col-form-label">Encargado</label>
                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" value="{{$user->encargado}}">
+                                        <input type="text" class="form-control" value="{{$valoraciones->encargado}}">
                                    </div>
                               </div>
 
                                <div class="form-group row">
                                    <label class="col-sm-5 col-form-label">Especialidad</label>
                                    <div class="col-sm-6">
-                                        <input type="date" class="form-control" value="{{$user->especialidad}}">
+                                        <input type="date" class="form-control" value="{{$valoraciones->especialidad}}">
                                    </div>
                               </div>
 
                               <div class="form-group row">
                                    <label class="col-sm-5 col-form-label">Descripción</label>
                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" value="{{$user->descripción}}">
+                                        <input type="text" class="form-control" value="{{$valoraciones->descripción}}">
                                    </div>
                               </div>
-
+                         </fieldset>
                               <div align="center">
                                    <button class='btn btn-danger' type="submit" name="eliminar" onclick="return confirm('¿Confirma que desea ELIMINAR de manera permanente el registro?')"></span>Eliminar Valoración</button>
                               </div>

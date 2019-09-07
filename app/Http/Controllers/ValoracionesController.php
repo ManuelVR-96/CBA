@@ -18,22 +18,61 @@ class ValoracionesController extends Controller
      */
     public function index()
     {
-        $users = Valoracion::orderBy('paciente', 'ASC')->paginate(2);
-        return view('vistaValoracion', compact ('users'));
+        $valoraciones = Valoracion::orderBy('paciente', 'ASC')->paginate(2);
+        return view('vistaValoracion', compact ('valoraciones'));
     }
 
     public function busqueda(Request $request)
-    {
-        $nombre= $request->busqueda;
-        if ($nombre==''){
-            $users = Valoracion::orderBy('paciente', 'ASC')->paginate(2);
+    {  
+        $entrada= $request->busqueda;
+        $tipo = $request->tipo_busqueda;
+        if ($tipo=="Encargado")
+        {
+            if ($entrada=='')                
+            {
+                $valoraciones = Valoracion::orderBy('encargado->nombres', 'ASC')->paginate(2);
             }
-            else {
+            else 
+            {                
+                $valoraciones = Valoracion::whereHas('encargado_', function($query) use($entrada){
+                $query->where('nombres', 'like', '%' . $entrada . '%');
+                })->paginate(2);
+            }
+        }
 
-                $users = Valoracion::where('paciente', $nombre)->paginate(2);
+        elseif ($tipo=="Especialidad")
+        {
+            if ($entrada==''){
+                $valoraciones = Valoracion::orderBy('especialidad->Nombre', 'ASC')->paginate(2);
             }
-            return view('vistaValoracion', compact ('users'));
+            else 
+            {                
+                $valoraciones = Valoracion::whereHas('especialidad_', function($query) use($entrada){
+                $query->where('Nombre', 'like', '%' . $entrada . '%');
+                })->paginate(2);
+            }
+        }
+
+        elseif ($tipo=="Nombre paciente")
+        {
+            if ($entrada==''){
+                $valoraciones = Valoracion::orderBy('paciente->nombres', 'ASC')->paginate(2);
+            }
+            else 
+            {                
+                $valoraciones = Valoracion::whereHas('miembro_', function($query) use($entrada){
+                $query->where('nombres', 'like', '%' . $entrada . '%');
+                })->paginate(2);
+            }
+        }
+
+        else
+        {
+            $valoraciones = Valoracion::where('paciente', $entrada)->paginate(2);  
+        }
+            return view('vistaValoracion', compact ('valoraciones'));
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -41,7 +80,7 @@ class ValoracionesController extends Controller
      */
     public function create()
     {
-        $encargados = User::all();
+        $encargados = user::all();
         $especialidades = Especialidad::all();
         $miembros = Cliente::all();
         return view ('registro_valoracion', compact("encargados", "especialidades", "miembros"));
@@ -54,7 +93,7 @@ class ValoracionesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   #return $request;
+    {   
         $nuevoValoracion = new Valoracion();
         $nuevoValoracion->paciente= $request->miembro;
         $nuevoValoracion->encargado= $request->encargado;
@@ -72,8 +111,9 @@ class ValoracionesController extends Controller
      */
     public function show($id)
     {
-        $user= Valoracion::findOrFail($id);
-        return view('perfilValoracion', compact('user'));
+        $valoraciones= Valoracion::findOrFail($id);
+
+        return view('perfilValoracion', compact('valoraciones'));
     }
 
     /**
@@ -84,8 +124,12 @@ class ValoracionesController extends Controller
      */
     public function edit($id)
     {
+        $encargados = user::all();
+        $especialidades = Especialidad::all();
+        $miembros = Cliente::all();        
         $valoracion = Valoracion::findOrFail($id);
-        return view('actualizarValoracion', compact('valoracion'));
+
+        return view('actualizarValoracion', compact('encargados', 'especialidades', 'miembros', 'valoracion'));
     }
 
     /**
@@ -97,13 +141,14 @@ class ValoracionesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $miembro = Valoracion::findOrFail($id);
-        $miembro->paciente = $request->miembro;
-        $miembro->encargado = $request->encargado;
-        $miembro->especialidad = $request->especialidad;
-        $miembro->descripción = $request->descripcion;
-        $miembro->save();
-        return back();
+        $Valoracion = Valoracion::findOrFail($id);
+        $Valoracion->paciente = $request->miembro;
+        $Valoracion->encargado = $request->encargado;
+        $Valoracion->especialidad = $request->especialidad;
+        $Valoracion->descripción = $request->descripcion;
+        $Valoracion->save();
+
+        return back()->with('mensaje', 'Valoracion agregada correctamente');
     }
 
     /**
@@ -114,9 +159,9 @@ class ValoracionesController extends Controller
      */
     public function destroy($id)
     {
-        $user = Valoracion::findOrFail($id);
-        $user->delete();
-        $users = Valoracion::orderBy('paciente', 'ASC')->paginate(2);
+        $valoracion = Valoracion::findOrFail($id);
+        $valoracion->delete();
+        $valoracion = Valoracion::orderBy('paciente', 'ASC')->paginate(2);
         return redirect()->to('/valoraciones');
     }
 }

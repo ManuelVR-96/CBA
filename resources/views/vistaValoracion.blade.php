@@ -14,10 +14,19 @@
                 </div><br>
                 <form method="POST" action="{{route('lista_valoraciones')}}">
                 @csrf
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" id="busqueda" name="busqueda" placeholder="Buscar" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                </div>
-
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <form class="form-inline my-2 my-lg-0">
+                    <a class="navbar-brand">{{ __('Buscar por') }}</a>                                    
+                        <select name="tipo_busqueda" class="form-control @error('tipo_busqueda') is-invalid @enderror" value="{{ old('tipo_busqueda') }}" name="tipo_busqueda" type="text">>
+                            <option value=" ">--Seleccione--</option>                                   
+                            <option value="Nombre paciente">Nombre paciente</option>
+                            <option value="Especialidad">Especialidad</option>
+                            <option value="Encargado">Encargado</option>  
+                        </select>          
+                        <input type="text" class="form-control" id="busqueda" name="busqueda" placeholder="Buscar" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    </form>
+                </nav>    
+                
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered">
                         <thead>
@@ -30,20 +39,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($users as $item)
+                            @foreach ($valoraciones as $item)
                             <tr>
-                                <td><a href = "{{route('valoraciones.show', $item)}}">{{ $item->paciente}}</a></td>
-                                <td>{{ $item->encargado}}</td>
-                                <td>{{ $item->especialidad}}</td>
+                                <td><a href = "{{route('valoraciones.show', $item)}}">{{$item->miembro_->nombres}}</a></td>
+                                <td>{{ $item->encargado_->nombres}}</td>
+                                <td>{{ $item->especialidad_->Nombre}}</td>
                                 <td>{{ $item->descripción}}</td>
-                                <td><a href="{{route('valoraciones.edit', $item->id)}}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                                <td><a href="{{route('valoraciones.edit', $item)}}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a></td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    {{$users->links()}}
-                </div>
-                <div>
+                    {{$valoraciones->links()}}
                 </div>
             </div>
         </div>

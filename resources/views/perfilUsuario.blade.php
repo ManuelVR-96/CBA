@@ -11,6 +11,7 @@
                     @csrf
                     @method("DELETE")
                     <div class="form-horizontal">
+                    <fieldset disabled>
                          <div class="col-sm-6">
                               <div class="form-group row">
                                    <label class="col-sm-5">Cédula</label>
@@ -114,7 +115,7 @@
                               </div>
 
                          </div>
-
+                    </fieldset>
                          <div align="center">
                               <button class='btn btn-danger' type="submit" name="eliminar" onclick="return confirm('¿Confirma que desea ELIMINAR de manera permanente el registro?')"></span>Eliminar Registro</button>
                          </div>

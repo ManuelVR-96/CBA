@@ -7,22 +7,23 @@
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
      <div class="panel panel-default">
           <div class="panel-body">
-               <form action="{{route('miembros.eliminar', $user)}}" class="d-inline" method="POST">
+               <form action="{{route('miembros.eliminar', $user)}}" class="d-inline" method="POST">               
                     @csrf
                     @method("DELETE")
                     <div class="form-horizontal">
+                    <fieldset disabled>
                          <div class="col-sm-6">
                               <div class="form-group row">
                                    <label class="col-sm-5">Cédula</label>
                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" value="{{$user->cédula}}">
+                                        <input type="text" class="form-control" value="{{$user->cédula}}" readonly="readonly">
                                    </div>
                               </div>
 
                               <div class="form-group row">
                                    <label class="col-sm-5">Nombres</label>
                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" value="{{$user->nombres}}">
+                                        <input type="text" class="form-control" value="{{$user->nombres}}" readonly="readonly">
                                    </div>
                               </div>
 
@@ -175,11 +176,11 @@
                                    </div>
                               </div>
                          </div>
-
+                    </fieldset>
                          <div align="center">
                               <button class='btn btn-danger' type="submit" name="eliminar" onclick="return confirm('¿Confirma que desea ELIMINAR de manera permanente el registro?')"></span>Eliminar Registro</button>
                          </div>
-                    </div>
+                    </div>              
                </form>
           </div>
      </div>

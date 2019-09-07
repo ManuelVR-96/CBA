@@ -21,14 +21,45 @@ class UsuarioController extends Controller
 
     public function busqueda(Request $request)
     {  
-        $nombre= $request->busqueda;
-        if ($nombre==''){
+        $entrada= $request->busqueda;
+        $tipo = $request->tipo_busqueda;
+        if ($tipo=="Nombre"){
+        if ($entrada==''){
             $users = User::orderBy('nombres', 'ASC')->paginate(2);
             }
             else {
                 
-                $users = User::where('nombres', $nombre)->paginate(2);
+                $users = User::where('nombres', 'like', '%' . $entrada . '%')->paginate(2);
             }
+        }
+
+        elseif ($tipo=="Cédula"){
+            if ($entrada==''){
+            $users = User::orderBy('cedula', 'ASC')->paginate(2);
+            }
+            else {
+                
+                $users = User::where('cedula', $entrada)->paginate(2);
+            }
+        }
+
+        elseif ($tipo=="Apellidos"){
+            if ($entrada==''){
+            $users = User::orderBy('apellidos', 'ASC')->paginate(2);
+            }
+            else {
+                
+                $users = User::where('apellidos', 'like', '%' . $entrada . '%')->paginate(2);
+            }
+        }
+
+        else{
+        
+                $users = User::where('nombres', $entrada)->paginate(2);
+            
+        }
+        
+
             return view('consultarUser', compact ('users'));
     }
 
