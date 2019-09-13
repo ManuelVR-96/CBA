@@ -9,8 +9,21 @@
                 <div class="card-header">{{ __('Formulario de Registro') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{route('miembros.store')}}">
+                    <form enctype="multipart/form-data" method="POST" action="{{route('miembros.store')}}">
                         @csrf
+
+                        <div class="form-group row">
+                            <label for="avatar" class="col-md-4 col-form-label text-md-right">{{ __('Foto de perfil') }}</label>
+                            <div class="col-md-6">
+                                <input type="file" name="avatar">
+
+                                <!-- @error('avatar')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror -->
+                            </div>
+                        </div>
 
                         <div class="form-group row">
                             <label for="id" class="col-md-4 col-form-label text-md-right">{{ __('No Identificación') }}</label>
@@ -129,7 +142,7 @@
                                     </span>
                                 @enderror -->
                             </div>
-                        </div>
+                        </div>                       
 
                         <div class="form-group row">
                             <label for="primer_acudiente" class="col-md-4 col-form-label text-md-right">{{ __('Primer Acudiente') }}</label>

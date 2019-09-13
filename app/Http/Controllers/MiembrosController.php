@@ -3,9 +3,9 @@
 namespace CBA\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use CBA\Cliente;
 use Carbon\Carbon;
+use Image;
 
 class MiembrosController extends Controller
 {
@@ -16,7 +16,7 @@ class MiembrosController extends Controller
      */
     public function index()
     {   
-        $users = Cliente::orderBy('nombres', 'ASC')->paginate(2);
+        $users = Cliente::orderBy('nombres', 'ASC')->paginate(8);
         return view('consultarMiembro', compact ('users')); 
     }
 
@@ -26,37 +26,37 @@ class MiembrosController extends Controller
         $tipo = $request->tipo_busqueda;
         if ($tipo=="Nombre"){
         if ($entrada==''){
-            $users = Cliente::orderBy('nombres', 'ASC')->paginate(2);
+            $users = Cliente::orderBy('nombres', 'ASC')->paginate(8);
             }
             else {
                 
-                $users = Cliente::where('nombres', 'like', '%' . $entrada . '%')->paginate(2);
+                $users = Cliente::where('nombres', 'like', '%' . $entrada . '%')->paginate(8);
             }
         }
 
         elseif ($tipo=="Cédula"){
             if ($entrada==''){
-            $users = Cliente::orderBy('cédula', 'ASC')->paginate(2);
+            $users = Cliente::orderBy('cédula', 'ASC')->paginate(8);
             }
             else {
                 
-                $users = Cliente::where('cédula', $entrada)->paginate(2);
+                $users = Cliente::where('cédula', $entrada)->paginate(8);
             }
         }
 
         elseif ($tipo=="Apellidos"){
             if ($entrada==''){
-            $users = Cliente::orderBy('apellidos', 'ASC')->paginate(2);
+            $users = Cliente::orderBy('apellidos', 'ASC')->paginate(8);
             }
             else {
                 
-                $users = Cliente::where('apellidos', 'like', '%' . $entrada . '%')->paginate(2);
+                $users = Cliente::where('apellidos', 'like', '%' . $entrada . '%')->paginate(8);
             }
         }
 
         else{
         
-                $users = Cliente::where('nombres', $entrada)->paginate(2);
+                $users = Cliente::where('nombres', $entrada)->paginate(8);
             
         }
         
@@ -81,12 +81,15 @@ class MiembrosController extends Controller
      */
     public function store(Request $request)
     {
-        // $request ->validate ([
-        //     'nombres'=>'required',
-        //     'cédula' =>'required'
-        // ]);
-        
+
         $nuevoCliente = new Cliente();
+                
+        if($request->hasFile('avatar')){
+            $avatar = $request->file('avatar');
+            $filename = time().'.' . $avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(130,130)->save(public_path('/uploads/avatar/' . $filename));
+            $nuevoCliente->avatar = $filename;
+        }
         $nuevoCliente->cédula = $request->id;
         $nuevoCliente->nombres = $request->nombres;
         $nuevoCliente->apellidos = $request->apellidos;
@@ -152,6 +155,12 @@ class MiembrosController extends Controller
     public function update(Request $request, $id)
     {
         $miembro = Cliente::findOrFail($id);
+        if($request->hasFile('avatar')){
+            $avatar = $request->file('avatar');
+            $filename = time().'.' . $avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(130,130)->save(public_path('/uploads/avatar/' . $filename));
+            $miembro->avatar = $filename;
+        }
         $miembro->cédula = $request->id;
         $miembro->nombres = $request->nombres;
         $miembro->apellidos = $request->apellidos;
@@ -192,7 +201,7 @@ class MiembrosController extends Controller
     {
         $user = Cliente::findOrFail($id);
         $user->delete();
-        $users = Cliente::orderBy('nombres', 'ASC')->paginate(2);
+        $users = Cliente::orderBy('nombres', 'ASC')->paginate(8);
         return redirect()->to('/miembros');
     }
 }

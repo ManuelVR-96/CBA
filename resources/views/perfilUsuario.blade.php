@@ -7,12 +7,20 @@
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
      <div class="panel panel-default">
           <div class="panel-body">
-               <form action="{{route('usuarios.destroy', $user)}}" class="d-inline" method="POST">
+               <form enctype="multipart/form-data" action="{{route('usuarios.destroy', $user)}}" class="d-inline" method="POST">
                     @csrf
                     @method("DELETE")
                     <div class="form-horizontal">
                     <fieldset disabled>
                          <div class="col-sm-6">
+
+                              <div class="form-group row">
+                                   <label class="col-sm-5">Foto de perfil</label>
+                                   <div class="col-sm-3">
+                                        <img src = "/uploads/avatar/{{$user->avatar}}">
+                                   </div>
+                              </div>
+
                               <div class="form-group row">
                                    <label class="col-sm-5">Cédula</label>
                                    <div class="col-sm-6">
@@ -48,22 +56,22 @@
                                    </div>
                               </div>
 
+                         </div>
+                         <div class="col-sm-6">
+
                               <div class="form-group row">
                                    <label class="col-sm-5">Formación</label>
                                    <div class="col-sm-6">
                                         <input type="text" class="form-control" value="{{$user->formación}}">
                                    </div>
                               </div>
-
+                         
                               <div class="form-group row">
                                    <label class="col-sm-5">Dirección</label>
                                    <div class="col-sm-6">
                                         <input type="text" class="form-control" value="{{$user->dirección}}">
                                    </div>
-                              </div>
-
-                         </div>
-                         <div class="col-sm-6">
+                              </div>                        
 
                               <div class="form-group row">
                                    <label class="col-sm-5">Fecha de Nacimiento</label>

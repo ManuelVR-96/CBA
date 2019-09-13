@@ -52,22 +52,8 @@
                     </table>
                     {{$users->links()}}
                 </div>
-                <div>
-                </div>
             </div>
         </div>
     </div>
-    <!-- <script>
-        window.addEventListener('load',function(){
-            document.getElementById("texto").addEventListener("keyup", function(){
-            if((document.getElementById("texto").value.length)>=2)
-                fetch('consultarUser.buscador?texto=${document.getElementById("texto").value}',{ method:'get'})
-                .then(response  =>  response.text() )
-                .then(html      =>  {document.getElementById("resultados").innerHTML = html  })
-            else
-                document.getElementById("resultados").innerHTML = ""
-            })
-        });
-    </script> -->
 
 @endsection

@@ -56,11 +56,8 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'nombres' => ['required', 'string','alpha', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            
-           
-        
 
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
         ]);
     }
 
@@ -73,27 +70,20 @@ class RegisterController extends Controller
     protected function create(array $data)
     {  
         return User::create([
-        
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),           
-            'nombres' =>$data['nombres'],
+            'avatar' =>$data['avatar'],               
             'cedula' =>$data['id'],
+            'nombres' =>$data['nombres'],
             'apellidos' =>$data['apellidos'],
             'cargo' => $data['cargo'],
             'nivel_educativo' =>$data['nivel'],
             'formación' =>$data['formacion'],
             'dirección' =>$data['direccion'],
+            'fecha_de_nacimiento' => $data['nacimiento'],
+            'fecha_de_vinculación' => $data['vinculacion'],
             'telefono' =>$data['telefono'],
             'rol' =>$data['perfil'],
-            
-     #$nacimiento_ = Carbon::createFromFormat ('Y-m-d', $request->nacimiento);
-     #echo($nacimiento_);
-        'fecha_de_nacimiento' => $data['nacimiento'],
-     #$vinculacion_ = Carbon::createFromFormat ('Y-m-d', $request->vinculacion);
-        'fecha_de_vinculación' => $data['vinculacion'],
-           
-
-
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),          
         ]);
     }
 
@@ -102,10 +92,7 @@ class RegisterController extends Controller
         $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all())));
-
-        #$this->guard()->login($user); // <- it's actually this line login the fresh user
-
-    return $this->registered($request, $user)
-                        ?: redirect($this->redirectPath());
+       
+        return $this->registered($request, $user)?: redirect($this->redirectPath());
     }
 }

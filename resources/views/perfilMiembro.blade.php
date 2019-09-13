@@ -13,17 +13,25 @@
                     <div class="form-horizontal">
                     <fieldset disabled>
                          <div class="col-sm-6">
+                              
                               <div class="form-group row">
-                                   <label class="col-sm-5">Cédula</label>
-                                   <div class="col-sm-6">
-                                        <input type="text" class="form-control" value="{{$user->cédula}}" readonly="readonly">
+                                   <label class="col-sm-5">Foto de perfil</label>
+                                   <div class="col-sm-3">
+                                        <img src = "/uploads/avatar/{{$user->avatar}}">
                                    </div>
                               </div>
 
                               <div class="form-group row">
+                                   <label class="col-sm-5">Cédula</label>
+                                   <div class="col-sm-6">
+                                        <input type="text" class="form-control" value="{{$user->cédula}}">
+                                   </div>
+                              </div>                              
+
+                              <div class="form-group row">
                                    <label class="col-sm-5">Nombres</label>
                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" value="{{$user->nombres}}" readonly="readonly">
+                                        <input type="text" class="form-control" value="{{$user->nombres}}">
                                    </div>
                               </div>
 
@@ -82,16 +90,16 @@
                                         <input type="text" class="form-control" value="{{$user->primer_acudiente}}">
                                    </div>
                               </div>
-
+                         </div>
+                         
+                         <div class="col-sm-6">
                               <div class="form-group row">
                                    <label class="col-sm-5 col-form-label">Segundo Acudiente</label>
                                    <div class="col-sm-6">
                                         <input type="text" class="form-control" value="{{$user->segundo_acudiente}}">
                                    </div>
                               </div>
-                         </div>
-                         
-                         <div class="col-sm-6">
+                        
                               <div class="form-group row">
                                    <label class="col-sm-5 col-form-label">Servicio Funerario</label>
                                    <div class="col-sm-6">
