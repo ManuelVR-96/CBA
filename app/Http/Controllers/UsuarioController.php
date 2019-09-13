@@ -4,6 +4,8 @@ namespace CBA\Http\Controllers;
 
 use Illuminate\Http\Request;
 use CBA\User;
+use CBA\Especialidad;
+
 use Carbon\Carbon;
 
 class UsuarioController extends Controller
@@ -69,8 +71,8 @@ class UsuarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view ('auth.register');
+    {   $especialidades = Especialidad::all();
+        return view ('auth.register', compact('especialidades'));
     }
 
     /**
@@ -81,10 +83,11 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        $request ->validate ([
-            'nombres'=>'required',
-            'cedula' =>'required'
-        ]);
+        // $request ->validate ([
+        //     'nombres'=>'required',
+        //     'cedula' =>'required'
+        // ]);
+        return (request);
         $nuevoOp = new CBA\User;        
         $nuevoOp->cedula = $request->id;
         $nuevoOp->nombres = $request->nombres;
@@ -99,7 +102,7 @@ class UsuarioController extends Controller
         $vinculacion_ = Carbon::createFromFormat ('Y-m-d', $request->vinculacion);
         $nuevoOp->fecha_de_vinculación = $vinculacion_;
         $nuevoOp->telefono = $request->telefono;
-        $nuevoOp->perfil = $request->perfil;
+        $nuevoOp->rol = $request->perfil;
         $nuevoOp->email = $request->email;
         $nuevoOp->contraseña = $request->password;        
         $nuevoOp->save();

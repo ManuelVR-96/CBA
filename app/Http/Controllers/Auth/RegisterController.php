@@ -3,6 +3,7 @@
 namespace CBA\Http\Controllers\Auth;
 
 use CBA\User;
+use CBA\Especialidad;
 use CBA\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -53,16 +54,44 @@ class RegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'nombres' => ['required', 'string','alpha', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            
-           
+    {    $message= array (
         
+        // 'email.unique' => 'Ya lo están usando!!',
+        'cedula.unique'  => 'Ya está registrado un paciente con este número de identificación',
+        'cedula.required'  => 'Debe ingresar un número de identificación',
+        // 'cargo.string'  => 'Debe ser string',
+        // 'cargo.unique'  => 'Debe ser único',
+        'required'    => 'El campo :attribute es requerido.',
+        'formacion.required' => 'El campo formación es requerido',
+        'formacion.string' => 'El campo formación solo puede contener letras',
+        'direccion.required' => 'El campo dirección es requerido',
+        'unique' => 'El campo :attribute debe ser único',
+        'numeric' => 'El campo :attribute debe ser completamente numérico',
+        'alpha' => 'El campo :attribute solo puede contener letras',
+        'password.alpha_numeric' => 'La contraseña solo puede contener caracteres alfanuméricos',
+        'telefono.starts_with' => 'Verifique el número de celular ingresado ',
+        'telefono.digits' => 'El número de teléfono debe contener entre 8 y 10 dígitos ',
+        'id.digits' => 'El número de identificación debe contener entre 8 y 10 dígitos ',
+        'email' => 'Introduzca una dirección de correo válida'
 
-        ]);
+
+
+    );
+        return Validator::make($data, [
+             'nombres' => ['required', 'string','alpha', 'max:30'],
+            'apellidos' => ['required', 'string','alpha', 'max:30'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'cedula' =>['required', 'string', 'unique:users', 'digits_between:8,10', 'numeric' ],
+            'formacion' => ['required', 'string','alpha', 'max:40'],
+            'direccion' => ['required', 'string','alpha_dash', 'max:60'],
+            'perfil' =>['required', 'string', 'alpha'],
+            'nivel' =>['required', 'string', 'alpha'],
+            'telefono' =>['required', 'string', 'digits:10', 'starts_with:3'],
+            'cargo' =>['required', 'string', 'alpha'],
+            'password' =>['required', 'string', 'alpha_numeric'],
+        ],$message);
     }
+
 
     /**
      * Create a new user instance after a valid registration.
@@ -77,14 +106,15 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),           
             'nombres' =>$data['nombres'],
-            'cedula' =>$data['id'],
+            'cedula' =>$data['cedula'],
             'apellidos' =>$data['apellidos'],
             'cargo' => $data['cargo'],
             'nivel_educativo' =>$data['nivel'],
             'formación' =>$data['formacion'],
+            'rol' =>$data['perfil'],
             'dirección' =>$data['direccion'],
             'telefono' =>$data['telefono'],
-            'rol' =>$data['perfil'],
+            
             
      #$nacimiento_ = Carbon::createFromFormat ('Y-m-d', $request->nacimiento);
      #echo($nacimiento_);
@@ -104,7 +134,7 @@ class RegisterController extends Controller
         event(new Registered($user = $this->create($request->all())));
 
         #$this->guard()->login($user); // <- it's actually this line login the fresh user
-
+    #return ($request);
     return $this->registered($request, $user)
                         ?: redirect($this->redirectPath());
     }
