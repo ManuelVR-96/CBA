@@ -16,9 +16,7 @@
 Route::get('/','PageControler@welcome')->name('welcome');
 Route::get('/inicio','PageControler@inicio')->name('inicio');
 Route::get('/admin','PageControler@admin')->name('admin');
-Route::get('/user', function () {
-    return view('user');
-});
+Route::get('/user', function () {return view('user');});
 
 Route::resource('/miembros', 'MiembrosController');
 Route::resource('/usuarios', 'UsuarioController');
@@ -39,5 +37,10 @@ Route::post('/miembros/create', 'MiembrosController@store')->name('miembros.stor
 Route::post('/valoraciones/create', 'ValoracionesController@store')->name('valoraciones.store');
 
 Auth::routes();
+
+Route::get('register', [
+  'as' => 'register',
+  'uses' => 'UsuarioController@create'
+]);
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -1,7 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
+    @if ($errors->any())
+      <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+      </div><br />
+    @endif
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -26,39 +36,38 @@
                         <div class="form-group row">
                             <label for="id" class="col-md-4 col-form-label text-md-right">{{ __('No Identificación') }}</label>
                             <div class="col-md-6">
-                                <input id="id" type="text" class="form-control @error('id') is-invalid @enderror" name="id">
+                                <input id="cedula" type="text" class="form-control @error('cedula') is-invalid @enderror" name="cedula" value="{{ old('cedula') }}">
 
-                                <!-- @error('password')
+                                @error('cedula')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror -->
+                                @enderror
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="nombres" class="col-md-4 col-form-label text-md-right">{{ __('Nombres') }}</label>
                             <div class="col-md-6">
-                                <input id="nombres" type="text" class="form-control @error('nombres') is-invalid @enderror" name="nombres" value="{{ old('nombres') }}" autofocus>
-
-                                <!-- @error('nombres')
+                                <input id="nombres" type="text" class="form-control @error('nombres') is-invalid @enderror" name="nombres" value="{{ old('nombres') }}"  autofocus>
+                                @error('nombres')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror -->
+                                @enderror
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="apellidos" class="col-md-4 col-form-label text-md-right">{{ __('Apellidos') }}</label>
                             <div class="col-md-6">
-                                <input id="apellidos" type="text" class="form-control @error('apellidos') is-invalid @enderror" name="apellidos" value="{{ old('apellidos') }}"autofocus>
+                                <input id="apellidos" type="text" class="form-control @error('apellidos') is-invalid @enderror" name="apellidos" value="{{ old('apellidos') }}" autofocus>
 
-                                <!-- @error('apellidos')
+                                @error('apellidos')
                                     <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror -->
+                                @enderror
                             </div>
                         </div>
 
@@ -73,42 +82,59 @@
                                     <option value="Profesional">Profesional</option>
                                     <option value="Postgrado">Postgrado</option>
                                 </select>
+                                @error('nivel')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="formacion" class="col-md-4 col-form-label text-md-right">{{ __('Formación') }}</label>
                             <div class="col-md-6">
-                                <Textarea id="formacion" type="text" class="form-control @error('formacion') is-invalid @enderror" name="formacion" value="{{ old('formacion') }}" autofocus></textarea>
+                                <input id="formacion" type="text" class="form-control @error('formacion') is-invalid @enderror" name="formacion" value="{{ old('formacion') }}"  autofocus>
 
-                                <!-- @error('formacion')
+                                @error('formacion')
                                     <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror -->
+                                @enderror
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="perfil" class="col-md-4 col-form-label text-md-right">{{ __('Perfil') }}</label>
                             <div class="col-md-6">
-                                <select name="perfil" class="form-control @error('perfil') is-invalid @enderror" value="{{ old('perfil') }}" name="perfil">>
-                                    <option value="">--Seleccione el Perfil--</option>                       <option value="Administrador">Administrador</option>
+                                <select name="perfil" class="form-control @error('perfil') is-invalid @enderror" value="{{ old('perfil') }}" >
+                                    <option value="">--Seleccione el Perfil--</option>                                   
+                                    <option value="Administrador">Administrador</option>
                                     <option value="Operador">Operador</option>
                                 </select>
+                                @error('perfil')
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="cargo" class="col-md-4 col-form-label text-md-right">{{ __('Cargo') }}</label>
+                            <label for="encargado" class="col-md-4 col-form-label text-md-right">{{ __('Cargo') }}</label>
                             <div class="col-md-6">
-                                <input id="cargo" type="text" class="form-control @error('cargo') is-invalid @enderror" name="cargo" value="{{ old('cargo') }}" autofocus>
-
-                                <!-- @error('cargo')
+                                
+                                <select id="cargo" type="text" class="form-control @error('cargo') is-invalid @enderror" name="cargo" value="{{ old('cargo') }}"  autofocus>
+                                <option value="null">--------</option>
+                                    @foreach($especialidades as $especialidad)
+                                    <option value="{{$especialidad->id}}">{{$especialidad->Nombre}}</option>
+                                    @endforeach()
+                       
+                                </select>
+                                @error('cargo')
                                     <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror -->
+                                @enderror 
                             </div>
                         </div>
 
@@ -117,11 +143,11 @@
                             <div class="col-md-6">
                                 <input id="direccion" type="text" class="form-control @error('direccion') is-invalid @enderror" name="direccion" value="{{ old('direccion') }}"autofocus>
 
-                                <!-- @error('direccion')
+                                @error('direccion')
                                     <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror -->
+                                @enderror
                             </div>
                         </div>
 
@@ -130,11 +156,11 @@
                             <div class="col-md-6">
                                 <input id="telefono" type="integer" class="form-control @error('telefono') is-invalid @enderror" name="telefono" value="{{ old('telefono') }}" autofocus>
 
-                                <!-- @error('telefono')
+                                 @error('telefono')
                                     <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror -->
+                                @enderror
                             </div>
                         </div>
 
@@ -157,11 +183,11 @@
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}">
                                 
-                                <!-- @error('email')
+                                @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror -->
+                                @enderror
                             </div>
                         </div>
 
@@ -170,11 +196,11 @@
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password">
 
-                                <!-- @error('password')
+                                @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror -->
+                                @enderror
                             </div>
                         </div>
 

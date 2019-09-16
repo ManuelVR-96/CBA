@@ -4,6 +4,8 @@ namespace CBA\Http\Controllers;
 
 use Illuminate\Http\Request;
 use CBA\User;
+use CBA\Especialidad;
+
 use Carbon\Carbon;
 use Image;
 
@@ -68,8 +70,8 @@ class UsuarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view ('auth.register');
+    {   $especialidades = Especialidad::all();
+        return view ('auth.register', compact('especialidades'));
     }
 
     /**
@@ -80,19 +82,15 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        $request ->validate ([
-            'nombres'=>'required',
-            'cedula' =>'required'
-        ]);
 
         $nuevoOp = new CBA\User;
-                       
+
         if($request->hasFile('avatar')){
             $avatar = $request->file('avatar');
-            $filename = time().'.' . $avatar->getClientOriginalExtension();
-            Image::make($avatar)->resize(130,130)->save(public_path('/uploads/avatar/' . $filename));
+            $filename = time().'.' . $avatar->guessExtension();
+            Image::make($avatar)->resize(130,130)->save(public_path('/../uploads/avatar/' . $filename));
             $nuevoOp->avatar = $filename;
-        }       
+        }        
         $nuevoOp->cedula = $request->id;
         $nuevoOp->nombres = $request->nombres;
         $nuevoOp->apellidos = $request->apellidos;
@@ -106,7 +104,7 @@ class UsuarioController extends Controller
         $vinculacion_ = Carbon::createFromFormat ('Y-m-d', $request->vinculacion);
         $nuevoOp->fecha_de_vinculación = $vinculacion_;
         $nuevoOp->telefono = $request->telefono;
-        $nuevoOp->perfil = $request->perfil;
+        $nuevoOp->rol = $request->perfil;
         $nuevoOp->email = $request->email;
         $nuevoOp->contraseña = $request->password;
         $nuevoOp->save();
