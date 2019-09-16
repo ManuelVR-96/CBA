@@ -25,11 +25,11 @@
                             <div class="col-md-6">
                                 <input type="file" name="avatar">
 
-                                <!-- @error('avatar')
+                                @error('avatar')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror -->
+                                @enderror
                             </div>
                         </div>
 

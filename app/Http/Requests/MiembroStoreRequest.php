@@ -26,10 +26,8 @@ class MiembroStoreRequest extends FormRequest
     {
         return [
             'nombres' => ['required', 'string','alpha', 'max:30'],
-            'apellidos' => ['required', 'string','alpha', 'max:30'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'cédula' =>['required', 'string', 'unique:clientes', 'digits_between:8,10', 'numeric' ],
-            
+            'apellidos' => ['required', 'string','alpha', 'max:30'],            
+            'cédula' =>['required', 'string', 'unique:clientes', 'digits_between:8,10', 'numeric' ],            
             'nivel'=> ['required', 'string','alpha', 'max:30'],
             'direccion' => ['required', 'string','alpha_dash', 'max:60'],
             'telefono' =>['required', 'string', 'digits:10', 'starts_with:3'],
@@ -37,8 +35,8 @@ class MiembroStoreRequest extends FormRequest
             'nacimiento' =>['required', 'date', 'after:1/1/1969'],
             #'vinculacion' =>['required', 'date', 'date_equals:1/1/1969'],
             'nacimiento'=>['required', 'date', 'before:1969/1/1'],          
-           'seguridad'=> ['required', 'string','alpha', 'max:40'],
-           'primer_acudiente'=> ['required', 'string','alpha', 'max:40'],
+            'seguridad'=> ['required', 'string','alpha', 'max:40'],
+            'primer_acudiente'=> ['required', 'string','alpha', 'max:40'],
             'segundo_acudiente'=> ['required', 'string','alpha', 'max:40'],
             'servicio_funerario' => ['required', 'string','alpha', 'max:2'],
             'entidad_funeraria' => ['required', 'string','alpha_dash', 'max:40'],
@@ -47,11 +45,11 @@ class MiembroStoreRequest extends FormRequest
             'relacion_familiar'=> ['required', 'string','alpha', 'max:40'],
             'hobbies'=>['required', 'string','alpha_dash', 'max:250'],
             'motivo_ingreso'=>['required', 'string','alpha_dash', 'max:250'],
-           'tipo_sangre'=>['required', 'string','alpha_dash', 'max:5'],
+            'tipo_sangre'=>['required', 'string', 'max:5'],
             'eps'=> ['required', 'string','alpha_dash', 'max:20'],
             'morbilidad'=>['required', 'string','alpha_dash', 'max:250'],
             'genero'=>['required', 'string','alpha', 'max:250'],
-           'medicinas'=>['required', 'string','alpha_dash', 'max:250'],
+            'medicinas'=>['required', 'string','alpha_dash', 'max:250'],
             
 
         ];

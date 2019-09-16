@@ -59,8 +59,7 @@ class MiembrosController extends Controller
         
                 $users = Cliente::where('nombres', $entrada)->paginate(8);
             
-        }
-        
+        }        
 
             return view('consultarMiembro', compact ('users'));
     }
@@ -81,7 +80,7 @@ class MiembrosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(MiembroStoreRequest $request)
-    {   #return ($request);
+    {  
         $nuevoCliente = new Cliente();
         $nuevoCliente->cédula = $request->cédula;
         if($request->hasFile('avatar')){
@@ -96,10 +95,8 @@ class MiembrosController extends Controller
         $nuevoCliente->nivel_educativo = $request->nivel;
         $nuevoCliente->dirección = $request->direccion;
         $nuevoCliente->telefono = $request->telefono;
-        $nuevoCliente->Lugar_de_nacimiento = $request->lugar;
-        #$nacimiento_ = Carbon::createFromFormat ('Y-m-d', $request->nacimiento);
-        $nuevoCliente->fecha_de_nacimiento = $request->nacimiento;
-        #$vinculacion_ = Carbon::createFromFormat ('Y-m-d', $request->vinculacion);
+        $nuevoCliente->Lugar_de_nacimiento = $request->lugar;       
+        $nuevoCliente->fecha_de_nacimiento = $request->nacimiento;       
         $nuevoCliente->fecha_de_ingreso = $request->vinculacion;
         $nuevoCliente->seguridad_social = $request->seguridad;
         $nuevoCliente->primer_acudiente = $request->primer_acudiente;
@@ -155,35 +152,42 @@ class MiembrosController extends Controller
     public function update(Request $request, $id)
     {
         $miembro = Cliente::findOrFail($id);
+
         $miembro->cédula = $request->cédula;
-         $miembro->nombres = $request->nombres;
-         $miembro->apellidos = $request->apellidos;
-         $miembro->nivel_educativo = $request->nivel;
-         $miembro->dirección = $request->direccion;
-         $miembro->telefono = $request->telefono;
-         $miembro->Lugar_de_nacimiento = $request->lugar;
-         $nacimiento_ = Carbon::createFromFormat ('Y-m-d', $request->nacimiento);
-         $miembro->fecha_de_nacimiento = $nacimiento_;
-         $vinculacion_ = Carbon::createFromFormat ('Y-m-d', $request->vinculacion);
-         $miembro->fecha_de_ingreso = $vinculacion_;
-         $miembro->seguridad_social = $request->seguridad;
-         $miembro->primer_acudiente = $request->primer_acudiente;
-         $miembro->segundo_acudiente = $request->segundo_acudiente;
-         $miembro->servicio_funerario = $request->servicio_funerario;
-         $miembro->entidad_funeraria = $request->entidad_funeraria;
-         $miembro->dependencia_económica = $request->dependencia_economica;
-         $miembro->dependencia_afectiva = $request->dependencia_afectiva;
-         $miembro->relación_familiar = $request->relacion_familiar;
-         $miembro->hobbies = $request->hobbies;
-         $miembro->motivo_ingreso = $request->motivo_ingreso;
-         $miembro->Tipo_Sangre = $request->tipo_sangre;
-         $miembro->EPS = $request->eps;
-         $miembro->morbilidad = $request->morbilidad;
-         $miembro->género = $request->genero;
-         $miembro->medicinas = $request->medicinas;
-    
+        if($request->hasFile('avatar')){
+            $avatar = $request->file('avatar');
+            $filename = time().'.' . $avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(130,130)->save(public_path('/uploads/avatar/' . $filename));
+            $miembro->avatar = $filename;
+        }
+        $miembro->cédula = $request->cédula;
+        $miembro->nombres = $request->nombres;
+        $miembro->apellidos = $request->apellidos;
+        $miembro->nivel_educativo = $request->nivel;
+        $miembro->dirección = $request->direccion;
+        $miembro->telefono = $request->telefono;
+        $miembro->Lugar_de_nacimiento = $request->lugar;
+        $nacimiento_ = Carbon::createFromFormat ('Y-m-d', $request->nacimiento);
+        $miembro->fecha_de_nacimiento = $nacimiento_;
+        $vinculacion_ = Carbon::createFromFormat ('Y-m-d', $request->vinculacion);
+        $miembro->fecha_de_ingreso = $vinculacion_;
+        $miembro->seguridad_social = $request->seguridad;
+        $miembro->primer_acudiente = $request->primer_acudiente;
+        $miembro->segundo_acudiente = $request->segundo_acudiente;
+        $miembro->servicio_funerario = $request->servicio_funerario;
+        $miembro->entidad_funeraria = $request->entidad_funeraria;
+        $miembro->dependencia_económica = $request->dependencia_economica;
+        $miembro->dependencia_afectiva = $request->dependencia_afectiva;
+        $miembro->relación_familiar = $request->relacion_familiar;
+        $miembro->hobbies = $request->hobbies;
+        $miembro->motivo_ingreso = $request->motivo_ingreso;
+        $miembro->Tipo_Sangre = $request->tipo_sangre;
+        $miembro->EPS = $request->eps;
+        $miembro->morbilidad = $request->morbilidad;
+        $miembro->género = $request->genero;
+        $miembro->medicinas = $request->medicinas;
         $miembro->save();
-        return back();
+         return back();
     }
 
     /**

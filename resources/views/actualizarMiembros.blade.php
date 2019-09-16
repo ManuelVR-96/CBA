@@ -19,11 +19,11 @@
                                 <img src = "/uploads/avatar/{{$miembro->avatar}}"><br><br>
                                 <input type="file" name="avatar">
 
-                                <!-- @error('avatar')
+                                @error('avatar')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror -->
+                                @enderror
                             </div>
                         </div>
 
