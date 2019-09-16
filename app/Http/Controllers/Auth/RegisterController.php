@@ -72,23 +72,25 @@ class RegisterController extends Controller
         'telefono.starts_with' => 'Verifique el número de celular ingresado ',
         'telefono.digits' => 'El número de teléfono debe contener entre 8 y 10 dígitos ',
         'id.digits' => 'El número de identificación debe contener entre 8 y 10 dígitos ',
-        'email' => 'Introduzca una dirección de correo válida'
-
+        'email' => 'Introduzca una dirección de correo válida',
+        'nombres.regex' => 'El nombre solo puede contener letras',
+        'apellidos.regex' => 'Los apellidos solo pueden contener letras',
+        'password.size' => 'El tamaño de la contraseña debe ser como mínimo de 8 dígitos',
 
 
     );
         return Validator::make($data, [
-             'nombres' => ['required', 'string','alpha', 'max:30'],
-            'apellidos' => ['required', 'string','alpha', 'max:30'],
+             'nombres' => ['required', 'string','regex:/^[\pL\s\-]+$/u', 'max:30'],
+            'apellidos' => ['required', 'string','regex:/^[\pL\s\-]+$/u', 'max:30'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'cedula' =>['required', 'string', 'unique:users', 'digits_between:8,10', 'numeric' ],
             'formacion' => ['required', 'string','alpha', 'max:40'],
-            'direccion' => ['required', 'string','alpha_dash', 'max:60'],
+            'direccion' => ['required', 'string', 'max:60'],
             'perfil' =>['required', 'string', 'alpha'],
             'nivel' =>['required', 'string', 'alpha'],
             'telefono' =>['required', 'string', 'digits:10', 'starts_with:3'],
-            'cargo' =>['required', 'string', 'alpha'],
-            'password' =>['required', 'string', 'alpha_numeric'],
+            'cargo' =>['required', 'string', 'alpha_num'],
+            'password' =>['required', 'string', 'alpha_num', 'size:8'],
         ],$message);
     }
 
