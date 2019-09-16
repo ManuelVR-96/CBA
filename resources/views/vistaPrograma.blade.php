@@ -11,28 +11,20 @@
             <div class="col-md-10">
                 <div><a href="/programas/create" class="btn btn-primary btn-sm">Agregar nuevo programa</a></div><br>
                 <form method="POST" action="{{route('lista_programas')}}">
-                @csrf        
-                <div class="input-group mb-3">
-                <div class="form-group row">
-                            <label for="tipo_sangre" class="col-md-4 col-form-label text-md-right">{{ __('Buscar por') }}</label>
-                            <div class="col-md-6">
-                                <select name="tipo_busqueda" class="form-control @error('tipo_sangre') is-invalid @enderror" value="{{ old('tipo_sangre') }}" name="tipo_busqueda" type="text">>
-                                    <option value=" ">--Seleccione--</option>                                   
-                                    <option value="Nombre programa">Nombre programa</option>
-                                    <option value="Especialidad">Especialidad</option>
-                                    <option value="Encargado">Encargado</option>  
-                                </select>
-                                <!-- @error('tipo_sangre')
-                                    <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror -->
-                            </div>
-                        </div>      
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" id="busqueda" name="busqueda" placeholder="Buscar" aria-label="Recipient's username" aria-describedby="basic-addon2">                  
-                </div>
-
+                @csrf
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <form class="form-inline my-2 my-lg-0">                   
+                    <a class="navbar-brand">{{ __('Buscar por') }}</a>
+                        <select name="tipo_busqueda" class="form-control @error('tipo_busqueda') is-invalid @enderror" value="{{ old('tipo_busqueda') }}" name="tipo_busqueda" type="text">>
+                            <option value=" ">--Seleccione--</option>                                   
+                            <option value="Nombre programa">Nombre programa</option>
+                            <option value="Especialidad">Especialidad</option>
+                            <option value="Encargado">Encargado</option>  
+                        </select>          
+                        <input type="text" class="form-control" id="busqueda" name="busqueda" placeholder="Buscar" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    </form>
+                </nav>       
+                
                 <div class="table-responsive">                    
                     <table class="table table-striped table-bordered">
                         <thead>
@@ -55,12 +47,12 @@
                                 <td>{{ $item->agenda}}</td>
                                 <td>                                    
                                     <a href="{{route('programas.edit', $item)}}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
-                                </td>                             
+                                </td>                      
                             </tr>
                             @endforeach
                         </tbody>                        
                     </table>
-                    {{$programas->links()}}                                                        
+                    {{$programas->links()}}                 
                 </div>                
             </div>        
         </div>

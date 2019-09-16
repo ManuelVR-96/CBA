@@ -8,16 +8,16 @@ class Valoracion extends Model
 {
     public function especialidad_()
     {
-        return $this->belongTo('CBA\Especialidad'::Class, 'especialidad', 'id');
+        return $this->belongsTo('CBA\Especialidad'::Class, 'especialidad', 'id');
     }
 
     public function miembro_()
     {
-        return $this->belongTo('CBA\Cliente'::Class, 'paciente', 'id');
+        return $this->belongsTo('CBA\Cliente'::Class, 'paciente', 'id');
     }
 
     public function encargado_()
     {
-        return $this->belongTo('CBA\User'::Class, 'encargado', 'id');
+        return $this->belongsTo(User::Class, 'encargado', 'id');
     }
 }

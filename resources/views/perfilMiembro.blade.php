@@ -7,30 +7,31 @@
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
      <div class="panel panel-default">
           <div class="panel-body">
-               <form action="{{route('miembros.eliminar', $user)}}" class="d-inline" method="POST">
+               <form action="{{route('miembros.eliminar', $user)}}" class="d-inline" method="POST">               
                     @csrf
-                    @method("DELETE")  
+                    @method("DELETE")
                     <div class="form-horizontal">
-
+                    <fieldset disabled>
                          <div class="col-sm-6">
+                              
+                              <div class="form-group row">
+                                   <label class="col-sm-5">Foto de perfil</label>
+                                   <div class="col-sm-3">
+                                        <img src = "/uploads/avatar/{{$user->avatar}}">
+                                   </div>
+                              </div>
+
                               <div class="form-group row">
                                    <label class="col-sm-5">Cédula</label>
                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" value="{{$user->cédula}}">                              
+                                        <input type="text" class="form-control" value="{{$user->cédula}}">
                                    </div>
-                              </div>
-
-                              <div class="form-group row">
-                                   <label class="col-sm-5">Foto</label>
-                                   <div class="col-sm-6">
-                                        <img src = "/uploads/avatar/{{$user->avatar}}" style="weight: 10px, height:10px ">
-                                   </div>
-                              </div>
+                              </div>                              
 
                               <div class="form-group row">
                                    <label class="col-sm-5">Nombres</label>
                                    <div class="col-sm-6">
-                                        <p> {{$user->nombres}}</p>
+                                        <input type="text" class="form-control" value="{{$user->nombres}}">
                                    </div>
                               </div>
 
@@ -51,7 +52,7 @@
                               <div class="form-group row">
                                    <label class="col-sm-5 col-form-label">Dirección</label>
                                    <div class="col-sm-6">
-                                        <a type="text" class="form-control" value="{{$user->dirección}}"></a>
+                                        <input type="text" class="form-control" value="{{$user->dirección}}">
                                    </div>
                               </div>
 
@@ -75,7 +76,7 @@
                                         <input type="date" class="form-control" value="{{$user->fecha_de_ingreso}}">
                                    </div>
                               </div>
-                    
+
                               <div class="form-group row">
                                    <label class="col-sm-5 col-form-label">Seguridad Social</label>
                                    <div class="col-sm-6">
@@ -89,15 +90,16 @@
                                         <input type="text" class="form-control" value="{{$user->primer_acudiente}}">
                                    </div>
                               </div>
-
+                         </div>
+                         
+                         <div class="col-sm-6">
                               <div class="form-group row">
                                    <label class="col-sm-5 col-form-label">Segundo Acudiente</label>
                                    <div class="col-sm-6">
                                         <input type="text" class="form-control" value="{{$user->segundo_acudiente}}">
                                    </div>
                               </div>
-                         </div>
-                         <div class="col-sm-6">
+                        
                               <div class="form-group row">
                                    <label class="col-sm-5 col-form-label">Servicio Funerario</label>
                                    <div class="col-sm-6">
@@ -136,7 +138,7 @@
                               <div class="form-group row">
                                    <label class="col-sm-5 col-form-label">Hobbies</label>
                                    <div class="col-sm-6">
-                                        <a> {{$user->hobbies}}</a>
+                                        <input type="text" class="form-control" value="{{$user->hobbies}}">
                                    </div>
                               </div>
 
@@ -182,13 +184,12 @@
                                    </div>
                               </div>
                          </div>
-                         
+                    </fieldset>
                          <div align="center">
                               <button class='btn btn-danger' type="submit" name="eliminar" onclick="return confirm('¿Confirma que desea ELIMINAR de manera permanente el registro?')"></span>Eliminar Registro</button>
                          </div>
-                    </div>
+                    </div>              
                </form>
           </div>
      </div>
 @endsection
-

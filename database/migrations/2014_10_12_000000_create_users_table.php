@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');                      
             #$table->string('Tipo de Documento de identidad')->nullable();
+            #$table->string('avatar')->default('default.jpg');
             $table->string('cedula')->nullable();
             $table->string('nombres');
             $table->string('apellidos')->nullable();

@@ -7,15 +7,24 @@
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
      <div class="panel panel-default">
           <div class="panel-body">
-               <form action="{{route('usuarios.destroy', $user)}}" class="d-inline" method="POST">
+               <form enctype="multipart/form-data" action="{{route('usuarios.destroy', $user)}}" class="d-inline" method="POST">
                     @csrf
-                    @method("DELETE")  
+                    @method("DELETE")
                     <div class="form-horizontal">
+                    <fieldset disabled>
                          <div class="col-sm-6">
+
+                              <div class="form-group row">
+                                   <label class="col-sm-5">Foto de perfil</label>
+                                   <div class="col-sm-3">
+                                        <img src = "/uploads/avatar/{{$user->avatar}}">
+                                   </div>
+                              </div>
+
                               <div class="form-group row">
                                    <label class="col-sm-5">Cédula</label>
                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" value="{{$user->cedula}}">                              
+                                        <input type="text" class="form-control" value="{{$user->cedula}}">
                                    </div>
                               </div>
 
@@ -39,7 +48,7 @@
                                         <input type="text" class="form-control" value="{{$user->cargo}}">
                                    </div>
                               </div>
-                         
+
                               <div class="form-group row">
                                    <label class="col-sm-5">Nivel Educativo</label>
                                    <div class="col-sm-6">
@@ -47,22 +56,22 @@
                                    </div>
                               </div>
 
+                         </div>
+                         <div class="col-sm-6">
+
                               <div class="form-group row">
                                    <label class="col-sm-5">Formación</label>
                                    <div class="col-sm-6">
                                         <input type="text" class="form-control" value="{{$user->formación}}">
                                    </div>
                               </div>
-
+                         
                               <div class="form-group row">
                                    <label class="col-sm-5">Dirección</label>
                                    <div class="col-sm-6">
                                         <input type="text" class="form-control" value="{{$user->dirección}}">
                                    </div>
-                              </div>
-
-                         </div>                         
-                         <div class="col-sm-6">
+                              </div>                        
 
                               <div class="form-group row">
                                    <label class="col-sm-5">Fecha de Nacimiento</label>
@@ -77,11 +86,11 @@
                                         <input type="date" class="form-control" value="{{$user->fecha_de_vinculación}}">
                                    </div>
                               </div>
-                    
+
                               <div class="form-group row">
                                    <label class="col-sm-5">Perfil</label>
                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" value="{{$user->perfil}}">
+                                        <input type="text" class="form-control" value="{{$user->rol}}">
                                    </div>
                               </div>
 
@@ -98,11 +107,11 @@
                                         <input type="email" class="form-control" value="{{$user->email}}">
                                    </div>
                               </div>
-                         
+
                               <div class="form-group row">
                                    <label class="col-sm-5">Contraseña</label>
                                    <div class="col-sm-6">
-                                        <input type="password" class="form-control" value="{{$user->servicio_funerario}}">
+                                        <input type="password" class="form-control" value="{{$user->password}}">
                                    </div>
                               </div>
 
@@ -114,7 +123,7 @@
                               </div>
 
                          </div>
-                         
+                    </fieldset>
                          <div align="center">
                               <button class='btn btn-danger' type="submit" name="eliminar" onclick="return confirm('¿Confirma que desea ELIMINAR de manera permanente el registro?')"></span>Eliminar Registro</button>
                          </div>

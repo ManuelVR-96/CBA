@@ -75,12 +75,10 @@ class RegisterController extends Controller
         'email' => 'Introduzca una dirección de correo válida',
         'nombres.regex' => 'El nombre solo puede contener letras',
         'apellidos.regex' => 'Los apellidos solo pueden contener letras',
-        'password.size' => 'El tamaño de la contraseña debe ser como mínimo de 8 dígitos',
-
-
+        'password.size'  => 'El tamaño de la contraseña debe ser como mínimo de 8 dígitos',
     );
         return Validator::make($data, [
-             'nombres' => ['required', 'string','regex:/^[\pL\s\-]+$/u', 'max:30'],
+            'nombres' => ['required', 'string','regex:/^[\pL\s\-]+$/u', 'max:30'],
             'apellidos' => ['required', 'string','regex:/^[\pL\s\-]+$/u', 'max:30'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'cedula' =>['required', 'string', 'unique:users', 'digits_between:8,10', 'numeric' ],
@@ -104,7 +102,8 @@ class RegisterController extends Controller
     protected function create(array $data)
     {  
         return User::create([
-        
+            
+            #'avatar' => $data['avatar'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),           
             'nombres' =>$data['nombres'],
@@ -115,17 +114,15 @@ class RegisterController extends Controller
             'formación' =>$data['formacion'],
             'rol' =>$data['perfil'],
             'dirección' =>$data['direccion'],
-            'telefono' =>$data['telefono'],
+            'fecha_de_nacimiento' => $data['nacimiento'],
+            'fecha_de_vinculación' => $data['vinculacion'],
+            'telefono' =>$data['telefono'],           
             
-            
-     #$nacimiento_ = Carbon::createFromFormat ('Y-m-d', $request->nacimiento);
-     #echo($nacimiento_);
-        'fecha_de_nacimiento' => $data['nacimiento'],
-     #$vinculacion_ = Carbon::createFromFormat ('Y-m-d', $request->vinculacion);
-        'fecha_de_vinculación' => $data['vinculacion'],
-           
-
-
+            #$nacimiento_ = Carbon::createFromFormat ('Y-m-d', $request->nacimiento);
+            #echo($nacimiento_);
+            'fecha_de_nacimiento' => $data['nacimiento'],
+            #$vinculacion_ = Carbon::createFromFormat ('Y-m-d', $request->vinculacion);
+            'fecha_de_vinculación' => $data['vinculacion'],          
         ]);
     }
 
@@ -136,8 +133,7 @@ class RegisterController extends Controller
         event(new Registered($user = $this->create($request->all())));
 
         #$this->guard()->login($user); // <- it's actually this line login the fresh user
-    #return ($request);
-    return $this->registered($request, $user)
-                        ?: redirect($this->redirectPath());
+        #return ($request);
+        return $this->registered($request, $user)?: redirect($this->redirectPath());
     }
 }

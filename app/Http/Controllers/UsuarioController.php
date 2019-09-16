@@ -7,6 +7,7 @@ use CBA\User;
 use CBA\Especialidad;
 
 use Carbon\Carbon;
+use Image;
 
 class UsuarioController extends Controller
 {
@@ -17,7 +18,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {   
-        $users = User::orderBy('nombres', 'ASC')->paginate(2);
+        $users = User::orderBy('nombres', 'ASC')->paginate(8);
         return view('consultarUser', compact ('users')); 
     }
 
@@ -27,41 +28,39 @@ class UsuarioController extends Controller
         $tipo = $request->tipo_busqueda;
         if ($tipo=="Nombre"){
         if ($entrada==''){
-            $users = User::orderBy('nombres', 'ASC')->paginate(2);
+            $users = User::orderBy('nombres', 'ASC')->paginate(8);
             }
             else {
                 
-                $users = User::where('nombres', 'like', '%' . $entrada . '%')->paginate(2);
+                $users = User::where('nombres', 'like', '%' . $entrada . '%')->paginate(8);
             }
         }
 
         elseif ($tipo=="Cédula"){
             if ($entrada==''){
-            $users = User::orderBy('cedula', 'ASC')->paginate(2);
+            $users = User::orderBy('cedula', 'ASC')->paginate(8);
             }
             else {
                 
-                $users = User::where('cedula', $entrada)->paginate(2);
+                $users = User::where('cedula', $entrada)->paginate(8);
             }
         }
 
         elseif ($tipo=="Apellidos"){
             if ($entrada==''){
-            $users = User::orderBy('apellidos', 'ASC')->paginate(2);
+            $users = User::orderBy('apellidos', 'ASC')->paginate(8);
             }
             else {
                 
-                $users = User::where('apellidos', 'like', '%' . $entrada . '%')->paginate(2);
+                $users = User::where('apellidos', 'like', '%' . $entrada . '%')->paginate(8);
             }
         }
 
         else{
         
-                $users = User::where('nombres', $entrada)->paginate(2);
+                $users = User::where('nombres', $entrada)->paginate(8);
             
         }
-        
-
             return view('consultarUser', compact ('users'));
     }
 
@@ -83,19 +82,22 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        // $request ->validate ([
-        //     'nombres'=>'required',
-        //     'cedula' =>'required'
-        // ]);
-        return (request);
-        $nuevoOp = new CBA\User;        
+
+        $nuevoOp = new CBA\User;
+
+        if($request->hasFile('avatar')){
+            $avatar = $request->file('avatar');
+            $filename = time().'.' . $avatar->guessExtension();
+            Image::make($avatar)->resize(130,130)->save(public_path('/../uploads/avatar/' . $filename));
+            $nuevoOp->avatar = $filename;
+        }        
         $nuevoOp->cedula = $request->id;
         $nuevoOp->nombres = $request->nombres;
         $nuevoOp->apellidos = $request->apellidos;
         $nuevoOp->cargo = $request->cargo;
         $nuevoOp->nivel_educativo = $request->nivel;
         $nuevoOp->formación = $request->formacion;
-        $nuevoOp->dirección = $request->direccion;        
+        $nuevoOp->dirección = $request->direccion;
         $nacimiento_ = Carbon::createFromFormat ('Y-m-d', $request->nacimiento);
         echo($nacimiento_);
         $nuevoOp->fecha_de_nacimiento = $nacimiento_;
@@ -104,7 +106,7 @@ class UsuarioController extends Controller
         $nuevoOp->telefono = $request->telefono;
         $nuevoOp->rol = $request->perfil;
         $nuevoOp->email = $request->email;
-        $nuevoOp->contraseña = $request->password;        
+        $nuevoOp->contraseña = $request->password;
         $nuevoOp->save();
 
         return back()->with ('mensaje','Operador agregado correctamente');
@@ -144,7 +146,15 @@ class UsuarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {   $nuevoOp = User::findOrFail($id);
+    {   
+        $nuevoOp = User::findOrFail($id);
+                
+        if($request->hasFile('avatar')){
+            $avatar = $request->file('avatar');
+            $filename = time().'.' . $avatar->guessExtension();
+            Image::make($avatar)->resize(130,130)->save(public_path('/uploads/avatar/' . $filename));
+            $nuevoOp->avatar = $filename;
+        }
         $nuevoOp->cedula = $request->id;
         $nuevoOp->nombres = $request->nombres;
         $nuevoOp->apellidos = $request->apellidos;
@@ -162,7 +172,6 @@ class UsuarioController extends Controller
         $nuevoOp->email = $request->email;
         $nuevoOp->password = $request->password;        
         $nuevoOp->save();
-
         return back();
     }
 
@@ -176,8 +185,7 @@ class UsuarioController extends Controller
     {
         $user = User::findOrFail($id);
         $user->delete();
-        $users = User::orderBy('nombres', 'ASC')->paginate(2);
-
+        $users = User::orderBy('nombres', 'ASC')->paginate(8);
         return redirect()->to('/usuarios');
     }
 }

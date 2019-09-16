@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('content')
@@ -37,6 +36,7 @@
                                     @foreach($encargados as $encargado)
                                     <option value="{{$encargado->id}}">{{$encargado->nombres}}</option>
                                     @endforeach()
+                                    
                                 @error('encargado')
                                     <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -61,10 +61,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="encargado" class="col-md-4 col-form-label text-md-right">{{ __('Especialidad') }}</label>
+                            <label for="especialidad" class="col-md-4 col-form-label text-md-right">{{ __('Especialidad') }}</label>
                             <div class="col-md-6">
                                 
-                                <select id="encargado" type="text" class="form-control @error('encargado') is-invalid @enderror" name="especialidad" value="{{ old('encargado') }}" required autocomplete="encargado" autofocus>
+                                <select id="especialidad" type="text" class="form-control @error('especialidad') is-invalid @enderror" name="especialidad" value="{{ old('especialidad') }}" required autocomplete="especialidad" autofocus>
                                 <option value="{{ $programa->especialidad }}">{{ $programa->especialidad_->Nombre}}</option>
                                     @foreach($especialidades as $especialidad)
                                     <option value="{{$especialidad->id}}">{{$especialidad->Nombre}}</option>

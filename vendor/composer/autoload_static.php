@@ -449,6 +449,7 @@ class ComposerStaticInitb617d01cedc5fa5611123edee5f073b3
         'CBA\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'CBA\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'CBA\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'CBA\\Http\\Requests\\MiembroStoreRequest' => __DIR__ . '/../..' . '/app/Http/Requests/MiembroStoreRequest.php',
         'CBA\\Programa' => __DIR__ . '/../..' . '/app/Programa.php',
         'CBA\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'CBA\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',

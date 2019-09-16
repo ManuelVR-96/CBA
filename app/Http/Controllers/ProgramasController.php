@@ -27,7 +27,7 @@ class ProgramasController extends Controller
         $tipo = $request->tipo_busqueda;
         if ($tipo=="Encargado"){
         if ($entrada==''){
-            $programas = Programa::orderBy('encargado_->nombres', 'ASC')->paginate(2);
+            $programas = Programa::orderBy('encargado->nombres', 'ASC')->paginate(2);
             }
             else {
                 
@@ -61,7 +61,7 @@ class ProgramasController extends Controller
 
         else{
         
-                $programas = Programa::where('nombres', $entrada)->paginate(2);
+                $programas = Programa::where('nombre', $entrada)->paginate(2);
             
         }
         
@@ -88,22 +88,16 @@ class ProgramasController extends Controller
      */
     public function store(Request $request)
     {
-        // $request ->validate ([
-        
-        //     'encargado' =>'required'
-        // ]);
+        $nuevoPrograma = new Programa();
+        $nuevoPrograma->nombre = $request->nombre;
+        $nuevoPrograma->encargado = $request->encargado;
+        $nuevoPrograma->descripcion = $request->descripcion;
+        $nuevoPrograma->especialidad= $request->especialidad;
+        $nuevoPrograma->agenda = $request->agenda;
+        $nuevoPrograma->save();
+        return back()->with ('mensaje','Programa agregado correctamente');
+    }
 
-            $nuevoPrograma = new Programa();
-            $nuevoPrograma->nombre = $request->nombre;            
-            $nuevoPrograma->encargado = $request->encargado;
-            $nuevoPrograma->descripcion = $request->descripcion;
-            $nuevoPrograma->especialidad= $request->especialidad;
-            $nuevoPrograma->agenda = $request->agenda;
-            $nuevoPrograma->save();
-    
-            return back()->with ('mensaje','Programa agregado correctamente');
-        }
-    
 
     /**
      * Display the specified resource.
@@ -129,9 +123,7 @@ class ProgramasController extends Controller
         $encargados= user::all();
         $especialidades= Especialidad::all();
         $programa = Programa::findOrFail($id);
-        
-        #return $programa->encargado;
-        
+                
         return view('actualizarProgramas', compact('encargados', 'especialidades', 'programa'));
     }
 
@@ -150,8 +142,7 @@ class ProgramasController extends Controller
         $Programa->descripcion = $request->descripcion;
         $Programa->especialidad= $request->especialidad;
         $Programa->agenda = $request->agenda;
-        $Programa->save();
-        #return $Programa->encargado_;
+        $Programa->save();        
 
         return back()->with ('mensaje','Programa agregado correctamente');
     }

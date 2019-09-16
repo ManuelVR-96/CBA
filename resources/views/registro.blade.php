@@ -21,6 +21,19 @@
                         @csrf
 
                         <div class="form-group row">
+                            <label for="avatar" class="col-md-4 col-form-label text-md-right">{{ __('Foto de perfil') }}</label>
+                            <div class="col-md-6">
+                                <input type="file" name="avatar">
+
+                                <!-- @error('avatar')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror -->
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="id" class="col-md-4 col-form-label text-md-right">{{ __('No Identificación') }}</label>
                             <div class="col-md-6">
                                 <input id="cédula" type="text" class="form-control @error('cédula') is-invalid @enderror" name="cédula" autofocus>
@@ -117,7 +130,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">                            
+                        <div class="form-group row">
                             <label for="nacimiento" class="col-md-4 col-form-label text-md-right">{{ __('Fecha de Nacimiento') }}</label>
                                 <div class="col-md-6">
                                     <input class="form-control @error('nacimiento') is-invalid @enderror" name="nacimiento" value="{{ old('nacimiento') }}" type="date">  
@@ -129,7 +142,7 @@
                                 </div>                           
                         </div>
 
-                        <div class="form-group row">                            
+                        <div class="form-group row">
                         <label for="vinculacion" class="col-md-4 col-form-label text-md-right">{{ __('Fecha de Vinculación') }}</label>
                             <div class="col-md-6">
                             <input class="form-control @error('vinculacion') is-invalid @enderror" name="vinculacion" value="{{ old('vinculacion') }}" type="date">   
@@ -149,19 +162,6 @@
                                 @error('seguridad')
                                     <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="avatar" class="col-md-4 col-form-label text-md-right"></label>
-                            <div class="col-md-6">
-                                <input type="file" name="avatar">
-
-                                @error('primer_acudiente')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
@@ -200,7 +200,6 @@
                                     <option value="{{ old('servicio_funerario') }}">{{ old('servicio_funerario') }}</option>                                   
                                     <option value="SI">SI</option>
                                     <option value="NO">NO</option>
-
                                 </select>
                                 @error('servicio_funerario')
                                     <span class="invalid-feedback" role="alert">
@@ -265,7 +264,7 @@
                         <div class="form-group row">
                             <label for="hobbies" class="col-md-4 col-form-label text-md-right">{{ __('Hobbies') }}</label>
                             <div class="col-md-6">
-                                <Textarea id="hobbies" type="text" class="form-control @error('hobbies') is-invalid @enderror" name="hobbies" value="{{ old('hobbies') }}"  autofocus>"{{ old('hobbies') }}"</Textarea>
+                                <Textarea id="hobbies" type="text" class="form-control @error('hobbies') is-invalid @enderror" name="hobbies" value="{{ old('hobbies') }}"  autofocus>{{ old('hobbies') }}</Textarea>
 
                                 @error('hobbies')
                                     <span class="invalid-feedback" role="alert">
@@ -365,7 +364,7 @@
                                 @enderror
                             </div>
                         </div>
-                      
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
