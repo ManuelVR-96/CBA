@@ -3,9 +3,9 @@
 namespace CBA\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use CBA\User;
 use CBA\Especialidad;
-
 use Carbon\Carbon;
 use Image;
 
@@ -82,14 +82,13 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-
         $nuevoOp = new User();
 
         if($request->hasFile('avatar')){
             $avatar = $request->file('avatar');
-            $filename = time().'.' . $avatar->getClientOriginalExtension();
-            Image::make($avatar)->resize(130,130)->save(public_path('/uploads/avatar/' . $filename));
-            $nuevoOp->avatar = $filename;
+            $filename = Auth::id(). time().'.' . $avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(130,130)->save(public_path('uploads/avatar/' . $filename));            
+            $nuevoOp->avatar = $filename;            
         }        
         $nuevoOp->cedula = $request->id;
         $nuevoOp->nombres = $request->nombres;
@@ -98,8 +97,7 @@ class UsuarioController extends Controller
         $nuevoOp->nivel_educativo = $request->nivel;
         $nuevoOp->formación = $request->formacion;
         $nuevoOp->dirección = $request->direccion;
-        $nacimiento_ = Carbon::createFromFormat ('Y-m-d', $request->nacimiento);
-        echo($nacimiento_);
+        $nacimiento_ = Carbon::createFromFormat ('Y-m-d', $request->nacimiento);echo($nacimiento_);
         $nuevoOp->fecha_de_nacimiento = $nacimiento_;
         $vinculacion_ = Carbon::createFromFormat ('Y-m-d', $request->vinculacion);
         $nuevoOp->fecha_de_vinculación = $vinculacion_;
@@ -108,7 +106,6 @@ class UsuarioController extends Controller
         $nuevoOp->email = $request->email;
         $nuevoOp->contraseña = $request->password;
         $nuevoOp->save();
-
         return back()->with ('mensaje','Operador agregado correctamente');
     }
 
@@ -153,7 +150,7 @@ class UsuarioController extends Controller
             $avatar = $request->file('avatar');
             $filename = time().'.' . $avatar->guessExtension();
             Image::make($avatar)->resize(130,130)->save(public_path('/uploads/avatar/' . $filename));
-            $nuevoOp->avatar = $filename;
+            $nuevoOp->avatar = $filename;           
         }
         $nuevoOp->cedula = $request->id;
         $nuevoOp->nombres = $request->nombres;

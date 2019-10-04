@@ -56,11 +56,8 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {    $message= array (
         
-        // 'email.unique' => 'Ya lo están usando!!',
         'cedula.unique'  => 'Ya está registrado un paciente con este número de identificación',
         'cedula.required'  => 'Debe ingresar un número de identificación',
-        // 'cargo.string'  => 'Debe ser string',
-        // 'cargo.unique'  => 'Debe ser único',
         'required'    => 'El campo :attribute es requerido.',
         'formacion.required' => 'El campo formación es requerido',
         'formacion.string' => 'El campo formación solo puede contener letras',
@@ -101,9 +98,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {  
-        return User::create([
+        return User::create([            
             
-            'avatar' => $data['avatar'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),           
             'nombres' =>$data['nombres'],
@@ -116,12 +112,8 @@ class RegisterController extends Controller
             'dirección' =>$data['direccion'],
             'fecha_de_nacimiento' => $data['nacimiento'],
             'fecha_de_vinculación' => $data['vinculacion'],
-            'telefono' =>$data['telefono'],           
-            
-            #$nacimiento_ = Carbon::createFromFormat ('Y-m-d', $request->nacimiento);
-            #echo($nacimiento_);
-            'fecha_de_nacimiento' => $data['nacimiento'],
-            #$vinculacion_ = Carbon::createFromFormat ('Y-m-d', $request->vinculacion);
+            'telefono' =>$data['telefono'],          
+            'fecha_de_nacimiento' => $data['nacimiento'],          
             'fecha_de_vinculación' => $data['vinculacion'],          
         ]);
     }
@@ -129,11 +121,8 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         $this->validator($request->all())->validate();
-
         event(new Registered($user = $this->create($request->all())));
-
-        #$this->guard()->login($user); // <- it's actually this line login the fresh user
-        #return ($request);
+        
         return $this->registered($request, $user)?: redirect($this->redirectPath());
     }
 }

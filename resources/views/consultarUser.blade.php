@@ -42,7 +42,7 @@
                                 <th>{{ $item->cedula}}</th>
                                 <td><a href = "{{route('usuarios.show', $item)}}">{{ $item->nombres }}</a></td>
                                 <td>{{ $item->apellidos }}</td>
-                                <td>{{ $item->cargo }}</td>
+                                <td>{{ $item->cargo}}</td>
                                 <td>                                    
                                     <a href="{{route('usuarios.edit', $item)}}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
                                 </td>                             

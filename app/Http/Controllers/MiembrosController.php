@@ -82,14 +82,14 @@ class MiembrosController extends Controller
     public function store(MiembroStoreRequest $request)
     {  
         $nuevoCliente = new Cliente();
-        $nuevoCliente->cédula = $request->cédula;
+        
         if($request->hasFile('avatar')){
             $avatar = $request->file('avatar');
             $filename = time().'.' . $avatar->getClientOriginalExtension();
             Image::make($avatar)->resize(130,130)->save(public_path('/uploads/avatar/' . $filename));
             $nuevoCliente->avatar = $filename;
         }
-        $nuevoCliente->cédula = $request->id;
+        $nuevoCliente->cédula = $request->cédula;
         $nuevoCliente->nombres = $request->nombres;
         $nuevoCliente->apellidos = $request->apellidos;
         $nuevoCliente->nivel_educativo = $request->nivel;

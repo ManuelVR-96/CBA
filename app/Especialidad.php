@@ -11,16 +11,17 @@ class Especialidad extends Model
     //     return $this->belongsTo();
     // }
 
-//     public function especialista()
-// {
-//     return $this->hasOne('CBA\User'::Class, 'id');
-// }
-public function programa_()
-{
-    return $this->hasMany('CBA\Programa'::Class);
-}
-public function valoracion()
-{
-    return $this->hasMany('CBA\Valoracion'::Class);
-}
+    //     public function especialista()
+    // {
+    //     return $this->hasOne('CBA\User'::Class, 'id');
+    // }
+    public function programa_()
+    {
+        return $this->hasMany('CBA\Programa'::Class);
+    }
+    public function valoracion()
+    {
+        return $this->hasMany('CBA\Valoracion'::Class);
+    }
+
 }

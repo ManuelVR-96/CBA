@@ -133,7 +133,7 @@
                         <div class="form-group row">
                             <label for="nacimiento" class="col-md-4 col-form-label text-md-right">{{ __('Fecha de Nacimiento') }}</label>
                                 <div class="col-md-6">
-                                    <input class="form-control @error('nacimiento') is-invalid @enderror" name="nacimiento" value="{{ old('nacimiento') }}" type="date">  
+                                    <input class="form-control @error('nacimiento') is-invalid @enderror" name="nacimiento" type="date" value="1969-01-01" max="1969-12-31">  
                                     @error('nacimiento')
                                     <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -145,7 +145,7 @@
                         <div class="form-group row">
                         <label for="vinculacion" class="col-md-4 col-form-label text-md-right">{{ __('Fecha de Vinculación') }}</label>
                             <div class="col-md-6">
-                            <input class="form-control @error('vinculacion') is-invalid @enderror" name="vinculacion" value="{{ old('vinculacion') }}" type="date">   
+                            <input class="form-control @error('vinculacion') is-invalid @enderror" name="vinculacion" value="{{ old('vinculacion') }}" type="date" min="1980-01-01">   
                             @error('seguridad')
                                     <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

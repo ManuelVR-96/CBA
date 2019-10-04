@@ -13,13 +13,13 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
+                    
                     <form method="POST" action="{{ route('password.email') }}">
                         @csrf
+                        <img src="/img/logo1.png" style="width:150px; height:150px; float:left; margin-right:25px;">
 
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Dirección de Correo Electrónico') }}</label>
-
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 

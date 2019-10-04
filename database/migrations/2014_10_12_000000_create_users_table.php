@@ -16,7 +16,6 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');                      
-            $table->string('avatar')->default('default.jpg');
             $table->string('cedula')->nullable();
             $table->string('nombres');
             $table->string('apellidos')->nullable();

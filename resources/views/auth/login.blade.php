@@ -11,6 +11,8 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
+                        <img src="/img/logo1.png" style="width:150px; height:150px; float:left; margin-right:25px;">
+
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo electrónico') }}</label>
 
@@ -42,7 +44,7 @@
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" value="{{ old('remember') ? 'checked' : '' }}">
 
                                     <label class="form-check-label" for="remember">
                                         {{ __('Recordar datos') }}

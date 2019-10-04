@@ -8,6 +8,7 @@ use CBA\User;
 use CBA\Especialidad;
 use CBA\Cliente;
 use Carbon\Carbon;
+use Auth;
 
 class ValoracionesController extends Controller
 {
@@ -79,9 +80,9 @@ class ValoracionesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        $encargados = user::all();
-        $especialidades = Especialidad::all();
+    {   #return (Auth::user()->id);
+        $encargados = Auth::user();
+        $especialidades = Auth::user();
         $miembros = Cliente::all();
         return view ('registro_valoracion', compact("encargados", "especialidades", "miembros"));
     }
@@ -96,8 +97,8 @@ class ValoracionesController extends Controller
     {   
         $nuevoValoracion = new Valoracion();
         $nuevoValoracion->paciente= $request->miembro;
-        $nuevoValoracion->encargado= $request->encargado;
-        $nuevoValoracion->especialidad= $request->especialidad;
+        $nuevoValoracion->encargado= Auth::user()->id;
+        $nuevoValoracion->especialidad= Auth::user()->cargo;
         $nuevoValoracion->descripción=$request->descripcion;
         $nuevoValoracion->save();
         return back()->with ('mensaje','Valoracion agregado correctamente');
@@ -143,8 +144,8 @@ class ValoracionesController extends Controller
     {
         $Valoracion = Valoracion::findOrFail($id);
         $Valoracion->paciente = $request->miembro;
-        $Valoracion->encargado = $request->encargado;
-        $Valoracion->especialidad = $request->especialidad;
+        $Valoracion->encargado = Auth::user()->id;
+        $Valoracion->especialidad = Auth::user()->cargo;
         $Valoracion->descripción = $request->descripcion;
         $Valoracion->save();
 

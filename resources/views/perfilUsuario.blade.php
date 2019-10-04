@@ -115,13 +115,6 @@
                                    </div>
                               </div>
 
-                              <div class="form-group row">
-                                   <label class="col-sm-5">Género</label>
-                                   <div class="col-sm-6">
-                                        <input type="text" class="form-control" value="{{$user->género}}">
-                                   </div>
-                              </div>
-
                          </div>
                     </fieldset>
                          <div align="center">

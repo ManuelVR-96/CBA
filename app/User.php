@@ -17,7 +17,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'cedula', 'nombres', 'apellidos', 'cargo', 'nivel_educativo', 'formación', 'dirección',  
-        'fecha_de_nacimiento', 'fecha_de_vinculación', 'perfil', 'telefono', 'email', 'password', 'avatar', 
+        'fecha_de_nacimiento', 'fecha_de_vinculación', 'rol', 'telefono', 'email', 'password', 'avatar', 
     ];
 
     /**
@@ -42,6 +42,7 @@ class User extends Authenticatable
     {
         return $this->hasOne('CBA\Programa');
     }
+
 }
 
 

@@ -30,13 +30,13 @@
                         <div class="form-group row">
                             <label for="id" class="col-md-4 col-form-label text-md-right">{{ __('No Identificación') }}</label>
                             <div class="col-md-6">
-                                <input id="id" type="integer" class="form-control @error('id') is-invalid @enderror" name="id" required autocomplete="id" value= "{{$miembro->cédula}}">
+                                <input id="cédula" type="text" class="form-control @error('cédula') is-invalid @enderror" name="cédula" required autocomplete="cédula" value= "{{$miembro->cédula}}">
 
-                                <!-- @error('password')
+                                @error('cédula')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror -->
+                                @enderror
                             </div>
                         </div>
 

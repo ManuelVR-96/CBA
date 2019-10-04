@@ -95,7 +95,7 @@
                         <div class="form-group row">
                             <label for="perfil" class="col-md-4 col-form-label text-md-right">{{ __('Perfil') }}</label>
                             <div class="col-md-6">
-                                <select name="perfil" class="form-control @error('perfil') is-invalid @enderror" value="{{$usuario->perfil}}" name="perfil">>
+                                <select name="perfil" class="form-control @error('perfil') is-invalid @enderror" value="{{$usuario->rol}}" name="perfil">>
                                     <option value="{{$usuario->rol}}">{{$usuario->rol}}</option>
                                     <option value="Administrador">Administrador</option>
                                     <option value="Operador">Operador</option>
