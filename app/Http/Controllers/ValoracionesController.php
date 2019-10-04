@@ -125,7 +125,7 @@ class ValoracionesController extends Controller
      */
     public function edit($id)
     {
-        $encargados = user::all();
+        $encargados = Auth::user();
         $especialidades = Especialidad::all();
         $miembros = Cliente::all();        
         $valoracion = Valoracion::findOrFail($id);
@@ -144,7 +144,7 @@ class ValoracionesController extends Controller
     {
         $Valoracion = Valoracion::findOrFail($id);
         $Valoracion->paciente = $request->miembro;
-        $Valoracion->encargado = Auth::user()->id;
+        $Valoracion->actualizado = Auth::user()->id;
         $Valoracion->especialidad = Auth::user()->cargo;
         $Valoracion->descripción = $request->descripcion;
         $Valoracion->save();

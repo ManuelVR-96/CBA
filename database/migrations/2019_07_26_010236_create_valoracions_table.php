@@ -15,7 +15,7 @@ class CreateValoracionsTable extends Migration
     {
         Schema::create('valoracions', function (Blueprint $table) {
         $table->bigIncrements('id');
-        $table->unsignedBigInteger('paciente');
+       $table->unsignedBigInteger('paciente');
         $table->foreign('paciente')->references('id')->on('clientes')->onDelete('cascade');
         $table->unsignedBigInteger('encargado')->nullable();
         $table->foreign('encargado')->references('id')->on('users')->onDelete('set null');

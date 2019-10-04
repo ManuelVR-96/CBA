@@ -42,6 +42,13 @@ class User extends Authenticatable
     {
         return $this->hasOne('CBA\Programa');
     }
+
+
+public function especialidad_()
+{
+    return $this->belongsTo('CBA\Especialidad'::Class, 'cargo', 'id');
+}
+
 }
 
 

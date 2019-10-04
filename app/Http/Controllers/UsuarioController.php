@@ -86,9 +86,10 @@ class UsuarioController extends Controller
         $nuevoOp = new CBA\User;
 
         if($request->hasFile('avatar')){
+            return ("hola");
             $avatar = $request->file('avatar');
             $filename = time().'.' . $avatar->guessExtension();
-            Image::make($avatar)->resize(130,130)->save(public_path('/../uploads/avatar/' . $filename));
+            Image::make($avatar)->resize(130,130)->save(public_path('/uploads/avatar/' . $filename));
             $nuevoOp->avatar = $filename;
         }        
         $nuevoOp->cedula = $request->id;

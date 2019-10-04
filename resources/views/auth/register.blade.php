@@ -75,7 +75,7 @@
                             <label for="nivel" class="col-md-4 col-form-label text-md-right">{{ __('Nivel Educativo') }}</label>
                             <div class="col-md-6">
                                 <select name="nivel" class="form-control @error('nivel') is-invalid @enderror" value="{{ old('nivel') }}" name="nivel">>
-                                    <option value="">--Seleccione el nivel--</option>
+                                    <option value="{{ old('nivel') }}">{{ old('nivel') }}</option>
                                     <option value="Primaria">Primaria</option>
                                     <option value="Secundaria">Secundaria</option>
                                     <option value="Tecnico Y/o Tecnologo">Tecnico Y/o Tecnologo</option>
@@ -107,7 +107,7 @@
                             <label for="perfil" class="col-md-4 col-form-label text-md-right">{{ __('Perfil') }}</label>
                             <div class="col-md-6">
                                 <select name="perfil" class="form-control @error('perfil') is-invalid @enderror" value="{{ old('perfil') }}" >
-                                    <option value="">--Seleccione el Perfil--</option>                                   
+                                    <option value="{{ old('perfil') }}">{{ old('perfil') }}</option>                                   
                                     <option value="Administrador">Administrador</option>
                                     <option value="Operador">Operador</option>
                                 </select>
@@ -124,7 +124,7 @@
                             <div class="col-md-6">
                                 
                                 <select id="cargo" type="text" class="form-control @error('cargo') is-invalid @enderror" name="cargo" value="{{ old('cargo') }}"  autofocus>
-                                <option value="null">--------</option>
+                                <option value="{{ old('cargo') }}">{{ old('cargo') }}</option>
                                     @foreach($especialidades as $especialidad)
                                     <option value="{{$especialidad->id}}">{{$especialidad->Nombre}}</option>
                                     @endforeach()

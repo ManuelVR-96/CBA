@@ -1,6 +1,8 @@
 <?php
 
 namespace CBA;
+use CBA\User;
+
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,4 +25,10 @@ public function valoracion()
 {
     return $this->hasMany('CBA\Valoracion'::Class);
 }
+
+public function especialista()
+    {
+        return $this->hasMany(User::Class);
+    }
+
 }
