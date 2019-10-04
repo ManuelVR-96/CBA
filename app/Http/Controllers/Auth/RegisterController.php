@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Auth;
+use Image;
 
 
 use Illuminate\Auth\Events\Registered;
@@ -96,10 +97,12 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \CBA\User
      */
-    protected function create(array $data)
+    protected function create(array $data, $filename)
     {  
         return User::create([            
             
+
+            'avatar' => $filename,
             'email' => $data['email'],
             'password' => Hash::make($data['password']),           
             'nombres' =>$data['nombres'],
@@ -119,10 +122,16 @@ class RegisterController extends Controller
     }
 
     public function register(Request $request)
+
     {
+        if($request->hasFile('avatar')){
+            $avatar = $request->file('avatar');
+            $filename = time().'.' . $avatar->guessExtension();
+            Image::make($avatar)->resize(130,130)->save(public_path('/uploads/avatar/' . $filename));
+        }
         $this->validator($request->all())->validate();
-        event(new Registered($user = $this->create($request->all())));
-        
+
+        event(new Registered($user = $this->create($request->all(), $filename)));
         return $this->registered($request, $user)?: redirect($this->redirectPath());
     }
 }

@@ -85,10 +85,11 @@ class UsuarioController extends Controller
         $nuevoOp = new User();
 
         if($request->hasFile('avatar')){
+            return ("hola");
             $avatar = $request->file('avatar');
-            $filename = Auth::id(). time().'.' . $avatar->getClientOriginalExtension();
-            Image::make($avatar)->resize(130,130)->save(public_path('uploads/avatar/' . $filename));            
-            $nuevoOp->avatar = $filename;            
+            $filename = time().'.' . $avatar->guessExtension();
+            Image::make($avatar)->resize(130,130)->save(public_path('/uploads/avatar/' . $filename));
+            $nuevoOp->avatar = $filename;
         }        
         $nuevoOp->cedula = $request->id;
         $nuevoOp->nombres = $request->nombres;

@@ -16,10 +16,13 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');                      
+            #$table->string('Tipo de Documento de identidad')->nullable();
+            $table->string('avatar')->default('default.jpg');
             $table->string('cedula')->nullable();
             $table->string('nombres');
             $table->string('apellidos')->nullable();
-            $table->string('cargo')->nullable();
+            $table->unsignedBigInteger('cargo')->nullable();
+            $table->foreign('cargo')->references('id')->on('especialidads')->onDelete('set null');
             $table->string('nivel_educativo')->nullable();
             $table->string('formación')->nullable();
             $table->string('dirección')->nullable();
