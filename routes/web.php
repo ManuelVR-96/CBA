@@ -22,6 +22,8 @@ Route::resource('/miembros', 'MiembrosController');
 Route::resource('/usuarios', 'UsuarioController');
 Route::resource('/programas', 'ProgramasController');
 Route::resource('/valoraciones', 'ValoracionesController');
+Route::resource('/delta', 'deltaController');
+
 
 Route::post('/usuarios', 'UsuarioController@busqueda')->name('lista_nombres');
 Route::post('/miembros', 'MiembrosController@busqueda')->name('lista_abuelos');
@@ -31,6 +33,10 @@ Route::post('/valoraciones', 'ValoracionesController@busqueda')->name('lista_val
 Route::delete('/miembros/{id}', 'MiembrosController@destroy')->name('miembros.eliminar');
 Route::delete('/programas/{id}', 'ProgramasController@destroy')->name('programas.eliminar');
 Route::delete('/valoraciones/{id}', 'ValoracionesController@destroy')->name('valoraciones.eliminar');
+Route::get('/valoraciones/create/{id}', 'ValoracionesController@create')->name('valoraciones.create');
+Route::get('/delta/create/{id}', 'deltaController@create')->name('delta.create');
+
+
 
 Route::post('/programas/create', 'ProgramasController@store')->name('programas.store');
 Route::post('/miembros/create', 'MiembrosController@store')->name('miembros.store');

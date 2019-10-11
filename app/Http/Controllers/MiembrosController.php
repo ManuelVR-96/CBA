@@ -114,8 +114,9 @@ class MiembrosController extends Controller
         $nuevoCliente->género = $request->genero;
         $nuevoCliente->medicinas = $request->medicinas;    
         $nuevoCliente->save();
+        return redirect()->route('delta.create', [$nuevoCliente]);
 
-        return back()->with ('mensaje','Abuelo agregado correctamente');
+        #return  view('registroDelta', compact ($nuevoCliente));
     }
 
     /**

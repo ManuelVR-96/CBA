@@ -24,14 +24,14 @@
                                <div class="form-group row">
                                    <label class="col-sm-5 col-form-label">Encargado</label>
                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" value="{{$programas->encargado}}">
+                                        <input type="text" class="form-control" value="{{$programas->encargado_->nombres}}">
                                    </div>
                               </div>
 
                               <div class="form-group row">
                                    <label class="col-sm-5 col-form-label">Descripción</label>
                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" value="{{$programas->descripcion}}">
+                                        <textarea class="form-control" value="{{$programas->descripcion}}">{{$programas->descripcion}}</textarea>
                                    </div>
                               </div>
 

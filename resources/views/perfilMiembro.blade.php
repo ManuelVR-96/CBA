@@ -184,7 +184,10 @@
                                    </div>
                               </div>
                          </div>
+
                     </fieldset>
+                    <a href= "{{ url('valoraciones/create/'.$user->id) }}" class="btn btn-primary btn-sm">Agregar nueva Valoración</a>
+                    <a href= "{{ url('delta/create/'.$user->id) }}" class="btn btn-primary btn-sm">Modificar Test Delta</a>
                          <div align="center">
                               <button class='btn btn-danger' type="submit" name="eliminar" onclick="return confirm('¿Confirma que desea ELIMINAR de manera permanente el registro?')"></span>Eliminar Registro</button>
                          </div>

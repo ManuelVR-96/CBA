@@ -12,17 +12,8 @@
                         <div class="form-group row">
                             <label for="miembro" class="col-md-4 col-form-label text-md-right">{{ __('Miembro') }}</label>
                             <div class="col-md-6">
-                                <select id="miembro" type="text" class="form-control @error('miembro') is-invalid @enderror" name="miembro" value="{{ old('miembro') }}" required autocomplete="miembro" autofocus>
-                                <option value="null">--------</option>
-                                  @foreach($miembros as $miembro)
-                                    <option value="{{$miembro->id}}">{{$miembro->nombres}}</option>
-                                  @endforeach()
-                                  @error('miembro')
-                                    <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                    </span>
-                                  @enderror
-                                </select>
+                            <input id="miembro" type="hidden" class="form-control @error('miembro') is-invalid @enderror" name="miembro" value="{{ $miembros->id }}" placeholder = "{{ $miembros->nombres }}" autofocus readonly="readonly">
+                            <input id="miembro_" type="text" class="form-control @error('miembro_') is-invalid @enderror" name="miembro_" value="{{ $miembros->nombres }}" placeholder = "{{ $miembros->nombres }}" autofocus readonly="readonly">
                             </div>
                         </div>
 
@@ -55,7 +46,7 @@
                         <div class="form-group row">
                             <label for="medica" class="col-md-4 col-form-label text-md-right">{{ __('Especialidad') }}</label>
                             <div class="col-md-6">
-                                <input id="especialidad" type="text" class="form-control @error('especialidad') is-invalid @enderror" name="especialidad" value="{{ $encargados->cargo }}" placeholder = "{{ $encargados->especialidad }}" autofocus readonly="readonly">
+                                <input id="especialidad" type="text" class="form-control @error('especialidad') is-invalid @enderror" name="especialidad" value="{{ $encargados->especialidad_->Nombre }}" placeholder = "{{ $encargados->especialidad }}" autofocus readonly="readonly">
 
                                 @error('encargado')
                                     <span class="invalid-feedback" role="alert">

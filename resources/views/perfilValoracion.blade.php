@@ -16,21 +16,21 @@
                               <div class="form-group row">
                                    <label class="col-sm-5">Paciente</label>
                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" value="{{$valoraciones->paciente}}">
+                                        <input type="text" class="form-control" value="{{$valoraciones->miembro_->nombres}}">
                                    </div>
                               </div>
 
                                <div class="form-group row">
                                    <label class="col-sm-5 col-form-label">Encargado</label>
                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" value="{{$valoraciones->encargado}}">
+                                        <input type="text" class="form-control" value="{{$valoraciones->encargado_->nombres}}">
                                    </div>
                               </div>
 
                                <div class="form-group row">
                                    <label class="col-sm-5 col-form-label">Especialidad</label>
                                    <div class="col-sm-6">
-                                        <input type="date" class="form-control" value="{{$valoraciones->especialidad}}">
+                                        <input type="text" class="form-control" value="{{$valoraciones->especialidad_->Nombre}}">
                                    </div>
                               </div>
 

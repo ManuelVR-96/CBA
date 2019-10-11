@@ -36,6 +36,7 @@ return array(
     'CBA\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'CBA\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'CBA\\Http\\Requests\\MiembroStoreRequest' => $baseDir . '/app/Http/Requests/MiembroStoreRequest.php',
+    'CBA\\Notifications\\ResetPasswordNotification' => $baseDir . '/app/Notifications/ResetPasswordNotification.php',
     'CBA\\Programa' => $baseDir . '/app/Programa.php',
     'CBA\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'CBA\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',

@@ -79,11 +79,13 @@ class ValoracionesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {   #return (Auth::user()->id);
         $encargados = Auth::user();
         $especialidades = Auth::user();
-        $miembros = Cliente::all();
+        #$miembros = Cliente::all();
+        
+        $miembros= Cliente::findOrFail($id);
         return view ('registro_valoracion', compact("encargados", "especialidades", "miembros"));
     }
 
@@ -96,12 +98,13 @@ class ValoracionesController extends Controller
     public function store(Request $request)
     {   
         $nuevoValoracion = new Valoracion();
+        #return($request->miembro);
         $nuevoValoracion->paciente= $request->miembro;
         $nuevoValoracion->encargado= Auth::user()->id;
         $nuevoValoracion->especialidad= Auth::user()->cargo;
         $nuevoValoracion->descripción=$request->descripcion;
         $nuevoValoracion->save();
-        return back()->with ('mensaje','Valoracion agregado correctamente');
+        return back()->with ('mensaje','Valoracion agregada correctamente');
     }
 
     /**

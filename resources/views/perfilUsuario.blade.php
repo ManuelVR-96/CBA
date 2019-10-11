@@ -45,7 +45,7 @@
                               <div class="form-group row">
                                    <label class="col-sm-5">Cargo</label>
                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control" value="{{$user->cargo}}">
+                                        <input type="text" class="form-control" value="{{$user->especialidad_->Nombre}}">
                                    </div>
                               </div>
 
@@ -88,7 +88,7 @@
                               </div>
 
                               <div class="form-group row">
-                                   <label class="col-sm-5">Perfil</label>
+                                   <label class="col-sm-5">Rol</label>
                                    <div class="col-sm-6">
                                         <input type="text" class="form-control" value="{{$user->rol}}">
                                    </div>
