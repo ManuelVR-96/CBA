@@ -7,6 +7,8 @@
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
      <div class="panel panel-default">
           <div class="panel-body">
+          @auth
+              
                <form action="{{route('miembros.eliminar', $user)}}" class="d-inline" method="POST">               
                     @csrf
                     @method("DELETE")
@@ -186,13 +188,24 @@
                          </div>
 
                     </fieldset>
+                    <a href= "{{ url('fisio_inicial/create/'.$user->id) }}" class="btn btn-primary btn-sm">Agregar nueva Valoración de fisioterapia</a>
                     <a href= "{{ url('valoraciones/create/'.$user->id) }}" class="btn btn-primary btn-sm">Agregar nueva Valoración</a>
                     <a href= "{{ url('delta/create/'.$user->id) }}" class="btn btn-primary btn-sm">Modificar Test Delta</a>
+                    <a href= "{{ url('medica_inicial/create/'.$user->id) }}" class="btn btn-primary btn-sm">Modificar valoración médica inicial</a>
+                    <a href= "{{ url('geron_inicial/create/'.$user->id) }}" class="btn btn-primary btn-sm">Modificar valoración gerontológica inicial</a>
+                    <a href= "{{ url('actividad_inicial/create/'.$user->id) }}" class="btn btn-primary btn-sm">Modificar valoración actividad inicial</a>
+                    <a href= "{{ url('nutricional_inicial/create/'.$user->id) }}" class="btn btn-primary btn-sm">Modificar valoración nutricional inicial</a>
+                    <a href= "{{ url('psico_inicial/create/'.$user->id) }}" class="btn btn-primary btn-sm">Modificar valoración psicologica inicial</a>
+                    <a href= "{{ url('miembros/'.$user->id.'/edit') }}" class="btn btn-primary btn-sm">Editar información del paciente</a>
+                    
+                    @if(auth()->user()->rol=="Administrador")
                          <div align="center">
                               <button class='btn btn-danger' type="submit" name="eliminar" onclick="return confirm('¿Confirma que desea ELIMINAR de manera permanente el registro?')"></span>Eliminar Registro</button>
                          </div>
+                         @endif
                     </div>              
                </form>
           </div>
      </div>
+     @endauth
 @endsection

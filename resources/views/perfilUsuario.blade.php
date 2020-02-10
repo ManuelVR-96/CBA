@@ -117,10 +117,14 @@
 
                          </div>
                     </fieldset>
+                    @if(auth()->user()->rol=="Administrador")
                          <div align="center">
                               <button class='btn btn-danger' type="submit" name="eliminar" onclick="return confirm('¿Confirma que desea ELIMINAR de manera permanente el registro?')"></span>Eliminar Registro</button>
-                         </div>
+                         
+                         <a href= "{{ url('usuarios/'.$user->id.'/edit') }}" class="btn btn-primary btn-sm">Editar información del operador</a>
+                         @endif
                     </div>
+               </div>
                </form>
           </div>
      </div>

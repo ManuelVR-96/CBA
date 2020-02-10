@@ -43,6 +43,7 @@
                          </fieldset>
                               <div align="center">
                                    <button class='btn btn-danger' type="submit" name="eliminar" onclick="return confirm('¿Confirma que desea ELIMINAR de manera permanente el registro?')"></span>Eliminar Valoración</button>
+                                   <a href= "{{ url('valoraciones/'.$valoraciones->id.'/edit') }}" class="btn btn-primary btn-sm">Editar valoración</a>
                               </div>
                          </div>
                     </div>

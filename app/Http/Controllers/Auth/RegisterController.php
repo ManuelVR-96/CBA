@@ -129,6 +129,9 @@ class RegisterController extends Controller
             $filename = time().'.' . $avatar->guessExtension();
             Image::make($avatar)->resize(130,130)->save(public_path('/uploads/avatar/' . $filename));
         }
+        else{
+            $filename= "default.jpg";
+        }
         $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all(), $filename)));

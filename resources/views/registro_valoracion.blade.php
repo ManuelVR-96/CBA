@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@auth
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -29,7 +30,7 @@
                                 @enderror
                             </div>
                         </div>
-
+                        @if($encargados->rol=="Operador")
                         <div class="form-group row">
                             <label for="medica" class="col-md-4 col-form-label text-md-right">{{ __('Encargado') }}</label>
                             <div class="col-md-6">
@@ -44,7 +45,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="medica" class="col-md-4 col-form-label text-md-right">{{ __('Especialidad') }}</label>
+                            <label for="especialidad" class="col-md-4 col-form-label text-md-right">{{ __('Especialidad') }}</label>
                             <div class="col-md-6">
                                 <input id="especialidad" type="text" class="form-control @error('especialidad') is-invalid @enderror" name="especialidad" value="{{ $encargados->especialidad_->Nombre }}" placeholder = "{{ $encargados->especialidad }}" autofocus readonly="readonly">
 
@@ -55,6 +56,29 @@
                                 @enderror
                             </div>
                         </div>
+                        
+
+                        @else
+             <div class="form-group row">
+                <label for="especialidad" class="col-md-3 col-form-label text-md-right">{{ __('Especialidad') }}</label>
+                <div class="col-md-8">
+                    
+                    <select id="especialidad" type="text" class="form-control @error('especialidad') is-invalid @enderror" name="especialidad" value="{{ old('especialidad') }}"  autofocus>
+                    <option value="{{ old('especialidad') }}">{{ old('especialidad') }}</option>
+                        @foreach($especialidades as $especialidad)
+                        <option value="{{$especialidad->id}}">{{$especialidad->Nombre}}</option>
+                        @endforeach()
+            
+                    </select>
+                    @error('cargo')
+                        <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror 
+                </div>
+            </div>
+@endif
+
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
@@ -69,4 +93,5 @@
         </div>
     </div>
 </div>
+@endauth
 @endsection

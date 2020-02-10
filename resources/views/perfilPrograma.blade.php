@@ -44,6 +44,7 @@
                          </fieldset>
                               <div align="center">
                                    <button class='btn btn-danger' type="submit" name="eliminar" onclick="return confirm('¿Confirma que desea ELIMINAR de manera permanente el registro?')"></span>Eliminar Registro</button>
+                                   <a href= "{{ url('programas/'.$programas->id.'/edit') }}" class="btn btn-primary btn-sm">Editar información del programa</a>
                               </div>
                          </div>
                     </div>

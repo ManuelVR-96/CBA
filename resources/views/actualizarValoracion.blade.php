@@ -13,20 +13,14 @@
                         <div class="form-group row">
                             <label for="miembro" class="col-md-4 col-form-label text-md-right">{{ __('Miembro') }}</label>
                             <div class="col-md-6">
-                                <select id="miembro" type="text" class="form-control @error('miembro') is-invalid @enderror" name="miembro" value="{{ old('miembro') }}" required autocomplete="miembro" autofocus>
-                                <option value="null">--------</option>
-                                  @foreach($miembros as $miembro)
-                                    <option value="{{$miembro->id}}">{{$miembro->nombres}}</option>
-                                  @endforeach()
-                                  @error('miembro')
+                            <input id="miembro" type="text" class="form-control @error('miembro') is-invalid @enderror" name="miembro" value="{{ $valoracion->miembro_->nombres }}" autofocus readonly="readonly">
+                            @error('Miembro')
                                     <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                     </span>
-                                  @enderror
-                                </select>
+                                @enderror
                             </div>
                         </div>
-
                     
                         <div class="form-group row">
                             <label for="descripcion" class="col-md-4 col-form-label text-md-right">{{ __('Descripción') }}</label>

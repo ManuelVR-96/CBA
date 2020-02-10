@@ -53,7 +53,7 @@
           <i class="fas fa-user-circle fa-fw"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-          <a class="dropdown-item" href="#">Configuracion</a>
+          <a class="dropdown-item" href="{{ url('usuarios/'.auth()->user()->id) }}">Perfil</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -103,10 +103,10 @@
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
           <h6 class="dropdown-header">Opciones</h6>
           <a class="dropdown-item" href="forgot-password.html">Test Delta</a>
-          <a class="dropdown-item" href="{{ route('register') }}">Crear Usuario</a>
-          <a class="dropdown-item" href="register.html">Consultar Usuarios</a>
-          <a class="dropdown-item" href="forgot-password.html">Editar Usuario</a>
-          <a class="dropdown-item" href="forgot-password.html">Eliminar Usuario</a>        
+          <a class="dropdown-item" href="{{ route('miembros.create') }}">Crear Usuario</a>
+          <a class="dropdown-item" href="{{ route('miembros.index') }}">Consultar Usuarios</a>
+         <!-- <a class="dropdown-item" href="forgot-password.html">Editar Usuario</a>-->
+          <!--  <a class="dropdown-item" href="forgot-password.html">Eliminar Usuario</a> -->       
         </div>
       </li>
 
@@ -117,12 +117,11 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
           <h6 class="dropdown-header">Opciones</h6>         
-          <a class="dropdown-item" href="login.html">Crear programa</a>          
-          <a class="dropdown-item" href="forgot-password.html">Editar programa</a>
-          <a class="dropdown-item" href="register.html">Consultar programa</a>
-          <a class="dropdown-item" href="forgot-password.html">Listar programas</a>
-          <a class="dropdown-item" href="forgot-password.html">Agendar programa</a>
-          <a class="dropdown-item" href="forgot-password.html">Eliminar programa</a>        
+          <a class="dropdown-item" href="{{ route ('programas.create')}}">Crear Programa</a>          
+          <a class="dropdown-item" href="{{ route ('programas.index')}}">Buscar Programa</a>
+          <!-- <a class="dropdown-item" href="forgot-password.html">Listar programas</a>-->
+          <!--<a class="dropdown-item" href="forgot-password.html">Agendar programa</a> -->
+          <!-- <a class="dropdown-item" href="forgot-password.html">Eliminar programa</a> -->         
         </div>
       </li>
       

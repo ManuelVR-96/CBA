@@ -23,6 +23,12 @@ Route::resource('/usuarios', 'UsuarioController');
 Route::resource('/programas', 'ProgramasController');
 Route::resource('/valoraciones', 'ValoracionesController');
 Route::resource('/delta', 'deltaController');
+Route::resource('/fisio_inicial', 'fisioterapiaInicialController');
+Route::resource('/geron_inicial', 'gerontologialInicialController');
+Route::resource('/medica_inicial', 'medicaInicialController');
+Route::resource('/nutricional_inicial', 'nutricionalInicialController');
+Route::resource('/psico_inicial', 'psicologicaInicialController');
+Route::resource('/actividad_inicial', 'ActividadInicialController');
 
 
 Route::post('/usuarios', 'UsuarioController@busqueda')->name('lista_nombres');
@@ -35,12 +41,20 @@ Route::delete('/programas/{id}', 'ProgramasController@destroy')->name('programas
 Route::delete('/valoraciones/{id}', 'ValoracionesController@destroy')->name('valoraciones.eliminar');
 Route::get('/valoraciones/create/{id}', 'ValoracionesController@create')->name('valoraciones.create');
 Route::get('/delta/create/{id}', 'deltaController@create')->name('delta.create');
+Route::get('/medica_inicial/create/{id}', 'medicaInicialController@create')->name('medica_inicial.create');
+Route::get('/actividad_inicial/create/{id}', 'ActividadInicialController@create')->name('actividad_inicial.create');
+Route::get('/nutricional_inicial/create/{id}', 'nutricionalInicialController@create')->name('nutricional_inicial.create');
+Route::get('/psico_inicial/create/{id}', 'psicologicaInicialController@create')->name('psico_inicial.create');
+Route::get('/geron_inicial/create/{id}', 'gerontologialInicialController@create')->name('geron_inicial.create');
+Route::get('/fisio_inicial/create/{id}', 'fisioterapiaInicialController@create')->name('fisio_inicial.create');
+
 
 
 
 Route::post('/programas/create', 'ProgramasController@store')->name('programas.store');
 Route::post('/miembros/create', 'MiembrosController@store')->name('miembros.store');
 Route::post('/valoraciones/create', 'ValoracionesController@store')->name('valoraciones.store');
+
 
 Auth::routes();
 

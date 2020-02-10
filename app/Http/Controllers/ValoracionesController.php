@@ -81,8 +81,9 @@ class ValoracionesController extends Controller
      */
     public function create($id)
     {   #return (Auth::user()->id);
+        $posibles_encargados = User::all();
         $encargados = Auth::user();
-        $especialidades = Auth::user();
+        $especialidades = Especialidad::all();
         #$miembros = Cliente::all();
         
         $miembros= Cliente::findOrFail($id);
