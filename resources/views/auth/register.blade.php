@@ -3,22 +3,13 @@
 @section('content')
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="css/register.css">
+<link rel="stylesheet" href="css/estilo.css">
 
 <div class="container">    
     <form enctype="multipart/form-data" method="POST" action="{{route('register')}}" class="form">
-
-        @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div><br />
-        @endif
-
-        <div class="form-header">
+    
+        <div class="form-header"><br>
+            <img src="/../img/form.png" class="center">
             <h1 class="form-tittle">{{ __('Formulario de Registro') }}</h1>
         </div>
 
@@ -110,7 +101,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="perfil" class="col-md-3 col-form-label text-md-right">{{ __('Perfil') }}</label>
+                <label for="perfil" class="col-md-3 col-form-label text-md-right">{{ __('Rol') }}</label>
                 <div class="col-md-8">
                     <select name="perfil" class="form-control @error('perfil') is-invalid @enderror" value="{{ old('perfil') }}" >
                         <option value="">--Seleccione el Perfil--</option>                                   
@@ -217,7 +208,7 @@
                 </div>
             </div>
             
-            
+            <br>
             <button type="submit"  class="btn-submit">
                 {{ __('Registrarse') }}
             </button>
@@ -225,4 +216,5 @@
         </div>
     </form>
 </div>
+<div class="gradient"></div>
 @endsection

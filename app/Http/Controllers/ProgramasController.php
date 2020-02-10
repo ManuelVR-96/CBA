@@ -17,7 +17,7 @@ class ProgramasController extends Controller
      */
     public function index()
     {
-        $programas = Programa::orderBy('nombre', 'ASC')->paginate(2);
+        $programas = Programa::orderBy('nombre', 'ASC')->paginate(10);
         return view('vistaPrograma', compact ('programas'));
     }
 
@@ -27,41 +27,41 @@ class ProgramasController extends Controller
         $tipo = $request->tipo_busqueda;
         if ($tipo=="Encargado"){
         if ($entrada==''){
-            $programas = Programa::orderBy('encargado->nombres', 'ASC')->paginate(2);
+            $programas = Programa::orderBy('encargado->nombres', 'ASC')->paginate(10);
             }
             else {
                 
                 $programas = Programa::whereHas('encargado_', function($query) use($entrada){
                 $query->where('Nombres', 'like', '%' . $entrada . '%');
-                })->paginate(2);
+                })->paginate(10);
             }
         }
 
         elseif ($tipo=="Nombre programa"){
             if ($entrada==''){
-            $programas = Programa::orderBy('Nombre', 'ASC')->paginate(2);
+            $programas = Programa::orderBy('Nombre', 'ASC')->paginate(10);
             }
             else {
                 
-                $programas = Programa::where('Nombre', 'like', '%' . $entrada . '%')->paginate(2);
+                $programas = Programa::where('Nombre', 'like', '%' . $entrada . '%')->paginate(10);
             }
         }
 
         elseif ($tipo=="Especialidad"){
             if ($entrada==''){
-            $programas = Programa::orderBy('especialidad->Nombre', 'ASC')->paginate(2);
+            $programas = Programa::orderBy('especialidad->Nombre', 'ASC')->paginate(10);
             }
             else {
                 
                 $programas = Programa::whereHas('especialidad_', function($query) use($entrada){
                     $query->where('Nombre', 'like', '%' . $entrada . '%');
-                    })->paginate(2);
+                    })->paginate(10);
             }
         }
 
         else{
         
-                $programas = Programa::where('nombre', $entrada)->paginate(2);
+                $programas = Programa::where('nombre', $entrada)->paginate(10);
             
         }
         
@@ -157,7 +157,7 @@ class ProgramasController extends Controller
     {
         $programa = Programa::findOrFail($id);
         $programa->delete();
-        $programa = Programa::orderBy('nombre', 'ASC')->paginate(2);
+        $programa = Programa::orderBy('nombre', 'ASC')->paginate(10);
 
         return redirect()->to('/programas');
     }
