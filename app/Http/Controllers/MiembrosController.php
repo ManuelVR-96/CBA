@@ -17,7 +17,7 @@ class MiembrosController extends Controller
      */
     public function index()
     {   
-        $users = Cliente::orderBy('nombres', 'ASC')->paginate(8);
+        $users = Cliente::orderBy('nombres', 'ASC')->paginate(10);
         return view('consultarMiembro', compact ('users')); 
     }
 
@@ -27,37 +27,37 @@ class MiembrosController extends Controller
         $tipo = $request->tipo_busqueda;
         if ($tipo=="Nombre"){
         if ($entrada==''){
-            $users = Cliente::orderBy('nombres', 'ASC')->paginate(8);
+            $users = Cliente::orderBy('nombres', 'ASC')->paginate(10);
             }
             else {
                 
-                $users = Cliente::where('nombres', 'like', '%' . $entrada . '%')->paginate(8);
+                $users = Cliente::where('nombres', 'like', '%' . $entrada . '%')->paginate(10);
             }
         }
 
         elseif ($tipo=="Cédula"){
             if ($entrada==''){
-            $users = Cliente::orderBy('cédula', 'ASC')->paginate(8);
+            $users = Cliente::orderBy('cédula', 'ASC')->paginate(10);
             }
             else {
                 
-                $users = Cliente::where('cédula', $entrada)->paginate(8);
+                $users = Cliente::where('cédula', $entrada)->paginate(10);
             }
         }
 
         elseif ($tipo=="Apellidos"){
             if ($entrada==''){
-            $users = Cliente::orderBy('apellidos', 'ASC')->paginate(8);
+            $users = Cliente::orderBy('apellidos', 'ASC')->paginate(10);
             }
             else {
                 
-                $users = Cliente::where('apellidos', 'like', '%' . $entrada . '%')->paginate(8);
+                $users = Cliente::where('apellidos', 'like', '%' . $entrada . '%')->paginate(10);
             }
         }
 
         else{
         
-                $users = Cliente::where('nombres', $entrada)->paginate(8);
+                $users = Cliente::where('nombres', $entrada)->paginate(10);
             
         }        
 
@@ -201,7 +201,7 @@ class MiembrosController extends Controller
     {
         $user = Cliente::findOrFail($id);
         $user->delete();
-        $users = Cliente::orderBy('nombres', 'ASC')->paginate(8);
+        $users = Cliente::orderBy('nombres', 'ASC')->paginate(10);
         return redirect()->to('/miembros');
     }
 }

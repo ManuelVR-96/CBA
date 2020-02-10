@@ -7,37 +7,42 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'CENTRO DE BIENESTAR DE ANCIANOS SAN JOSÉ') }}</title>
+    <title>CBA SAN JOSÉ</title>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Main CSS-->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">   
-    
+    <!--Nav Estático 
+    <link rel="stylesheet" href="/../css/nav.css"> --> 
+
 </head>
 <body>
     <div id="app">
+<<<<<<< HEAD
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     CENTRO DE BIENESTAR DE ANCIANOS SAN JOSÉ
                 </a>
+=======
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" id="nav">
+            <div class="container" >
+                    <a class="navbar-brand" href="{{ url('/') }}" >
+                        <img src="/../img/navbar.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                        Centro de Bienestar de Ancianos San José
+                    </a>
+>>>>>>> 92d9da4e6e8835f0ea1875360f267a331cc8880e
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
+                <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    
+                    <ul class="navbar-nav mr-auto"></ul>                   
+                  
                     <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
+                        
+                        @guest                            
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
                             </li>
@@ -66,10 +71,10 @@
                             </li>
                         @endguest
                     </ul>
-                </div>
+                </div> -->
             </div>
         </nav>
-        <main class="py-4">
+        <main class="py-4">        
             @yield('content')
         </main>
     </div>

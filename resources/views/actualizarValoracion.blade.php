@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Registro Valoración') }}</div>
+                <div class="card-header">{{ __('Formulario de Edición') }}</div>
                 <div class="card-body">
                     <form method="POST" action="{{route('valoraciones.update', $valoracion->id)}}">
                         @csrf

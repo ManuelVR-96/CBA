@@ -19,7 +19,7 @@ class ValoracionesController extends Controller
      */
     public function index()
     {
-        $valoraciones = Valoracion::orderBy('paciente', 'ASC')->paginate(2);
+        $valoraciones = Valoracion::orderBy('paciente', 'ASC')->paginate(10);
         return view('vistaValoracion', compact ('valoraciones'));
     }
 
@@ -31,45 +31,45 @@ class ValoracionesController extends Controller
         {
             if ($entrada=='')                
             {
-                $valoraciones = Valoracion::orderBy('encargado->nombres', 'ASC')->paginate(2);
+                $valoraciones = Valoracion::orderBy('encargado->nombres', 'ASC')->paginate(10);
             }
             else 
             {                
                 $valoraciones = Valoracion::whereHas('encargado_', function($query) use($entrada){
                 $query->where('nombres', 'like', '%' . $entrada . '%');
-                })->paginate(2);
+                })->paginate(10);
             }
         }
 
         elseif ($tipo=="Especialidad")
         {
             if ($entrada==''){
-                $valoraciones = Valoracion::orderBy('especialidad->Nombre', 'ASC')->paginate(2);
+                $valoraciones = Valoracion::orderBy('especialidad->Nombre', 'ASC')->paginate(10);
             }
             else 
             {                
                 $valoraciones = Valoracion::whereHas('especialidad_', function($query) use($entrada){
                 $query->where('Nombre', 'like', '%' . $entrada . '%');
-                })->paginate(2);
+                })->paginate(10);
             }
         }
 
         elseif ($tipo=="Nombre paciente")
         {
             if ($entrada==''){
-                $valoraciones = Valoracion::orderBy('paciente->nombres', 'ASC')->paginate(2);
+                $valoraciones = Valoracion::orderBy('paciente->nombres', 'ASC')->paginate(10);
             }
             else 
             {                
                 $valoraciones = Valoracion::whereHas('miembro_', function($query) use($entrada){
                 $query->where('nombres', 'like', '%' . $entrada . '%');
-                })->paginate(2);
+                })->paginate(10);
             }
         }
 
         else
         {
-            $valoraciones = Valoracion::where('paciente', $entrada)->paginate(2);  
+            $valoraciones = Valoracion::where('paciente', $entrada)->paginate(10);  
         }
             return view('vistaValoracion', compact ('valoraciones'));
     }
@@ -166,7 +166,7 @@ class ValoracionesController extends Controller
     {
         $valoracion = Valoracion::findOrFail($id);
         $valoracion->delete();
-        $valoracion = Valoracion::orderBy('paciente', 'ASC')->paginate(2);
+        $valoracion = Valoracion::orderBy('paciente', 'ASC')->paginate(10);
         return redirect()->to('/valoraciones');
     }
 }
