@@ -4,8 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-
-class TestDelta extends Migration
+class CreateTestDeltasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +13,7 @@ class TestDelta extends Migration
      */
     public function up()
     {
-        Schema::create('testDelta', function (Blueprint $table) {
+        Schema::create('test_deltas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
             $table->unsignedBigInteger('paciente')->nullable();
@@ -51,7 +50,6 @@ class TestDelta extends Migration
             $table->integer('total_deficiencia_psiquica')->nullable()->default(0);
             $table->text('descripcion_psiquica')->nullable()->default(0);
             $table->string('encargado_psiquica')->nullable()->default(0);
-
         });
     }
 
@@ -62,6 +60,6 @@ class TestDelta extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('testDelta');
+        Schema::dropIfExists('test_deltas');
     }
 }

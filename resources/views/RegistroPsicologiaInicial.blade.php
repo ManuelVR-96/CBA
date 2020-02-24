@@ -55,7 +55,7 @@
                         <div class="form-group row">
                             <label for="yesavage_uno" class="col-md-4 col-form-label text-md-right">{{ __('En general ¿Está satisfecho con su vida?') }}</label>
                                 <div class="col-md-6">
-                                    <select name="satisfecho_vida" class="form-control @error('yesavage_uno') is-invalid @enderror" value="{{ old('yesavage_uno') }}">>
+                                    <select name="yesavage_uno" class="form-control @error('yesavage_uno') is-invalid @enderror" value="{{ old('yesavage_uno') }}">>
                                         <option value="{{ old('yesavage_uno') }}">{{ old('yesavage_uno') }}</option>
                                         <option value=1>No</option>
                                         <option value=0>Si</option>
@@ -503,6 +503,25 @@
                                     </select>
 
                                     @error('autoestima_nueve')
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                            <label for="autoestima_nueve" class="col-md-4 col-form-label text-md-right">{{ __('Tengo una visión positiva sobre mí mismo/a') }}</label>
+                                <div class="col-md-6">
+                                    <select name="autoestima_diez" type="integer" class="form-control @error('autoestima_diez') is-invalid @enderror" value="{{ old('autoestima_diez') }}">>
+                                        <option value="{{ old('autoestima_diez') }}">{{ old('autoestima_diez') }}</option>
+                                        <option value=1>Totalmente en desacuerdo</option>
+                                        <option value=2>En desacuerdo</option>
+                                        <option value=3>De acuerdo</option>
+                                        <option value=4>Totalmente de acuerdo</option>    
+                                    </select>
+
+                                    @error('autoestima_diez')
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                         </span>

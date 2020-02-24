@@ -32,7 +32,7 @@
             <div class="form-group row">
                 <label for="id" class="col-md-3 col-form-label text-md-right">{{ __('No Identificación') }}</label>
                 <div class="col-md-8">
-                    <input id="cédula" type="text" class="form-control @error('cédula') is-invalid @enderror" name="cédula" autofocus>
+                    <input id="cédula" type="text" class="form-control @error('cédula') is-invalid @enderror" name="cédula" value="{{ old('cédula') }}"autofocus>
 
                     @error('cédula')
                         <span class="invalid-feedback" role="alert">

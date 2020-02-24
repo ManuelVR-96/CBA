@@ -4,6 +4,8 @@ namespace CBA\Http\Controllers;
 
 use Illuminate\Http\Request;
 use CBA\Cliente;
+use CBA\seguimiento_miembro;
+use CBA\test_delta;
 use Carbon\Carbon;
 use Image;
 use CBA\Http\Requests\MiembroStoreRequest;
@@ -114,7 +116,15 @@ class MiembrosController extends Controller
         $nuevoCliente->género = $request->genero;
         $nuevoCliente->medicinas = $request->medicinas;    
         $nuevoCliente->save();
-        return redirect()->route('delta.create', [$nuevoCliente]);
+        $nuevoSeguimiento = new seguimiento_miembro();
+        $nuevoSeguimiento->paciente = $nuevoCliente->id;
+        $nuevoDelta = new test_delta();
+        $nuevoDelta->paciente = $nuevoCliente->id;
+        
+        $nuevoSeguimiento->save();
+        $nuevoDelta->save();
+
+        return redirect()->route('delta.edit', [$nuevoCliente]);
 
         #return  view('registroDelta', compact ($nuevoCliente));
     }

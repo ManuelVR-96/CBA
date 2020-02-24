@@ -60,8 +60,12 @@ class CreateGerontologiaInicialsTable extends Migration
             $table->integer('participacion_siete');
             $table->integer('participacion_ocho');
             $table->integer('participacion_total');
+            $table->text('otros_uno')->nullable();
+            $table->text('otros_dos')->nullable();
+            $table->text('otros_tres')->nullable();
             $table->integer('gerontologia_total');
-            $table->string('encargado');
+            $table->unsignedBigInteger('encargado')->nullable();
+            $table->foreign('encargado')->references('id')->on('users')->onDelete('set null');
 
 
         });

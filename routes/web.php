@@ -29,6 +29,9 @@ Route::resource('/medica_inicial', 'medicaInicialController');
 Route::resource('/nutricional_inicial', 'nutricionalInicialController');
 Route::resource('/psico_inicial', 'psicologicaInicialController');
 Route::resource('/actividad_inicial', 'ActividadInicialController');
+Route::resource('/seguimiento', 'seguimientoController');
+
+
 
 
 Route::post('/usuarios', 'UsuarioController@busqueda')->name('lista_nombres');
@@ -47,6 +50,9 @@ Route::get('/nutricional_inicial/create/{id}', 'nutricionalInicialController@cre
 Route::get('/psico_inicial/create/{id}', 'psicologicaInicialController@create')->name('psico_inicial.create');
 Route::get('/geron_inicial/create/{id}', 'gerontologialInicialController@create')->name('geron_inicial.create');
 Route::get('/fisio_inicial/create/{id}', 'fisioterapiaInicialController@create')->name('fisio_inicial.create');
+Route::get('/seguimiento/create/{id}', 'seguimientoController@create')->name('seguimiento.create');
+
+
 
 
 

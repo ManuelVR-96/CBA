@@ -25,7 +25,8 @@ class CreateMedicinaInicialsTable extends Migration
             $table->text('resumen_fisico');
             $table->text('diagnostico');
             $table->text('conducta');
-            $table->string('encargado');
+            $table->unsignedBigInteger('encargado')->nullable();
+            $table->foreign('encargado')->references('id')->on('users')->onDelete('set null');
             
         });
     }

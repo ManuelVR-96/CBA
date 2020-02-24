@@ -35,7 +35,7 @@
             <div class="form-group row">
                 <label for="id" class="col-md-4 col-form-label text-md-right">{{ __('No Identificación') }}</label>
                 <div class="col-md-7">
-                    <input id="cédula" type="text" class="form-control @error('cédula') is-invalid @enderror" name="cédula" required autocomplete="cédula" value= "{{$miembro->cédula}}">
+                    <input id="cédula" type="text" class="form-control @error('cédula') is-invalid @enderror" name="cédula" value= "{{$miembro->cédula}}">
 
                     @error('cédula')
                         <span class="invalid-feedback" role="alert">

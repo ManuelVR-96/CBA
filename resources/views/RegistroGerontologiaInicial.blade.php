@@ -5,10 +5,12 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Registro Test Psicologico de {{$nuevoCliente->nombres}} {{$nuevoCliente->apellidos}}</div>
+                <div class="card-header">Registro Test Gerontológico de {{$nuevoCliente->nombres}} {{$nuevoCliente->apellidos}}</div>
                 <div class="card-body">
                     <form method="POST" action="{{route('geron_inicial.store')}}">
                         @csrf
+                <input id="miembro" type="hidden" class="form-control @error('miembro') is-invalid @enderror" name="miembro" value="{{ $nuevoCliente->id }}" placeholder = "{{ $nuevoCliente->nombres }}" autofocus readonly="readonly">
+
                         <h5>Cognición</h5>
                         <div class="form-group row">
                             <label for="cognicion_uno" class="col-md-4 col-form-label text-md-right">{{ __('Concentrarse en hacer algo durante diez minutos ?') }}</label>
@@ -194,7 +196,7 @@
                             <div class="form-group row">
                             <label for="movilidad_cuarto" class="col-md-4 col-form-label text-md-right">{{ __('Salir de su casa ?') }}</label>
                                 <div class="col-md-6">
-                                    <select name="movilidad_cuarto" type="integer" class="form-control @error('movilidad_cuarto') is-invalid @enderror" value="{{ old('movilidad_cuatro') }}">>
+                                    <select name="movilidad_cuatro" type="integer" class="form-control @error('movilidad_cuarto') is-invalid @enderror" value="{{ old('movilidad_cuatro') }}">>
                                         <option value="{{ old('movilidad_cuatro') }}">{{ old('movilidad_cuatro') }}</option>
                                         <option value=0>0</option>
                                         <option value=1>1</option>
@@ -695,7 +697,7 @@
                             <div class="form-group row">
                             <label for="participacion_siete" class="col-md-4 col-form-label text-md-right">{{ __('Cuánta dificultad ha tenido su familia debido a su condición de salud?') }}</label>
                                 <div class="col-md-6">
-                                    <select name="relacionarse_siete" type="integer" class="form-control @error('participacion_siete') is-invalid @enderror" value="{{ old('participacion_siete') }}">>
+                                    <select name="participacion_siete" type="integer" class="form-control @error('participacion_siete') is-invalid @enderror" value="{{ old('participacion_siete') }}">>
                                         <option value="{{ old('participacion_siete') }}">{{ old('participacion_siete') }}</option>
                                         <option value=0>0</option>
                                         <option value=1>1</option>

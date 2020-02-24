@@ -7,6 +7,8 @@ use Auth;
 use CBA\Cliente;
 use CBA\User;
 use CBA\NutricionalInicial;
+use Illuminate\Support\Facades\DB;
+
 
 class nutricionalInicialController extends Controller
 {
@@ -27,9 +29,22 @@ class nutricionalInicialController extends Controller
      */
     public function create($id)
     {
-        $nuevoCliente= Cliente::findOrFail($id);
+    $exist = DB::table('nutricional_inicials')->where('paciente', $id)->exists();
+        #return((string)$exist);
         
-        return view ('RegistroNutricionInicial', compact("nuevoCliente"));
+        if ($exist !=1){
+
+        $nuevoCliente= Cliente::findOrFail($id);
+        $encargados= user::all();
+        
+        return view ('registroNutricionInicial', compact("encargados", "nuevoCliente"));
+        }
+
+        else {
+            return "Ya existe";
+        }
+    
+        
     }
 
     /**
@@ -40,6 +55,7 @@ class nutricionalInicialController extends Controller
      */
     public function store(Request $request)
     {   $nuevoNutricional = new NutricionalInicial();
+        $nuevoNutricional->paciente = $request->miembro;
         $nuevoNutricional->cantidad_comida = $request->cantidad_comida;
         $nuevoNutricional->perdida_peso = $request->perdida_peso;
         $nuevoNutricional->movilidad = $request->movilidad;
@@ -47,8 +63,8 @@ class nutricionalInicialController extends Controller
         $nuevoNutricional->problemas_neuropsicologicos = $request->problemas_neuropsicologicos;
         $nuevoNutricional->imc = $request->imc;
         $nuevoNutricional->pantorrila = $request->pantorrila;
-        $nuevoNutricional->total_cribaje = $request->total_cribaje;
-        $nuevoNutricional->encargado_nutricional = $request->encargado_nutricional;
+        $nuevoNutricional->total_cribaje = $request->cantidad_comida + $request->perdida_peso + $request->movilidad + $request->situacion_estres + $request->problemas_neuropsicologicos + $request->imc;
+        #$nuevoNutricional->encargado_nutricional = $request->encargado_nutricional;
         $nuevoNutricional->antecedentes_nutricionales = $request->antecedentes_nutricionales;
         $nuevoNutricional->consumo_alimentos = $request->consumo_alimentos;
         $nuevoNutricional->altura = $request->altura;
@@ -72,7 +88,18 @@ class nutricionalInicialController extends Controller
      */
     public function show($id)
     {
-        //
+        $exist = DB::table('nutricional_inicials')->where('paciente', $id)->exists();
+        #return((string)$exist);
+        
+        if ($exist ==1){
+        $nutricional_inicial = NutricionalInicial::Where('paciente', $id)->first();
+        $nuevoCliente= Cliente::findOrFail($id);
+        return view ('Ver_NutricionalInicial', compact("nutricional_inicial", "nuevoCliente"));
+        }
+
+        else {
+            return "No existe registro!";
+        }
     }
 
     /**
