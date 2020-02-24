@@ -26,20 +26,22 @@ class TestDelta extends Migration
             $table->integer('dependencia_alimentacion');
             $table->integer('dependencia_esfinteriana');
             $table->integer('dependencia_tratamientos');
-            //$table->string('encargado_enfermeria');
+            $table->string('encargado_general');            
             $table->integer('cuidados_enfermeria');
             $table->integer('necesidad_vigilancia');
             $table->integer('colaboracion');
             $table->integer('total_dependencia_general');
             $table->text('descripcion_dependencia');
+            //DEPENDENCIA FISICA
             $table->integer('fisica_estabilidad');
             $table->integer('vision_audicion');
             $table->integer('fisica_locomotor');
             $table->integer('fisica_neurologicas');
             $table->integer('fisica_cardiovascular');
             $table->integer('total_deficiencia_fisica');
-            $table->integer('descripcion_fisica');
+            $table->text('descripcion_fisica');
             $table->string('encargado_fisica');
+            //DEPENDENCIA PSIQUICA
             $table->integer('lenguaje_comprension');
             $table->integer('orientacion_memoria');
             $table->integer('trastorno_comportamiento');

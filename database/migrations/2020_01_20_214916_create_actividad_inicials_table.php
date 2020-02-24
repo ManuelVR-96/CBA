@@ -26,8 +26,8 @@ class CreateActividadInicialsTable extends Migration
             $table->string('desea_practicar');
             $table->text('observaciones_actfi');
             $table->text('evaluacion');
-            $table->string('encargado');
-
+            $table->unsignedBigInteger('encargado')->nullable();
+            $table->foreign('encargado')->references('id')->on('users')->onDelete('set null');
         });
     }
 

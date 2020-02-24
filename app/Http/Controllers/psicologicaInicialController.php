@@ -69,7 +69,7 @@ class psicologicaInicialController extends Controller
         $nuevoPsicologica->autoestima_nueve= $request->autoestima_nueve;
         $nuevoPsicologica->autoestima_diez= $request->autoestima_diez;
         $nuevoPsicologica->autoestima_total= $request->autoestima_total;
-        $nuevoPsicologica->encargado= $request->encargado;
+        $nuevoPsicologica->encargado= Auth::user()->id;
         $nuevoPsicologica->save();
 
         return back();

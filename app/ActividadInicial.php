@@ -10,4 +10,9 @@ class ActividadInicial extends Model
     {
         return $this->belongsTo('CBA\Cliente'::Class, 'miembro', 'id');
     }
+
+    public function encargado_()
+    {
+        return $this->belongsTo(User::Class, 'encargado', 'id');
+    }
 }

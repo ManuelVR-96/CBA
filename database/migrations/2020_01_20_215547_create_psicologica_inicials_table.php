@@ -47,10 +47,8 @@ class CreatePsicologicaInicialsTable extends Migration
             $table->integer('autoestima_nueve');
             $table->integer('autoestima_diez');
             $table->integer('autoestima_total');
-            $table->string('encargado');
-
-
-
+            $table->unsignedBigInteger('encargado')->nullable();
+            $table->foreign('encargado')->references('id')->on('users')->onDelete('set null');
 
         });
     }

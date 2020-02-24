@@ -26,7 +26,6 @@ class CreateNutricionalInicialsTable extends Migration
             $table->integer('imc');
             $table->integer('pantorrila');
             $table->integer('total_cribaje');
-            $table->string('encargado_nutricional');
             $table->text('antecedentes_nutricionales');
             $table->text('consumo_alimentos');
             $table->integer('altura');
@@ -36,7 +35,8 @@ class CreateNutricionalInicialsTable extends Migration
             $table->integer('peso_actual');
             $table->text('hallazgos_clinicos');
             $table->text('diagnosticos_nutricional');
-            $table->string('encargado');
+            $table->unsignedBigInteger('encargado')->nullable();
+            $table->foreign('encargado')->references('id')->on('users')->onDelete('set null');
         });
     }
 

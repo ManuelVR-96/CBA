@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use CBA\Cliente;
 use CBA\User;
-use CBA\NutricionalInicial;
+use CBA\MedicinaInicial;
 
 class medicaInicialController extends Controller
 {
@@ -39,7 +39,7 @@ class medicaInicialController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   $nuevoMedica = new MedicaInicial();
+    {   $nuevoMedica = new MedicinaInicial();
         $nuevoMedica->antecedentes_patologicos = $request->antecedentes_patologicos;
         $nuevoMedica->morbilidad_actual = $request->morbilidad_actual;
         $nuevoMedica->consumo_medicinas = $request->consumo_medicinas;

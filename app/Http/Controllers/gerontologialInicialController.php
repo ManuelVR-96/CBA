@@ -83,7 +83,7 @@ class gerontologialInicialController extends Controller
         $nuevaGerontologia->participacion_ocho=$request->participacion_ocho;
         $nuevaGerontologia->participacion_total=$request->participacion_total;
         $nuevaGerontologia->gerontologia_total=$request->gerontologia_total;
-        $nuevaGerontologia->encargado=$request->encargado;
+        $nuevaGerontologia->encargado=Auth::user()->id;
         $nuevaGerontologia->save();
         return back();
     }

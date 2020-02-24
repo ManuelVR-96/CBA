@@ -23,6 +23,7 @@ class CreateFisioterapiaInicialsTable extends Migration
             $table->text('medicamentos');
             $table->text('actividad_diaria');
             $table->text('gusta_realizar');
+            $table->string('estado_fisioterapia');
             $table->integer('escala_glasgow_ojos');
             $table->integer('escala_glasgow_motora');
             $table->integer('escala_glasgow_verbal');
@@ -99,10 +100,11 @@ class CreateFisioterapiaInicialsTable extends Migration
             $table->text('flexores_dorsales');
             $table->text('extensores_cadera_rodilla');
             //Escala fuerza muscular
-            $table->integer('escala_fuerza_muscular');
+            $table->string('escala_fuerza_muscular');
             //Test de Romberg
-            $table->text('romberg_estatica');
-            $table->text('romberg_dinamica');
+            $table->string('romberg_estatica');
+            $table->string('romberg_dinamica');
+            $table->text('descripcion_romberg');
             //Coordinacion
             $table->string('mmss_dedo_dedo_derecho'); 
             $table->string('mmss_dedo_dedo_izquierdo');
@@ -136,8 +138,8 @@ class CreateFisioterapiaInicialsTable extends Migration
             $table->text('marcha_observaciones');
             $table->text('diagnostico_fisioterapeutico');
             $table->text('conducta'); 
-            $table->string('encargado');
-
+            $table->unsignedBigInteger('encargado')->nullable();
+            $table->foreign('encargado')->references('id')->on('users')->onDelete('set null');
         });
     }
 
