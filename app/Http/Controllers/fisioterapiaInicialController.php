@@ -7,6 +7,8 @@ use Auth;
 use CBA\Cliente;
 use CBA\User;
 use CBA\FisioterapiaInicial;
+use Illuminate\Support\Facades\DB;
+
 
 class fisioterapiaInicialController extends Controller
 {
@@ -27,9 +29,20 @@ class fisioterapiaInicialController extends Controller
      */
     public function create($id)
     {
-        $nuevoCliente= Cliente::findOrFail($id);
+        $exist = DB::table('fisioterapia_inicials')->where('paciente', $id)->exists();
+        #return($exist);
         
+        if ($exist !=1){
+
+        $nuevoCliente= Cliente::findOrFail($id);
+       
         return view ('RegistroFisioterapiaInicial', compact("nuevoCliente"));
+        }
+
+        else {
+            return "Ya existe";
+        }
+  
     }
 
     /**
@@ -40,11 +53,13 @@ class fisioterapiaInicialController extends Controller
      */
     public function store(Request $request)
     {   $nuevaFisioterapia = new FisioterapiaInicial();
+        $nuevaFisioterapia->paciente = $request->miembro;
         $nuevaFisioterapia->antecedentes= $request->antecedentes;
         $nuevaFisioterapia->situacion_salud= $request->situacion_salud;
         $nuevaFisioterapia->medicamentos= $request->medicamentos;
         $nuevaFisioterapia->actividad_diaria= $request->actividad_diaria;
         $nuevaFisioterapia->gusta_realizar= $request->gusta_realizar;
+        $nuevaFisioterapia->estado_fisioterapia = $request->estado_fisioterapia;
         $nuevaFisioterapia->escala_glasgow_ojos= $request->escala_glasgow_ojos;
         $nuevaFisioterapia->escala_glasgow_motora= $request->escala_glasgow_motora;
         $nuevaFisioterapia->escala_glasgow_verbal= $request->escala_glasgow_verbal;
@@ -88,13 +103,13 @@ class fisioterapiaInicialController extends Controller
         $nuevaFisioterapia->flexores_cadera= $request->flexores_cadera;
         $nuevaFisioterapia->abductores_cadera= $request->abductores_cadera;
         $nuevaFisioterapia->aductores_cadera= $request->aductores_cadera;
-        $nuevaFisioterapia->extensores_cadera= $request->extensores_cadera;
+        $nuevaFisioterapia->extensores_cadera_sup= $request->extensores_cadera_sup;
         $nuevaFisioterapia->aductores_hombro= $request->aductores_hombro;
         $nuevaFisioterapia->flexores_hombro= $request->flexores_hombro;
         $nuevaFisioterapia->extensores_hombro= $request->extensores_hombro;
         $nuevaFisioterapia->abductores_horizontales_hombro= $request->abductores_horizontales_hombro;
         $nuevaFisioterapia->abductores_hombro= $request->abductores_hombro;
-        $nuevaFisioterapia->aductores_hombro= $request->aductores_hombro;
+        $nuevaFisioterapia->aductores_hombro_sup= $request->aductores_hombro_sup;
         $nuevaFisioterapia->rotadores_mediales_hombro= $request->rotadores_mediales_hombro;
         $nuevaFisioterapia->rotadores_laterales_hombro= $request->rotadores_laterales_hombro;
         $nuevaFisioterapia->flexores_codo= $request->flexores_codo;
@@ -113,7 +128,7 @@ class fisioterapiaInicialController extends Controller
         $nuevaFisioterapia->rotadores_mediales= $request->rotadores_mediales;
         $nuevaFisioterapia->rotadores_laterales_cadera= $request->rotadores_laterales_cadera;
         $nuevaFisioterapia->romboideos= $request->romboideos;
-        $nuevaFisioterapia->extensores_codo= $request->extensores_codo;
+        $nuevaFisioterapia->extensores_codo_hombro= $request->extensores_codo_hombro;
         $nuevaFisioterapia->extensores_cadera= $request->extensores_cadera;
         $nuevaFisioterapia->isquiotibiales= $request->isquiotibiales;
         $nuevaFisioterapia->cuadriceps= $request->cuadriceps;
@@ -136,7 +151,7 @@ class fisioterapiaInicialController extends Controller
         $nuevaFisioterapia->mmii_talon_rodilla_derecho= $request->mmii_talon_rodilla_derecho; 
         $nuevaFisioterapia->mmii_talon_rodilla_izquierdo= $request->mmii_talon_rodilla_izquierdo; 
         $nuevaFisioterapia->mmii_marcha_cruzada_derecho= $request->mmii_marcha_cruzada_derecho; 
-        $nuevaFisioterapia->mmii_marcha_izquierda_izquierdo= $request->mmii_marcha_izquierda_izquierdo; 
+        $nuevaFisioterapia->mmii_marcha_cruzada_izquierdo= $request->mmii_marcha_cruzada_izquierdo; 
         $nuevaFisioterapia->observaciones_coordinacion= $request->observaciones_coordinacion;
         // Control Postural
         $nuevaFisioterapia->actitud_postural= $request->actitud_postural;
@@ -150,9 +165,9 @@ class fisioterapiaInicialController extends Controller
         $nuevaFisioterapia->despegue_dedos_derecho= $request->despegue_dedos_derecho; 
         $nuevaFisioterapia->despegue_dedos_izquierdo= $request->despegue_dedos_izquierdo; 
         $nuevaFisioterapia->aceleracion_izquierdo= $request->aceleracion_izquierdo; 
-        $nuevaFisioterapia->aceleracion_derecha= $request->aceleracion_derecho; 
+        $nuevaFisioterapia->aceleracion_derecho= $request->aceleracion_derecho; 
         $nuevaFisioterapia->desaceleracion_izquierdo= $request->desaceleracion_izquierdo; 
-        $nuevaFisioterapia->desaceleracion_derecha= $request->desaceleracion_derecho; 
+        $nuevaFisioterapia->desaceleracion_derecho= $request->desaceleracion_derecho; 
         $nuevaFisioterapia->doble_apoyo_derecho= $request->doble_apoyo_derecho; 
         $nuevaFisioterapia->doble_apoyo_izquierdo= $request->doble_apoyo_izquierdo; 
         $nuevaFisioterapia->marcha_observaciones= $request->marcha_observaciones;
@@ -172,8 +187,19 @@ class fisioterapiaInicialController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
+    
     {
-        //
+        $exist = DB::table('fisioterapia_inicials')->where('paciente', $id)->exists();
+
+        if($exist==1){
+        $fisio_inicial = FisioterapiaInicial::Where('paciente', $id)->first();
+        $nuevoCliente= Cliente::findOrFail($id);
+        return view ('Ver_FisioInicial', compact("fisio_inicial", "nuevoCliente"));
+        }
+
+        else{
+            return "No existe";
+        }
     }
 
     /**
@@ -196,7 +222,7 @@ class fisioterapiaInicialController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**

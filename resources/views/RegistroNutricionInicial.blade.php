@@ -7,15 +7,13 @@
 
 <div class="container">
     <form method="POST" class="form" action="{{route('nutricional_inicial.store')}}">
-        <div class="card-header form-tittle_">Registro Evaluación Nutricional: {{$nuevoCliente->nombres}} {{$nuevoCliente->apellidos}}</div>
-        
+        <div class="card-header form-tittle_">Registro Evaluación Nutricional de: {{$nuevoCliente->nombres}} {{$nuevoCliente->apellidos}}</div>
         @csrf
         <div class="form-group row">
             <input id="miembro" type="hidden" class="form-control @error('miembro') is-invalid @enderror" name="miembro" value="{{ $nuevoCliente->id }}" placeholder = "{{ $nuevoCliente->nombres }}" autofocus readonly="readonly">
         </div>
 
-        <div class="form-header"><h1 class="form-tittle">{{ __('EVALUACIÓN NUTRICIONAL') }}</h1></div><br>
-
+        <div class="form-header2"><h1 class="form-tittle2">{{ __('EVALUACIÓN NUTRICIONAL') }}</h1></div>
         <div class="form-header2"><h1 class="form-tittle2">{{ __('Cribaje del mini nutritional assessment (MNA)') }}</h1></div><br>
         <div class="form-group row">
             <label for="cantidad_comida" class="col-md-6 col-form-label ">{{ __('A. Ha comido menos por falta de apetito, problemas digestivos, dificultades de masticación o deglución en los últimos 3 meses?') }}</label>
@@ -144,9 +142,8 @@
                 @enderror
             </div>
         </div>
-        Responsable
 
-        <div class="form-header"><h1 class="form-tittle">{{ __('EVALUACIÓN ANTROPOMÉTRICA Y CLÍNICA') }}</h1></div><br>
+        <div class="form-header2"><h1 class="form-tittle2">{{ __('EVALUACIÓN ANTROPOMÉTRICA Y CLÍNICA') }}</h1></div><br>
         <div class="form-group row">
             <label for="antecedentes_nutricionales" class="col-md-6 col-form-label ">{{ __('Antecedentes nutricionales') }}</label>
             <div class="col-md-6">
@@ -261,7 +258,7 @@
         </div>
         <br>
         <button type="submit" class="btn-submit">
-            {{ __('Guardar y agregar Valoraciones') }}
+            {{ __('GUARDAR Y AGREGAR VALORACIÓN') }}
         </button>
          
         </div>

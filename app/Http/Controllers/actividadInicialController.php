@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use Auth;
 use CBA\Cliente;
 use CBA\User;
-use CBA\NutricionalInicial;
+use CBA\ActividadInicial;
+use Illuminate\Support\Facades\DB;
+
 
 class actividadInicialController extends Controller
 {
@@ -26,10 +28,26 @@ class actividadInicialController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create($id)
+    
     {
+
+        $exist = DB::table('actividad_inicials')->where('paciente', $id)->exists();
+        #return($exist);
+        
+        if ($exist !=1){
+
         $nuevoCliente= Cliente::findOrFail($id);
+        $encargados= user::all();
         
         return view ('registroActividadInicial', compact("nuevoCliente"));
+        }
+
+        else {
+            return "Ya existe";
+        }
+        
+        
+        
     }
 
     /**
@@ -39,24 +57,26 @@ class actividadInicialController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   $nuevoFisica = new ActividadInicial();
-        $nuevoFisica->tiempo_libre = $request->tiempo_libre;
-        $nuevoFisica->tiene_hobbies = $request->tiene_hobbies;
-        $nuevoFisica->aun_practica = $request->aun_practica;
-        $nuevoFisica->cual_hobbies = $request->cual_hobbies;
-        $nuevoFisica->compañia_hobbies = $request->compañia_hobbies;
-        $nuevoFisica->cual_hobbies = $request->actividades;
-        $nuevoFisica->cual_hobbies = $request->trabajos;
-        $nuevoFisica->cual_hobbies = $request->aun_fisica;
-        $nuevoFisica->cual_hobbies = $request->cual_fisica;
-        $nuevoFisica->cual_hobbies = $request->frecuencia_fisica;
-        $nuevoFisica->compañia_hobbies = $request->compañia_fisica;
-        $nuevoFisica->desea_fisica = $request->desea_fisica;
-        $nuevoFisica->observaciones_actfi = $request->observaciones_actfi;
-        $nuevoFisica->evaluacion= $request->evaluacion;
-        $nuevoFisica->encargado= Auth::user()->id;
-        $nuevoDelta->save();
-       
+    {  $ds = implode(",", $request->get('desea_fisica'));
+       $nuevoActividad = new ActividadInicial();
+       $nuevoActividad->paciente=$request->miembro;
+       $nuevoActividad->trabajos=$request->trabajos;
+       $nuevoActividad->aun_fisica=$request->aun_fisica;
+       $nuevoActividad->cual_fisica=$request->cual_fisica;
+       $nuevoActividad->frecuencia_fisica=$request->frecuencia_fisica;
+       $nuevoActividad->compañia_fisica=$request->compañia_fisica;
+       $nuevoActividad->desea_fisica= $ds;
+       $nuevoActividad->tiempo_libre=$request->tiempo_libre;
+       $nuevoActividad->tiene_hobbies=$request->tiene_hobbies; 
+       $nuevoActividad->cual_hobbies=$request->cual_hobbies;
+       $nuevoActividad->compañia_recreacion=$request->compañia_recreacion;
+       $nuevoActividad->quiere_realizar_recreacion= implode(",", $request->get('quiere_realizar_recreacion'));
+       $nuevoActividad->observaciones=$request->observaciones;
+       $nuevoActividad->evaluacion=$request->evaluacion; 
+       $nuevoActividad->encargado=Auth::user()->id;
+       $nuevoActividad->save();
+
+
         return back();
 
     }
@@ -68,8 +88,21 @@ class actividadInicialController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
+
     {
-        //
+        $exist = DB::table('actividad_inicials')->where('paciente', $id)->exists();
+        if ($exist==1){
+        $acti_Inicial = ActividadInicial::Where('paciente', $id)->first();
+        $nuevoCliente= Cliente::findOrFail($id);
+        $array_fisica=explode(",", $acti_Inicial->desea_fisica);
+        $array_recreacion=explode("," , $acti_Inicial->quiere_realizar_recreacion);
+        $b= in_array("Integraciones",$array_recreacion);
+        return view ('Ver_ActividadInicial', compact("acti_Inicial", "nuevoCliente", "array_recreacion","array_fisica"));
+        }
+
+        else {
+            return "No existe";
+        }
     }
 
     /**

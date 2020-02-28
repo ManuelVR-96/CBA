@@ -18,7 +18,7 @@
             @csrf                               
 
             <div class="form-group row">
-                <label for="nombre" class="col-md-3 col-form-label text-md-right">{{ __('Nombre') }}</label>
+                <label for="nombre" class="col-md-3 col-form-label">{{ __('Nombre') }}</label>
                 <div class="col-md-8">
                     <input id="nombre" type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre" value="{{ old('nombre') }}" required autocomplete="nombre" autofocus>
 
@@ -32,7 +32,7 @@
             </div>  
 
             <div class="form-group row">
-                <label for="encargado" class="col-md-3 col-form-label text-md-right">{{ __('Encargado') }}</label>
+                <label for="encargado" class="col-md-3 col-form-label">{{ __('Encargado') }}</label>
                 <div class="col-md-8">
                     
                     <select id="encargado" type="text" class="form-control @error('encargado') is-invalid @enderror" name="encargado" value="{{ old('encargado') }}" required autocomplete="encargado" autofocus>
@@ -50,7 +50,7 @@
             </div>                       
 
             <div class="form-group row">
-                <label for="descripcion" class="col-md-3 col-form-label text-md-right">{{ __('Descripción') }}</label>
+                <label for="descripcion" class="col-md-3 col-form-label">{{ __('Descripción') }}</label>
                 <div class="col-md-8">
                     <Textarea id="descripcion" type="text" class="form-control @error('descripcion') is-invalid @enderror" name="descripcion" value="{{ old('descripcion') }}" required autocomplete="descripcion" autofocus></textarea>
 
@@ -64,7 +64,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="encargado" class="col-md-3 col-form-label text-md-right">{{ __('Especialidad') }}</label>
+                <label for="encargado" class="col-md-3 col-form-label">{{ __('Especialidad') }}</label>
                 <div class="col-md-8">
                     
                     <select id="encargado" type="text" class="form-control @error('encargado') is-invalid @enderror" name="especialidad" value="{{ old('encargado') }}" required autocomplete="encargado" autofocus>
@@ -82,7 +82,7 @@
             </div>
 
             <div class="form-group row">                            
-                <label for="agenda" class="col-md-3 col-form-label text-md-right">{{ __('Agenda') }}</label>
+                <label for="agenda" class="col-md-3 col-form-label">{{ __('Agenda') }}</label>
                     <div class="col-md-8">
                         <input class="form-control @error('agenda') is-invalid @enderror" name="agenda" value="{{ old('agenda') }}" type="date">                                        
                     </div>                           

@@ -17,7 +17,7 @@
             @csrf
 
             <div class="form-group row">
-                <label for="avatar" class="col-md-3 col-form-label text-md-right">{{ __('Foto de perfil') }}</label>
+                <label for="avatar" class="col-md-3 col-form-label">{{ __('Foto de perfil') }}</label>
                 <div class="col-md-8">
                     <input type="file" name="avatar" class="form-control">
 
@@ -30,7 +30,7 @@
             </div>
             
             <div class="form-group row">
-                <label for="id" class="col-md-3 col-form-label text-md-right">{{ __('No Identificación') }}</label>
+                <label for="id" class="col-md-3 col-form-label">{{ __('No Identificación') }}</label>
                 <div class="col-md-8">
                     <input id="cedula" type="text" class="form-control @error('cedula') is-invalid @enderror" name="cedula" value="{{ old('cedula') }}">
 
@@ -43,7 +43,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="nombres" class="col-md-3 col-form-label text-md-right">{{ __('Nombres') }}</label>
+                <label for="nombres" class="col-md-3 col-form-label">{{ __('Nombres') }}</label>
                 <div class="col-md-8">
                     <input id="nombres" type="text" class="form-control @error('nombres') is-invalid @enderror" name="nombres" value="{{ old('nombres') }}"  autofocus>
                     
@@ -56,7 +56,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="apellidos" class="col-md-3 col-form-label text-md-right">{{ __('Apellidos') }}</label>
+                <label for="apellidos" class="col-md-3 col-form-label">{{ __('Apellidos') }}</label>
                 <div class="col-md-8">
                     <input id="apellidos" type="text" class="form-control @error('apellidos') is-invalid @enderror" name="apellidos" value="{{ old('apellidos') }}" autofocus>
 
@@ -69,7 +69,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="nivel" class="col-md-3 col-form-label text-md-right">{{ __('Nivel Educativo') }}</label>
+                <label for="nivel" class="col-md-3 col-form-label">{{ __('Nivel Educativo') }}</label>
                 <div class="col-md-8">
                     <select name="nivel" class="form-control @error('nivel') is-invalid @enderror" value="{{ old('nivel') }}" name="nivel">>
                         <option value="{{ old('nivel') }}">{{ old('nivel') }}</option>
@@ -88,7 +88,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="formacion" class="col-md-3 col-form-label text-md-right">{{ __('Formación') }}</label>
+                <label for="formacion" class="col-md-3 col-form-label">{{ __('Formación') }}</label>
                 <div class="col-md-8">
                     <input id="formacion" type="text" class="form-control @error('formacion') is-invalid @enderror" name="formacion" value="{{ old('formacion') }}"  autofocus>
 
@@ -101,7 +101,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="perfil" class="col-md-3 col-form-label text-md-right">{{ __('Rol') }}</label>
+                <label for="perfil" class="col-md-3 col-form-label">{{ __('Rol') }}</label>
                 <div class="col-md-8">
                     <select name="perfil" class="form-control @error('perfil') is-invalid @enderror" value="{{ old('perfil') }}" >
                         <option value="{{old('perfil')}}">{{old('perfil')}}</option>                                   
@@ -117,7 +117,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="encargado" class="col-md-3 col-form-label text-md-right">{{ __('Cargo') }}</label>
+                <label for="encargado" class="col-md-3 col-form-label">{{ __('Cargo') }}</label>
                 <div class="col-md-8">
                     
                     <select id="cargo" type="text" class="form-control @error('cargo') is-invalid @enderror" name="cargo" value="{{ old('cargo') }}"  autofocus>
@@ -136,7 +136,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="direccion" class="col-md-3 col-form-label text-md-right">{{ __('Dirección') }}</label>
+                <label for="direccion" class="col-md-3 col-form-label">{{ __('Dirección') }}</label>
                 <div class="col-md-8">
                     <input id="direccion" type="text" class="form-control @error('direccion') is-invalid @enderror" name="direccion" value="{{ old('direccion') }}"autofocus>
 
@@ -149,7 +149,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="telefono" class="col-md-3 col-form-label text-md-right">{{ __('Telefono') }}</label>
+                <label for="telefono" class="col-md-3 col-form-label">{{ __('Telefono') }}</label>
                 <div class="col-md-8">
                     <input id="telefono" type="integer" class="form-control @error('telefono') is-invalid @enderror" name="telefono" value="{{ old('telefono') }}" autofocus>
 
@@ -162,21 +162,21 @@
             </div>
 
             <div class="form-group row">                            
-                <label for="nacimiento" class="col-md-3 col-form-label text-md-right">{{ __('Fecha de Nacimiento') }}</label>
+                <label for="nacimiento" class="col-md-3 col-form-label">{{ __('Fecha de Nacimiento') }}</label>
                     <div class="col-md-8">
                         <input class="form-control @error('nacimiento') is-invalid @enderror" name="nacimiento" value="{{ old('nacimiento') }}" type="date">                                        
                     </div>                           
             </div>
 
             <div class="form-group row">                            
-            <label for="vinculacion" class="col-md-3 col-form-label text-md-right">{{ __('Fecha de Vinculación') }}</label>
+            <label for="vinculacion" class="col-md-3 col-form-label">{{ __('Fecha de Vinculación') }}</label>
                 <div class="col-md-8">
                 <input class="form-control @error('vinculacion') is-invalid @enderror" name="vinculacion" value="{{ old('vinculacion') }}" type="date">                                        
                 </div>                           
             </div>
 
             <div class="form-group row">
-                <label for="email" class="col-md-3 col-form-label text-md-right">{{ __('Correo Electronico') }}</label>
+                <label for="email" class="col-md-3 col-form-label">{{ __('Correo Electronico') }}</label>
                 <div class="col-md-8">
                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}">
                     
@@ -189,7 +189,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="password" class="col-md-3 col-form-label text-md-right">{{ __('Contraseña') }}</label>
+                <label for="password" class="col-md-3 col-form-label">{{ __('Contraseña') }}</label>
                 <div class="col-md-8">
                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password">
 
@@ -202,7 +202,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="password-confirm" class="col-md-3 col-form-label text-md-right">{{ __('Confirmar Contraseña') }}</label>
+                <label for="password-confirm" class="col-md-3 col-form-label">{{ __('Confirmar Contraseña') }}</label>
                 <div class="col-md-8">
                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
                 </div>

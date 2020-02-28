@@ -7,6 +7,8 @@ use Auth;
 use CBA\Cliente;
 use CBA\User;
 use CBA\PsicologicaInicial;
+use Illuminate\Support\Facades\DB;
+
 
 class psicologicaInicialController extends Controller
 {
@@ -26,10 +28,21 @@ class psicologicaInicialController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create($id)
-    {
-        $nuevoCliente= Cliente::findOrFail($id);
+    {   
+        $exist = DB::table('psicologica_inicials')->where('paciente', $id)->exists();
+        #return($exist);
         
-        return view ('RegistroPsicologiaInicial', compact("nuevoCliente"));
+        if ($exist !=1)
+        {
+            $nuevoCliente= Cliente::findOrFail($id);       
+            return view ('RegistroPsicologiaInicial', compact("nuevoCliente"));
+        }
+
+        else 
+        {
+            return "Ya existe";
+        }
+      
     }
 
     /**
@@ -39,13 +52,16 @@ class psicologicaInicialController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   $nuevoPsicologica = new testDelta();
+    {   
+        $nuevoPsicologica = new PsicologicaInicial();
+        $yesavage_total = $request->yesavage_uno + $request->yesavage_dos + $request->yesavage_tres + $request->yesavage_cuatro + $request->yesavage_cinco + $request->yesavage_seis + $request->yesavage_siete + $request->yesavage_ocho + $request->yesavage_nueve + $request->yesavage_diez + $request->yesavage_once + $request->yesavage_doce + $request->yesavage_trece + $request->yesavage_catorce + $request->yesavage_quince;
+        $nuevoPsicologica->paciente = $request->miembro;
+        $autoestima_total = $request->autoestima_uno + $request->autoestima_dos + $request->autoestima_tres + $request->autoestima_cuatro + $request->autoestima_cinco + $request->autoestima_seis + $request->autoestima_siete + $request->autoestima_ocho + $request->autoestima_nueve + $request->autoestima_diez;
         $nuevoPsicologica->escala_pfeffer = $request->escala_pfeffer;
-        $nuevoPsicologica->minimental = $request->minimental;
         $nuevoPsicologica->yesavage_uno = $request->yesavage_uno;
         $nuevoPsicologica->yesavage_dos = $request->yesavage_dos;
         $nuevoPsicologica->yesavage_tres = $request->yesavage_tres;
-        $nuevoPsicologica->yesavage_cuatro = $request->yesavage_cuatrp;
+        $nuevoPsicologica->yesavage_cuatro = $request->yesavage_cuatro;
         $nuevoPsicologica->yesavage_cinco= $request->yesavage_cinco;
         $nuevoPsicologica->yesavage_seis= $request->yesavage_seis;
         $nuevoPsicologica->yesavage_siete= $request->yesavage_siete;
@@ -57,7 +73,7 @@ class psicologicaInicialController extends Controller
         $nuevoPsicologica->yesavage_trece= $request->yesavage_trece;
         $nuevoPsicologica->yesavage_catorce= $request->yesavage_catorce;
         $nuevoPsicologica->yesavage_quince= $request->yesavage_quince;
-        $nuevoPsicologica->yesavage_total= $request->yesavage_total;
+        $nuevoPsicologica->yesavage_total= $yesavage_total;
         $nuevoPsicologica->autoestima_uno= $request->autoestima_uno;
         $nuevoPsicologica->autoestima_dos= $request->autoestima_dos;
         $nuevoPsicologica->autoestima_tres= $request->autoestima_tres;
@@ -68,10 +84,9 @@ class psicologicaInicialController extends Controller
         $nuevoPsicologica->autoestima_ocho= $request->autoestima_ocho;
         $nuevoPsicologica->autoestima_nueve= $request->autoestima_nueve;
         $nuevoPsicologica->autoestima_diez= $request->autoestima_diez;
-        $nuevoPsicologica->autoestima_total= $request->autoestima_total;
+        $nuevoPsicologica->autoestima_total= $autoestima_total;
         $nuevoPsicologica->encargado= Auth::user()->id;
         $nuevoPsicologica->save();
-
         return back();
     }
 
@@ -83,7 +98,20 @@ class psicologicaInicialController extends Controller
      */
     public function show($id)
     {
-        //
+        $exist = DB::table('psicologica_inicials')->where('paciente', $id)->exists();
+        #return((string)$exist);
+        
+        if ($exist ==1)
+        {
+            $psico_inicial = PsicologicaInicial::Where('paciente', $id)->first();
+            $nuevoCliente= Cliente::findOrFail($id);
+            return view ('Ver_PsicologicaInicial', compact("psico_inicial", "nuevoCliente"));
+        }
+
+        else 
+        {
+            return "No existe registro!";
+        }
     }
 
     /**
@@ -94,7 +122,7 @@ class psicologicaInicialController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**

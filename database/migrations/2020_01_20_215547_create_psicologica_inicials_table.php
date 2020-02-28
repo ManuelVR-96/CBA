@@ -19,7 +19,7 @@ class CreatePsicologicaInicialsTable extends Migration
             $table->unsignedBigInteger('paciente');
             $table->foreign('paciente')->references('id')->on('clientes')->onDelete('cascade');
             $table->integer('escala_pfeffer');
-            $table->integer('minimental');
+            $table->integer('minimental')->nullable();
             $table->integer('yesavage_uno');
             $table->integer('yesavage_dos');
             $table->integer('yesavage_tres');
@@ -49,6 +49,9 @@ class CreatePsicologicaInicialsTable extends Migration
             $table->integer('autoestima_total');
             $table->unsignedBigInteger('encargado')->nullable();
             $table->foreign('encargado')->references('id')->on('users')->onDelete('set null');
+
+
+
 
         });
     }

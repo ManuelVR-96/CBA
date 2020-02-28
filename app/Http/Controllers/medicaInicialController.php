@@ -7,6 +7,7 @@ use Auth;
 use CBA\Cliente;
 use CBA\User;
 use CBA\MedicinaInicial;
+use Illuminate\Support\Facades\DB;
 
 class medicaInicialController extends Controller
 {
@@ -27,9 +28,19 @@ class medicaInicialController extends Controller
      */
     public function create($id)
     {
-        $nuevoCliente= Cliente::findOrFail($id);
+    $exist = DB::table('medicina_inicials')->where('paciente', $id)->exists();    
         
-        return view ('registroMedicinaInicial', compact("nuevoCliente"));
+        if ($exist !=1){
+
+            $nuevoCliente= Cliente::findOrFail($id);       
+            return view ('RegistroMedicinaInicial', compact("nuevoCliente"));
+        }
+
+        else 
+        {
+            return "Ya existe";
+        }    
+       
     }
 
     /**
@@ -39,7 +50,9 @@ class medicaInicialController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   $nuevoMedica = new MedicinaInicial();
+    {   
+        $nuevoMedica = new MedicinaInicial();
+        $nuevoMedica->paciente = $request->miembro;
         $nuevoMedica->antecedentes_patologicos = $request->antecedentes_patologicos;
         $nuevoMedica->morbilidad_actual = $request->morbilidad_actual;
         $nuevoMedica->consumo_medicinas = $request->consumo_medicinas;
@@ -48,10 +61,9 @@ class medicaInicialController extends Controller
         $nuevoMedica->diagnostico = $request->diagnostico;
         $nuevoMedica->conducta = $request->conducta;
         $nuevoMedica->encargado= Auth::user()->id;
-        $nuevoMedica->save();
-       
+        $nuevoMedica->save();       
         return back();
-        }
+    }
 
     /**
      * Display the specified resource.
@@ -61,7 +73,15 @@ class medicaInicialController extends Controller
      */
     public function show($id)
     {
-        //
+        $exist = DB::table('medicina_inicials')->where('paciente', $id)->exists();
+        if($exist==1){
+        $medica_inicial = MedicinaInicial::Where('paciente', $id)->first();
+        $nuevoCliente= Cliente::findOrFail($id);
+        return view ('Ver_MedicaInicial', compact("medica_inicial", "nuevoCliente"));
+        }
+        else{
+            return "No existe";
+        }
     }
 
     /**
