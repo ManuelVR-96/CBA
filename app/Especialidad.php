@@ -31,4 +31,9 @@ public function especialista()
         return $this->hasMany(User::Class);
     }
 
+public function notificacion_()
+    {
+        return $this->hasMany('CBA\notificacion'::Class);
+    }
+
 }

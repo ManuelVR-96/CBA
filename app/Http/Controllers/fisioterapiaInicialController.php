@@ -189,7 +189,7 @@ class fisioterapiaInicialController extends Controller
     public function show($id)
     
     {
-        $exist = DB::table('nutricional_inicials')->where('paciente', $id)->exists();
+        $exist = DB::table('fisioterapia_inicials')->where('paciente', $id)->exists();
 
         if($exist==1){
         $fisio_inicial = FisioterapiaInicial::Where('paciente', $id)->first();

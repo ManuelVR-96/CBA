@@ -20,4 +20,9 @@ class Valoracion extends Model
     {
         return $this->belongsTo(User::Class, 'encargado', 'id');
     }
+
+    public function actualizado_()
+    {
+        return $this->belongsTo(User::Class, 'actualizado', 'id');
+    }
 }

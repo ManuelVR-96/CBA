@@ -39,6 +39,8 @@
                                    </div>
                               </div>
                          </fieldset>
+                         <a href= "{{ url('lista/create/'.$programas->id) }}" class="btn btn-primary btn-sm">Agregar miembros al programa</a>
+
                               <div align="center">
                                    <button class='btn btn-danger' type="submit" name="eliminar" onclick="return confirm('¿Confirma que desea ELIMINAR de manera permanente el registro?')"></span>Eliminar Registro</button>
                                    <a href= "{{ url('programas/'.$programas->id.'/edit') }}" class="btn btn-primary btn-sm">Editar información del programa</a>

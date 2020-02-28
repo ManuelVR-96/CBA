@@ -44,6 +44,10 @@ class Cliente extends Model
     public function valoracion_(){
         return $this->hasMany('App/Valoracion'::Class);
     }
+
+    public function notificacion_(){
+        return $this->hasMany('App/notificacion'::Class);
+    }
     protected $table = 'clientes';
     protected $fillable = [
         'nombres', 'cédula'

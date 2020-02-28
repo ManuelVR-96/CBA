@@ -74,8 +74,8 @@
             <div class="form-group row">
                 <label for="nivel" class="col-md-4 col-form-label text-md-right">{{ __('Nivel Educativo') }}</label>
                 <div class="col-md-7">
-                    <select name="nivel" class="form-control @error('nivel') is-invalid @enderror" value="{{ $miembro->nivel }}">
-                        <option value="$miembro->nivel_educativo">{{$miembro->nivel_educativo}}</option>
+                    <select name="nivel" class="form-control @error('nivel') is-invalid @enderror" value="{{ $miembro->nivel_educativo }}">
+                        <option value="{{$miembro->nivel_educativo}}">{{$miembro->nivel_educativo}}</option>
                         <option value="Primaria">Primaria</option>
                         <option value="Secundaria">Secundaria</option>
                         <option value="Tecnico Y/o Tecnologo">Tecnico Y/o Tecnologo</option>
@@ -181,7 +181,7 @@
                 <label for="servicio_funerario" class="col-md-4 col-form-label text-md-right">{{ __('Servicio Funerario') }}</label>
                 <div class="col-md-7">
                     <select name="servicio_funerario" class="form-control @error('servicio_funerario') is-invalid @enderror" value="{{ $miembro->servicio_funerario }}">
-                        <option value="$miembro->servicio_funerario">{{$miembro->servicio_funerario}}</option>
+                        <option value="{{$miembro->servicio_funerario}}">{{$miembro->servicio_funerario}}</option>
                         <option value="SI">SI</option>
                         <option value="NO">NO</option>
                     </select>
@@ -269,8 +269,8 @@
             <div class="form-group row">
                 <label for="tipo_sangre" class="col-md-4 col-form-label text-md-right">{{ __('Tipo Sangre') }}</label>
                 <div class="col-md-7">
-                    <select name="tipo_sangre" class="form-control @error('tipo_sangre') is-invalid @enderror" value="{{ old('tipo_sangre') }}" type="text">
-                        <option value="$miembro->tipo_sangre">{{$miembro->Tipo_Sangre}}</option>
+                    <select name="tipo_sangre" class="form-control @error('tipo_sangre') is-invalid @enderror" value="{{ $miembro->Tipo_sangre }}" type="text">
+                        <option value="{{$miembro->Tipo_sangre}}">{{$miembro->Tipo_Sangre}}</option>
                         <option value="A+">A+</option>
                         <option value="O+">O+</option>
                         <option value="B+">B+</option>
@@ -318,8 +318,8 @@
             <div class="form-group row">
                 <label for="genero" class="col-md-4 col-form-label text-md-right">{{ __('Género') }}</label>
                 <div class="col-md-7">
-                    <select name="genero" class="form-control @error('genero') is-invalid @enderror" value="{{ old('genero') }}" type="text">
-                        <option value="$miembro->genero">{{$miembro->género}}</option>
+                    <select name="genero" class="form-control @error('genero') is-invalid @enderror" value="{{ $miembro->género }}" type="text">
+                        <option value="{{$miembro->género}}">{{$miembro->género}}</option>
                         <option value="Masculino">Masculino</option>
                         <option value="Femenino">Femenino</option>
                         <option value="Otros">Otros</option>

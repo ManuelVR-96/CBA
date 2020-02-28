@@ -20,6 +20,7 @@ class MiembrosController extends Controller
     public function index()
     {   
         $users = Cliente::orderBy('nombres', 'ASC')->paginate(10);
+        
         return view('consultarMiembro', compact ('users')); 
     }
 

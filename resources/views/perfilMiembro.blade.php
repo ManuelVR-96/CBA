@@ -305,12 +305,14 @@ $(document).ready(function(){
 
 
 <a href= "{{ url('valoraciones/create/'.$user->id) }}" class="btn btn-primary btn-sm">Agregar nueva Valoración</a>
+<a href= "{{ url('notificacion/create/'.$user->id) }}" class="btn btn-primary btn-sm">Solicitar revisión</a>
                     <a href= "{{ url('miembros/'.$user->id.'/edit') }}" class="btn btn-primary btn-sm">Editar información del paciente</a>
                     
                     @if(auth()->user()->rol=="Administrador")
                          <div align="center">
                               <button class='btn btn-danger' type="submit" name="eliminar" onclick="return confirm('¿Confirma que desea ELIMINAR de manera permanente el registro?')"></span>Eliminar Registro</button>
                          </div>
+                         
                          @endif
                     </div>              
                </form>

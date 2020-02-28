@@ -91,6 +91,7 @@
           <a class="dropdown-item" href="{{ route('register') }}">Crear Usuario</a>
           <a class="dropdown-item" href="{{ route('usuarios.index') }}">Consultar Usuarios</a>
           <a class="dropdown-item" href="{{ route('valoraciones.index') }}">Consultar Valoraciones</a>
+          <a class="dropdown-item" href="{{ route('especialidad.create') }}">Agregar especialidades</a>
 
         </div>
       </li>
@@ -102,9 +103,8 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
           <h6 class="dropdown-header">Opciones</h6>
-          <a class="dropdown-item" href="forgot-password.html">Test Delta</a>
-          <a class="dropdown-item" href="{{ route('miembros.create') }}">Crear Usuario</a>
-          <a class="dropdown-item" href="{{ route('miembros.index') }}">Consultar Usuarios</a>
+          <a class="dropdown-item" href="{{ route('miembros.create') }}">Crear Miembro</a>
+          <a class="dropdown-item" href="{{ route('miembros.index') }}">Consultar Miembros</a>
          <!-- <a class="dropdown-item" href="forgot-password.html">Editar Usuario</a>-->
           <!--  <a class="dropdown-item" href="forgot-password.html">Eliminar Usuario</a> -->       
         </div>
@@ -132,7 +132,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
           <h6 class="dropdown-header">Opciones</h6>         
-          <a class="dropdown-item" href="login.html">Crear plan</a>  
+          <a class="dropdown-item" href="{{route('estrategico.create')}}">Crear plan</a>  
           <a class="dropdown-item" href="register.html">Consultar plan</a>        
           <a class="dropdown-item" href="forgot-password.html">Editar plan</a>                
         </div>
@@ -142,6 +142,9 @@
 
     <div id="content-wrapper">
 
+      @foreach($notificaciones as $item)
+
+      @if ($item->especialidad == auth()->user()->cargo && $item->vista==0 or NULL)
       <div class="container-fluid">
 
         <div class="row">
@@ -151,17 +154,20 @@
                 <div class="card-body-icon">
                   <i class="fas fa-fw fa-list"></i>
                 </div>
-                <div class="mr-5">Ejemplo 1</div>
+                <div class="mr-5">Revisión solicitada para : {{$item->miembro_->nombres}}</div>
+                <div class="mr-5">Solicitada el {{$item->created_at}}</div>
               </div>
-              <a class="card-footer text-white clearfix small z-1" href="#">
-                <span class="float-left">Ver Detalles</span>
+              <a class="card-footer text-white clearfix small z-1" href="{{ url('notificacion/'.$item->id) }}">
+                <span class="float-left" >Ver Detalle</span>
                 <span class="float-right">
                   <i class="fas fa-angle-right"></i>
                 </span>
               </a>
             </div>
           </div>
-          <div class="col-xl-3 col-sm-6 mb-3">
+          @endif
+          @endforeach
+          <!-- <div class="col-xl-3 col-sm-6 mb-3">
             <div class="card text-white bg-primary o-hidden h-100">
               <div class="card-body">
                 <div class="card-body-icon">
@@ -176,9 +182,9 @@
                 </span>
               </a>
             </div>
-          </div>
+          </div> 
 
-        </div>
+        </div> -->
 
           <!-- Sticky Footer -->
         <footer class="sticky-footer">

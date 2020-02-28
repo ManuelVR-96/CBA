@@ -90,7 +90,7 @@ class actividadInicialController extends Controller
     public function show($id)
 
     {
-        $exist = DB::table('nutricional_inicials')->where('paciente', $id)->exists();
+        $exist = DB::table('actividad_inicials')->where('paciente', $id)->exists();
         
         if ($exist==1){
         $acti_Inicial = ActividadInicial::Where('paciente', $id)->first();

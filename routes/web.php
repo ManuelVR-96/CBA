@@ -30,6 +30,10 @@ Route::resource('/nutricional_inicial', 'nutricionalInicialController');
 Route::resource('/psico_inicial', 'psicologicaInicialController');
 Route::resource('/actividad_inicial', 'ActividadInicialController');
 Route::resource('/seguimiento', 'seguimientoController');
+Route::resource('/estrategico', 'estrategicoController');
+Route::resource('/notificacion', 'notificacionController');
+Route::resource('/especialidad', 'especialidadController');
+Route::resource('/lista', 'listaProgramaController');
 
 
 
@@ -51,6 +55,10 @@ Route::get('/psico_inicial/create/{id}', 'psicologicaInicialController@create')-
 Route::get('/geron_inicial/create/{id}', 'gerontologialInicialController@create')->name('geron_inicial.create');
 Route::get('/fisio_inicial/create/{id}', 'fisioterapiaInicialController@create')->name('fisio_inicial.create');
 Route::get('/seguimiento/create/{id}', 'seguimientoController@create')->name('seguimiento.create');
+Route::get('/notificacion/create/{id}', 'notificacionController@create')->name('notificacion.create');
+Route::get('/lista/create/{id}', 'listaProgramaController@create')->name('lista.create');
+
+
 
 
 
@@ -60,6 +68,8 @@ Route::get('/seguimiento/create/{id}', 'seguimientoController@create')->name('se
 Route::post('/programas/create', 'ProgramasController@store')->name('programas.store');
 Route::post('/miembros/create', 'MiembrosController@store')->name('miembros.store');
 Route::post('/valoraciones/create', 'ValoracionesController@store')->name('valoraciones.store');
+Route::post('/estrategico/create', 'estrategicoController@store')->name('estrategico.store');
+
 
 
 Auth::routes();

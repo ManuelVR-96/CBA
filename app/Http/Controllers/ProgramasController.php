@@ -95,6 +95,7 @@ class ProgramasController extends Controller
         $nuevoPrograma->especialidad= $request->especialidad;
         $nuevoPrograma->agenda = $request->agenda;
         $nuevoPrograma->save();
+        
         return back()->with ('mensaje','Programa agregado correctamente');
     }
 
