@@ -18,7 +18,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {   
-        $users = User::orderBy('nombres', 'ASC')->paginate(10);
+        $users = User::Where('estado', 'Activo')->orderBy('nombres', 'ASC')->paginate(10);
         return view('consultarUser', compact ('users')); 
     }
 
@@ -28,37 +28,37 @@ class UsuarioController extends Controller
         $tipo = $request->tipo_busqueda;
         if ($tipo=="Nombre"){
         if ($entrada==''){
-            $users = User::orderBy('nombres', 'ASC')->paginate(10);
+            $users = User::Where('estado', 'Activo')->orderBy('nombres', 'ASC')->paginate(10);
             }
             else {
                 
-                $users = User::where('nombres', 'like', '%' . $entrada . '%')->paginate(10);
+                $users = User::Where('estado', 'Activo')->where('nombres', 'like', '%' . $entrada . '%')->paginate(10);
             }
         }
 
         elseif ($tipo=="Cédula"){
             if ($entrada==''){
-            $users = User::orderBy('cedula', 'ASC')->paginate(10);
+            $users = User::Where('estado', 'Activo')->orderBy('cedula', 'ASC')->paginate(10);
             }
             else {
                 
-                $users = User::where('cedula', $entrada)->paginate(10);
+                $users = User::Where('estado', 'Activo')->where('cedula', $entrada)->paginate(10);
             }
         }
 
         elseif ($tipo=="Apellidos"){
             if ($entrada==''){
-            $users = User::orderBy('apellidos', 'ASC')->paginate(10);
+            $users = User::Where('estado', 'Activo')->orderBy('apellidos', 'ASC')->paginate(10);
             }
             else {
                 
-                $users = User::where('apellidos', 'like', '%' . $entrada . '%')->paginate(10);
+                $users = User::Where('estado', 'Activo')->where('apellidos', 'like', '%' . $entrada . '%')->paginate(10);
             }
         }
 
         else{
         
-                $users = User::where('nombres', $entrada)->paginate(10);
+                $users = User::Where('estado', 'Activo')->where('nombres', $entrada)->paginate(10);
             
         }
             return view('consultarUser', compact ('users'));
@@ -181,9 +181,13 @@ class UsuarioController extends Controller
      */
     public function destroy($id)
     {
+        // $user = User::findOrFail($id);
+        // $user->delete();
+        // $users = User::orderBy('nombres', 'ASC')->paginate(10);
+        // return redirect()->to('/usuarios');
         $user = User::findOrFail($id);
-        $user->delete();
-        $users = User::orderBy('nombres', 'ASC')->paginate(10);
+        $user->estado='Inactivo';
+        $user->save();
         return redirect()->to('/usuarios');
     }
 }

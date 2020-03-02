@@ -43,7 +43,7 @@ $notificaciones = notificacion::where('especialidad', $especialidad)->orderBy('c
      */
     public function create($id)
     {
-        $posibles_encargados = User::all();
+        $posibles_encargados = User::where('estado','Activo');
         $encargados = Auth::user();
         $especialidades = Especialidad::all();
         #$miembros = Cliente::all();

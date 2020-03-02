@@ -53,18 +53,6 @@
                 </div>
             </div>
 
-            <div class="form-group row">
-                <label for="titulo" class="col-md-3 col-form-label">{{ __('Creado por') }}</label>
-                <div class="col-md-8">
-                    <input id="creador" type="text" class="form-control @error('creador') is-invalid @enderror" name="creador" value="{{ $plan->creador_->nombres }} {{$plan->creador_->apellidos}}" required autocomplete = "creador" autofocus readonly="True">
-                    @error('creador')
-                        <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-            </div>
-
             <button type="submit" class="btn-submit">
                 {{ __('Guardar') }}
             </button>

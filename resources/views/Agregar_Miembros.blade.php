@@ -31,7 +31,7 @@
                         <tbody>
                         @foreach($miembros as $miembro)
                             <tr>
-                            <td scope="col">{{$miembro->nombres}} {{$miembro->apellidos}}</td>
+                            <td scope="col"><a href ="{{route('miembros.show', $miembro->id)}}">{{$miembro->nombres}} {{$miembro->apellidos}}</td>
                             <td scope="col"><input type="checkbox" name="miembros[]" @if(in_array($miembro->id,$miembros_vinculados)) checked='checked' @endif value="{{$miembro->id}} "></td>
                             
                             </tr>

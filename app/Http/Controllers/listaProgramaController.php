@@ -27,7 +27,7 @@ class listaProgramaController extends Controller
     public function create($id_programa)
     {   
         $programa= Programa::Where('id',$id_programa)->first();
-        $miembros= Cliente::all();
+        $miembros= Cliente::Where('estado', 'Activo')->get();
         $miembros_vinculados_ = programa_cliente::where('programa', $id_programa)->get(['paciente'])->toArray();
         $miembros_vinculados = [];
         foreach($miembros_vinculados_ as $array){

@@ -37,7 +37,7 @@ class actividadInicialController extends Controller
         if ($exist !=1){
 
         $nuevoCliente= Cliente::findOrFail($id);
-        $encargados= user::all();
+        $encargados= user::Where('estado','Activo');
         
         return view ('registroActividadInicial', compact("nuevoCliente"));
         }

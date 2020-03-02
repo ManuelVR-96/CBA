@@ -133,8 +133,7 @@
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
           <h6 class="dropdown-header">Opciones</h6>         
           <a class="dropdown-item" href="{{route('estrategico.create')}}">Crear plan</a>  
-          <a class="dropdown-item" href="register.html">Consultar plan</a>        
-          <a class="dropdown-item" href="forgot-password.html">Editar plan</a>                
+          <a class="dropdown-item" href="{{route('estrategico.index')}}">Consultar plan</a>                     
         </div>
       </li>
      

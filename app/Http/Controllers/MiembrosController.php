@@ -19,7 +19,7 @@ class MiembrosController extends Controller
      */
     public function index()
     {   
-        $users = Cliente::orderBy('nombres', 'ASC')->paginate(10);
+        $users = Cliente::where('estado', 'activo')->orderBy('nombres', 'ASC')->paginate(10);
         
         return view('consultarMiembro', compact ('users')); 
     }
@@ -30,37 +30,37 @@ class MiembrosController extends Controller
         $tipo = $request->tipo_busqueda;
         if ($tipo=="Nombre"){
         if ($entrada==''){
-            $users = Cliente::orderBy('nombres', 'ASC')->paginate(10);
+            $users = Cliente::where('estado', 'activo')->orderBy('nombres', 'ASC')->paginate(10);
             }
             else {
                 
-                $users = Cliente::where('nombres', 'like', '%' . $entrada . '%')->paginate(10);
+                $users = Cliente::where('estado', 'activo')->where('nombres', 'like', '%' . $entrada . '%')->paginate(10);
             }
         }
 
         elseif ($tipo=="Cédula"){
             if ($entrada==''){
-            $users = Cliente::orderBy('cédula', 'ASC')->paginate(10);
+            $users = Cliente::where('estado', 'activo')->orderBy('cédula', 'ASC')->paginate(10);
             }
             else {
                 
-                $users = Cliente::where('cédula', $entrada)->paginate(10);
+                $users = Cliente::where('estado', 'activo')->where('cédula', $entrada)->paginate(10);
             }
         }
 
         elseif ($tipo=="Apellidos"){
             if ($entrada==''){
-            $users = Cliente::orderBy('apellidos', 'ASC')->paginate(10);
+            $users = Cliente::where('estado', 'activo')->orderBy('apellidos', 'ASC')->paginate(10);
             }
             else {
                 
-                $users = Cliente::where('apellidos', 'like', '%' . $entrada . '%')->paginate(10);
+                $users = Cliente::where('estado', 'activo')->where('apellidos', 'like', '%' . $entrada . '%')->paginate(10);
             }
         }
 
         else{
         
-                $users = Cliente::where('nombres', $entrada)->paginate(10);
+                $users = Cliente::where('estado', 'activo')->where('nombres', $entrada)->paginate(10);
             
         }        
 
@@ -210,9 +210,14 @@ class MiembrosController extends Controller
      */
     public function destroy($id)
     {
+        // $user = Cliente::findOrFail($id);
+        // $user->delete();
+        // $users = Cliente::orderBy('nombres', 'ASC')->paginate(10);
+        // return redirect()->to('/miembros');
         $user = Cliente::findOrFail($id);
-        $user->delete();
-        $users = Cliente::orderBy('nombres', 'ASC')->paginate(10);
+        $user->estado = 'Inactivo';
+        $user->save();
         return redirect()->to('/miembros');
+
     }
 }
