@@ -137,6 +137,7 @@
                         <Textarea id="diagnosticos_nutricional" type="text" class="form-control @error('diagnosticos_nutricional') is-invalid @enderror" name="diagnosticos_nutricional" value="{{ $nutricional_inicial->diagnosticos_nutricional }}">{{ $nutricional_inicial->diagnosticos_nutricional }}</textarea>
                     </div>
                 </div>
+                
             </fieldset>
         </div>
     </form>

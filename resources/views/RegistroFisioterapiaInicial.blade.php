@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/../css/estilo.css">   
 
-    <div class="container box">
+    <div class="container">
         <form method="POST" class="form" action="{{route('fisio_inicial.store')}}">
             <div class="card-header form-tittle_">Registro Evaluación Fisioterapia de: {{$nuevoCliente->nombres}} {{$nuevoCliente->apellidos}}</div>
            

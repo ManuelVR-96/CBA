@@ -42,7 +42,7 @@
                         </thead>
                         <tbody>
                             @foreach ($valoraciones as $item)
-                            @if(auth()->user()->rol=="Administrador" or auth()->user()->especialidad_->Nombre == $item->especialidad_->Nombre)
+                           
                             <tr>
                                 <td><a href = "{{route('valoraciones.show', $item)}}">{{$item->id}}</a></td>
                                 <td><a href = "{{route('miembros.show', $item->miembro_)}}">{{$item->miembro_->nombres}}</a></td>
@@ -52,7 +52,7 @@
                                 <td>{{ $item->created_at}}</td>
                                 <td><a href="{{route('valoraciones.edit', $item)}}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a></td>
                             </tr>
-                            @endif
+                            
                             @endforeach
                         </tbody>
                     </table>

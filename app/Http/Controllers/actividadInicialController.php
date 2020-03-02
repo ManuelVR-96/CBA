@@ -91,6 +91,7 @@ class actividadInicialController extends Controller
 
     {
         $exist = DB::table('actividad_inicials')->where('paciente', $id)->exists();
+        
         if ($exist==1){
         $acti_Inicial = ActividadInicial::Where('paciente', $id)->first();
         $nuevoCliente= Cliente::findOrFail($id);

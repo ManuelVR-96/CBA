@@ -41,10 +41,20 @@ class User extends Authenticatable
 
     public function programa()
     {
-        return $this->hasOne('CBA\Programa');
+        return $this->hasMany('CBA\Programa');
     }
 
+    public function plan()
+    {
+        return $this->hasMany('CBA\planEstrategico');
+    }
 
+    public function notificacion_()
+    {
+        return $this->hasMany('CBA\notificacion');
+    }
+
+    
     public function especialidad_()
     {
         return $this->belongsTo('CBA\Especialidad'::Class, 'cargo', 'id');

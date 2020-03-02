@@ -20,6 +20,7 @@ class MiembrosController extends Controller
     public function index()
     {   
         $users = Cliente::orderBy('nombres', 'ASC')->paginate(10);
+        
         return view('consultarMiembro', compact ('users')); 
     }
 
@@ -119,8 +120,7 @@ class MiembrosController extends Controller
         $nuevoSeguimiento = new seguimiento_miembro();
         $nuevoSeguimiento->paciente = $nuevoCliente->id;
         $nuevoDelta = new test_delta();
-        $nuevoDelta->paciente = $nuevoCliente->id;
-        
+        $nuevoDelta->paciente = $nuevoCliente->id;        
         $nuevoSeguimiento->save();
         $nuevoDelta->save();
 

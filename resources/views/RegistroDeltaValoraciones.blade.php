@@ -488,7 +488,7 @@
             </div>
             <br>
             <button type="submit" class="btn-submit">
-                {{ __('Guardar') }}
+                {{ __('GUARDAR TEST DELTA') }}
             </button>    
         </div>
     </form>

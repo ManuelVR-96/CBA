@@ -15,6 +15,7 @@ class AddActualizadoToValoraciones extends Migration
     {
         Schema::table('valoracions', function (Blueprint $table) {
             $table->unsignedBigInteger('actualizado')->nullable(); 
+            $table->foreign('actualizado')->references('id')->on('users')->onDelete('set null');
         });
     }
 

@@ -21,6 +21,8 @@ class CreateValoracionsTable extends Migration
         $table->foreign('encargado')->references('id')->on('users')->onDelete('set null');
         $table->unsignedBigInteger('especialidad')->nullable();
         $table->foreign('especialidad')->references('id')->on('especialidads')->onDelete('set null');
+        $table->unsignedBigInteger('actualizado')->nullable(); 
+        $table->foreign('actualizado')->references('id')->on('users')->onDelete('set null');
         $table->text('descripción')->nullable();
         $table->timestamps();        
         });

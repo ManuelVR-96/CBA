@@ -80,12 +80,10 @@ class ValoracionesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create($id)
-    {   #return (Auth::user()->id);
+    {   
         $posibles_encargados = User::all();
         $encargados = Auth::user();
-        $especialidades = Especialidad::all();
-        #$miembros = Cliente::all();
-        
+        $especialidades = Especialidad::all();        
         $miembros= Cliente::findOrFail($id);
         return view ('registro_valoracion', compact("encargados", "especialidades", "miembros"));
     }
@@ -99,7 +97,6 @@ class ValoracionesController extends Controller
     public function store(Request $request)
     {   
         $nuevoValoracion = new Valoracion();
-        #return($request->miembro);
         $nuevoValoracion->paciente= $request->miembro;
         $nuevoValoracion->encargado= Auth::user()->id;
         $nuevoValoracion->especialidad= Auth::user()->cargo;
@@ -117,7 +114,6 @@ class ValoracionesController extends Controller
     public function show($id)
     {
         $valoraciones= Valoracion::findOrFail($id);
-
         return view('perfilValoracion', compact('valoraciones'));
     }
 
@@ -133,7 +129,6 @@ class ValoracionesController extends Controller
         $especialidades = Especialidad::all();
         $miembros = Cliente::all();        
         $valoracion = Valoracion::findOrFail($id);
-
         return view('actualizarValoracion', compact('encargados', 'especialidades', 'miembros', 'valoracion'));
     }
 
@@ -152,7 +147,6 @@ class ValoracionesController extends Controller
         $Valoracion->especialidad = Auth::user()->cargo;
         $Valoracion->descripción = $request->descripcion;
         $Valoracion->save();
-
         return back()->with('mensaje', 'Valoracion agregada correctamente');
     }
 
