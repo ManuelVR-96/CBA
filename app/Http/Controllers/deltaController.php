@@ -36,7 +36,7 @@ class deltaController extends Controller
         if ($exist !=1){
 
         $nuevoCliente= Cliente::findOrFail($id);
-        $encargados= user::all();
+        $encargados= user::where('estado', 'Activo');
         
         return view ('registroDeltaValoraciones', compact("encargados", "nuevoCliente"));
         }
@@ -117,7 +117,7 @@ class deltaController extends Controller
     public function edit($id)
     {
         $nuevoCliente= Cliente::findOrFail($id);
-        $encargados= user::all();
+        $encargados= user::where('estado','Activo');
         $delta = test_delta::Where('paciente', $id)->first();
         
         return view ('registroDeltaValoraciones', compact("encargados", "nuevoCliente", "delta"));

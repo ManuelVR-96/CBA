@@ -127,7 +127,7 @@ class ValoracionesController extends Controller
     {
         $encargados = Auth::user();
         $especialidades = Especialidad::all();
-        $miembros = Cliente::all();        
+        $miembros = Cliente::Where('estado','Activo');        
         $valoracion = Valoracion::findOrFail($id);
         return view('actualizarValoracion', compact('encargados', 'especialidades', 'miembros', 'valoracion'));
     }

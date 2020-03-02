@@ -35,7 +35,7 @@ class nutricionalInicialController extends Controller
         if ($exist !=1){
 
         $nuevoCliente= Cliente::findOrFail($id);
-        $encargados= user::all();
+        $encargados= user::where('estado','Activo');
         
         return view ('registroNutricionInicial', compact("encargados", "nuevoCliente"));
         }
