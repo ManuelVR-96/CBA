@@ -10,7 +10,7 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div>
-                    <a href="/valoraciones/create" class="btn btn-primary btn-sm">Agregar nueva Valoración</a>
+                    <a href="{{ route('miembros.index') }}" class="btn btn-primary btn-sm">Agregar nueva Valoración</a>
                 </div><br>
                 <form method="POST" action="{{route('lista_valoraciones')}}">
                 @csrf

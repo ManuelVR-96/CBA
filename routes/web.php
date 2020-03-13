@@ -37,13 +37,19 @@ Route::resource('/lista', 'listaProgramaController');
 
 
 
-
 Route::post('/usuarios', 'UsuarioController@busqueda')->name('lista_nombres');
 Route::post('/miembros', 'MiembrosController@busqueda')->name('lista_abuelos');
+Route::get('/miembros_inactivos', 'MiembrosController@inactivos')->name('inactivos');
+Route::get('/usuarios_inactivos', 'UsuarioController@inactivos')->name('usuarios_inactivos');
+
+
+
+
+
 Route::post('/programas', 'ProgramasController@busqueda')->name('lista_programas');
 Route::post('/valoraciones', 'ValoracionesController@busqueda')->name('lista_valoraciones');
 
-Route::delete('/miembros/{id}', 'MiembrosController@destroy')->name('miembros.eliminar');
+Route::delete('/miembros/{id}', 'MiembrosController@destroy')->name('miembros.estado');
 Route::delete('/programas/{id}', 'ProgramasController@destroy')->name('programas.eliminar');
 Route::delete('/valoraciones/{id}', 'ValoracionesController@destroy')->name('valoraciones.eliminar');
 Route::get('/valoraciones/create/{id}', 'ValoracionesController@create')->name('valoraciones.create');
@@ -57,13 +63,6 @@ Route::get('/fisio_inicial/create/{id}', 'fisioterapiaInicialController@create')
 Route::get('/seguimiento/create/{id}', 'seguimientoController@create')->name('seguimiento.create');
 Route::get('/notificacion/create/{id}', 'notificacionController@create')->name('notificacion.create');
 Route::get('/lista/create/{id}', 'listaProgramaController@create')->name('lista.create');
-
-
-
-
-
-
-
 
 Route::post('/programas/create', 'ProgramasController@store')->name('programas.store');
 Route::post('/miembros/create', 'MiembrosController@store')->name('miembros.store');

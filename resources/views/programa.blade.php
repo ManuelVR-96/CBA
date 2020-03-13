@@ -37,7 +37,7 @@
                     <select id="encargado" type="text" class="form-control @error('encargado') is-invalid @enderror" name="encargado" value="{{ old('encargado') }}" required autocomplete="encargado" autofocus>
                     <option value="null">Seleccione</option>
                         @foreach($encargados as $encargado)
-                        <option value="{{$encargado->id}}">{{$encargado->nombres}}</option>
+                        <option value="{{$encargado->id}}">{{$encargado->nombres}} {{$encargado->apellidos}}</option>
                         @endforeach()
                     @error('encargado')
                         <span class="invalid-feedback" role="alert">

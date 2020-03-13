@@ -12,6 +12,7 @@
                 <div><a href="/register" class="btn btn-primary btn-sm">Crear Nuevo Usuario</a></div><br>
                 <form method="POST" action="{{route('lista_nombres')}}">
                 @csrf  
+                @if($route=="usuarios.index")
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <form class="form-inline my-2 my-lg-0">                   
                         <a class="navbar-brand">{{ __('Buscar por') }}</a>                       
@@ -24,6 +25,8 @@
                         <input type="text" class="form-control" id="busqueda" name="busqueda" placeholder="Buscar" aria-label="Recipient's username" aria-describedby="basic-addon2">
                     </form>
                 </nav>
+                @endif
+               
                             
                 <div class="table-responsive">                    
                     <table class="table table-striped table-bordered">

@@ -90,6 +90,7 @@
           <h6 class="dropdown-header">Opciones</h6>
           <a class="dropdown-item" href="{{ route('register') }}">Crear Usuario</a>
           <a class="dropdown-item" href="{{ route('usuarios.index') }}">Consultar Usuarios</a>
+          <a class="dropdown-item" href="{{ route('usuarios_inactivos') }}">Recuperar Usuarios</a>
           <a class="dropdown-item" href="{{ route('valoraciones.index') }}">Consultar Valoraciones</a>
           <a class="dropdown-item" href="{{ route('especialidad.create') }}">Agregar especialidades</a>
 
@@ -105,6 +106,10 @@
           <h6 class="dropdown-header">Opciones</h6>
           <a class="dropdown-item" href="{{ route('miembros.create') }}">Crear Miembro</a>
           <a class="dropdown-item" href="{{ route('miembros.index') }}">Consultar Miembros</a>
+          @if (auth()->user()->rol=="Administrador")
+          <a class="dropdown-item" href="{{route('inactivos')}}">Recuperar Miembros</a>
+          @endif
+          
          <!-- <a class="dropdown-item" href="forgot-password.html">Editar Usuario</a>-->
           <!--  <a class="dropdown-item" href="forgot-password.html">Eliminar Usuario</a> -->       
         </div>
@@ -124,7 +129,7 @@
           <!-- <a class="dropdown-item" href="forgot-password.html">Eliminar programa</a> -->         
         </div>
       </li>
-      
+      @if (auth()->user()->rol=="Administrador")
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-fw fa-folder"></i>
@@ -136,6 +141,7 @@
           <a class="dropdown-item" href="{{route('estrategico.index')}}">Consultar plan</a>                     
         </div>
       </li>
+      @endif
      
     </ul>
 

@@ -9,15 +9,23 @@
 
 <div class="container">
     <form method="POST" class="form" action="{{route('valoraciones.store')}}">
-        
+    @if($encargados->rol=="Operador")
         <div class="form-header">           
-            <div class="form-header"><h1 class="form-tittle">{{ __('REGISTRO VALORACIÓN') }}</h1></div><br>
+        <div class="card-header form-tittle_">Valoración de {{$encargados->especialidad_->Nombre}} para :  {{$miembros->nombres}} {{$miembros->apellidos}}</div>
         </div>
+    @else
+    <div class="form-header">           
+        <div class="card-header form-tittle_">Valoración para :  {{$miembros->nombres}} {{$miembros->apellidos}}</div>
+        </div>
+    @endif
+
       
         @csrf
         <div class="form-group row">            
             <input id="miembro" type="hidden" class="form-control @error('miembro') is-invalid @enderror" name="miembro" value="{{ $miembros->id }}" placeholder = "{{ $miembros->nombres }}" autofocus readonly="readonly">
         </div>
+
+       
     
         <div class="form-group row">
             <label for="medica" class="col-md-4 col-form-label">{{ __('Descripción') }}</label>
@@ -32,29 +40,27 @@
         </div>
 
         @if($encargados->rol=="Operador")
-            <div class="form-group row">
-                <label for="medica" class="col-md-4 col-form-label">{{ __('Encargado') }}</label>
-                <div class="col-md-8">
-                    <input id="encargado" type="text" class="form-control @error('encargado') is-invalid @enderror" name="encargado" value="{{ $encargados->nombres }}" placeholder = "{{ $encargados->nombres }}" autofocus readonly="readonly">
+            
+                    
                     <div class="form-group row">
                         <label for="medica" class="col-md-4 col-form-label">{{ __('Encargado') }}</label>
                         <div class="col-md-8">
                             <input id="encargado" type="text" class="form-control @error('encargado') is-invalid @enderror" name="encargado" value="{{ $encargados->nombres }}" placeholder = "{{ $encargados->nombres }}" autofocus readonly="readonly">
+                        </div>
+                    </div>
                             <div class="form-group row">
                                 <label for="especialidad" class="col-md-4 col-form-label">{{ __('Especialidad') }}</label>
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                     <input id="especialidad" type="text" class="form-control @error('especialidad') is-invalid @enderror" name="especialidad" value="{{ $encargados->especialidad_->Nombre }}" placeholder = "{{ $encargados->especialidad }}" autofocus readonly="readonly">
-                                    @error('encargado')
+                                    @error('especialidad')
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>            
+                        
+                   
         @else
             <div class="form-group row">
                 <label for="especialidad" class="col-md-4 col-form-label">{{ __('Especialidad') }}</label>

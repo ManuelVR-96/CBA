@@ -43,7 +43,7 @@
      </style>
      
      <div class="container">
-          <form action="{{route('miembros.eliminar', $user)}}" class="form" method="POST">          
+          <form action="{{route('miembros.estado', $user)}}" class="form" method="POST">          
                @auth                               
                <div class="form-header2"><h1 class="form-tittle2">{{ __('Opciones') }}</h1></div>
                <div class="dropdown">                    
@@ -52,9 +52,13 @@
                     <a href= "{{ url('miembros/'.$user->id.'/edit') }}" class="btn btn-primary">Editar información paciente</a>
                     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Valoraciones Iniciales<span class="caret"></span></button>
                     <a>
-                    @if(auth()->user()->rol=="Administrador")                             
+                    @if(auth()->user()->rol=="Administrador") 
+                         @if($user->estado=="Activo")
                          <button class='btn btn-danger' type="submit" name="eliminar" onclick="return confirm('¿Confirma que desea ELIMINAR de manera permanente el registro?')"></span>Eliminar Registro</button>
-                    @endif 
+                         @else
+                    <button class='btn btn-danger' type="submit" name="eliminar" onclick="return confirm('¿Confirma que desea RECUPERAR el registro?')"></span>Activar Registro</button>                  
+                         @endif 
+                    @endif
                     </a>
                     
                     <ul class="dropdown-menu">
