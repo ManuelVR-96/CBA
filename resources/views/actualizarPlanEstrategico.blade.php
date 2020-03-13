@@ -33,7 +33,7 @@
             <div class="form-group row">
                 <label for="descripcion" class="col-md-3 col-form-label">{{ __('Descripción') }}</label>
                 <div class="col-md-9">
-                    <Textarea id="descripcion" type="text" class="form-control @error('descripcion') is-invalid @enderror" name="descripcion" value="{{ $plan->descripcion }}" required autocompleta = "descripcion" autofocus></textarea>
+                    <Textarea id="descripcion" type="text" class="form-control @error('descripcion') is-invalid @enderror" name="descripcion" value="{{ $plan->descripcion }}" required autocompleta = "descripcion" autofocus>{{$plan->descripcion}}</textarea>
                     @error('Descripción')
                         <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>

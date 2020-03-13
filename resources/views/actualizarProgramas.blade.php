@@ -84,7 +84,7 @@
 
             <div class="form-group row mb-0">               
                 <button type="submit" class="btn-submit">
-                    {{ __('Actualizar') }}
+                    {{ __('ACTUALIZAR PROGRAMA') }}
                 </button>               
             </div>
 

@@ -24,8 +24,8 @@
             @csrf            
 
             <div class="form-group row">
-                <label for="email" class="col-md-5 col-form-label text-md-right">{{ __('Dirección de Correo Electrónico') }}</label>
-                <div class="col-md-6">
+                <label for="email" class="col-md-5 col-form-label">{{ __('Dirección de Correo Electrónico') }}</label>
+                <div class="col-md-7">
                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                     @error('email')
@@ -35,14 +35,11 @@
                     @enderror
                 </div>
             </div>
-            <br>
-            <div class="form-group row mb-0">
-                <div class="col-md-6 offset-md-3">
-                    <button type="submit" class="btn-submit">
-                        {{ __('Enviar enlace de Restablecimiento') }}
-                    </button>
-                </div>
-            </div>
+            <br>           
+               
+            <button type="submit" class="btn-submit">
+                {{ __('ENVIAR ENLACE DE RESTABLECIMIENTO') }}
+            </button>                   
             
         </div>            
     </form>    
