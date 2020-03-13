@@ -8,6 +8,7 @@ use CBA\seguimiento_miembro;
 use CBA\test_delta;
 use Carbon\Carbon;
 use Image;
+use Route;
 use CBA\Http\Requests\MiembroStoreRequest;
 
 class MiembrosController extends Controller
@@ -18,10 +19,19 @@ class MiembrosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {   $route = Route::currentRouteName();
         $users = Cliente::where('estado', 'activo')->orderBy('nombres', 'ASC')->paginate(10);
         
-        return view('consultarMiembro', compact ('users')); 
+        return view('consultarMiembro', compact ('users', 'route')); 
+    }
+
+    public function inactivos()
+    {   $route = Route::currentRouteName();
+        
+
+        $users = Cliente::where('estado', 'inactivo')->orderBy('nombres', 'ASC')->paginate(10);
+        
+        return view('consultarMiembro', compact ('users', 'route')); 
     }
 
     public function busqueda(Request $request)
@@ -214,7 +224,12 @@ class MiembrosController extends Controller
         // $users = Cliente::orderBy('nombres', 'ASC')->paginate(10);
         // return redirect()->to('/miembros');
         $user = Cliente::findOrFail($id);
+        if($user->estado=='Activo'){
         $user->estado = 'Inactivo';
+        }
+        else{
+            $user->estado='Activo';
+        }
         $user->save();
         return redirect()->to('/miembros');
 

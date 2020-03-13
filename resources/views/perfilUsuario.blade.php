@@ -11,14 +11,19 @@
      <div class="container">          
           <form enctype="multipart/form-data" class="form" action="{{route('usuarios.destroy', $user)}}" class="d-inline" method="POST">
                <div class="form-header2"><h1 class="form-tittle2">{{ __('Opciones') }}</h1></div>
-               <div class="dropdown">               
-                    @if(auth()->user()->rol=="Administrador")
-                    <div align="center">
-                         <a href= "{{ url('usuarios/'.$user->id.'/edit') }}" class="btn btn-primary">Editar información del operador</a>
+               <div class="dropdown"> 
+              
+                         <a href= "{{ url('usuarios/'.$user->id.'/edit') }}" class="btn btn-primary">Editar información del operador</a>   
+                      
+               @if(auth()->user()->rol=="Administrador") 
+                         @if($user->estado=="Activo")
                          <button class='btn btn-danger' type="submit" name="eliminar" onclick="return confirm('¿Confirma que desea ELIMINAR de manera permanente el registro?')"></span>Eliminar Registro</button>
+                         @else    
+                    <button class='btn btn-danger' type="submit" name="eliminar" onclick="return confirm('¿Confirma que desea RECUPERAR el registro?')"></span>Activar Registro</button>                  
+                         @endif 
                     @endif
+                    </a>
                </div>
-               
                @csrf
                @method("DELETE")
                <div class="form-header2"><h1 class="form-tittle2">{{ __('Información') }}</h1></div><br>

@@ -75,7 +75,7 @@ class ProgramasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   $encargados= user::Where('estado', 'Activo');
+    {   $encargados= user::Where('estado', 'Activo')->get();
         $especialidades= Especialidad::all();
         return view ('programa', compact("encargados", "especialidades"));
     }

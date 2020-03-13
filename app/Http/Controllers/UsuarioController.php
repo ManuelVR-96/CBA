@@ -8,6 +8,7 @@ use CBA\User;
 use CBA\Especialidad;
 use Carbon\Carbon;
 use Image;
+use Route;
 
 class UsuarioController extends Controller
 {
@@ -17,9 +18,15 @@ class UsuarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {   $route = Route::currentRouteName();
         $users = User::Where('estado', 'Activo')->orderBy('nombres', 'ASC')->paginate(10);
-        return view('consultarUser', compact ('users')); 
+        return view('consultarUser', compact ('users', 'route')); 
+    }
+
+    public function inactivos()
+    {   $route = Route::currentRouteName();
+        $users = User::where('estado', 'inactivo')->orderBy('nombres', 'ASC')->paginate(10); 
+        return view('consultarUser', compact ('users', 'route')); 
     }
 
     public function busqueda(Request $request)
@@ -168,7 +175,10 @@ class UsuarioController extends Controller
         $nuevoOp->telefono = $request->telefono;
         $nuevoOp->rol = $request->perfil;
         $nuevoOp->email = $request->email;
-        $nuevoOp->password = $request->password;        
+        if(!empty($request->password)) {
+            $nuevoOp->password = bcrypt($request->password);
+           
+        }      
         $nuevoOp->save();
         return back();
     }
@@ -186,8 +196,14 @@ class UsuarioController extends Controller
         // $users = User::orderBy('nombres', 'ASC')->paginate(10);
         // return redirect()->to('/usuarios');
         $user = User::findOrFail($id);
-        $user->estado='Inactivo';
+        if($user->estado=='Activo'){
+        $user->estado = 'Inactivo';
+        }
+        else{
+            $user->estado='Activo';
+        }
         $user->save();
         return redirect()->to('/usuarios');
+        
     }
 }

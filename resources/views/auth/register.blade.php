@@ -210,7 +210,7 @@
             
             <br>
             <button type="submit"  class="btn-submit">
-                {{ __('GUARDAR REGISTRO') }}
+                {{ __('REGISTRAR USUARIO') }}
             </button>
          
         </div>
