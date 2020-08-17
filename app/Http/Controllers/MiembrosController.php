@@ -39,6 +39,7 @@ class MiembrosController extends Controller
         $route = Route::currentRouteName();
         $entrada= $request->busqueda;
         $tipo = $request->tipo_busqueda;
+        $route = Route::currentRouteName();
         if ($tipo=="Nombre"){
         if ($entrada==''){
             $users = Cliente::where('estado', 'activo')->orderBy('nombres', 'ASC')->paginate(10);

@@ -7,6 +7,7 @@ use CBA\User;
 use CBA\Especialidad;
 use CBA\Programa;
 use Carbon\Carbon;
+use Storage;
 
 class ProgramasController extends Controller
 {

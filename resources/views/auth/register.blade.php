@@ -87,7 +87,7 @@
                 </div>
             </div>
 
-            <div class="form-group row">
+            <div class="form-group row" >
                 <label for="formacion" class="col-md-4 col-form-label">{{ __('Formación') }}</label>
                 <div class="col-md-8">
                     <input id="formacion" type="text" class="form-control @error('formacion') is-invalid @enderror" name="formacion" value="{{ old('formacion') }}"  autofocus>
@@ -103,7 +103,7 @@
             <div class="form-group row">
                 <label for="perfil" class="col-md-4 col-form-label">{{ __('Rol') }}</label>
                 <div class="col-md-8">
-                    <select name="perfil" class="form-control @error('perfil') is-invalid @enderror" value="{{ old('perfil') }}" >
+                    <select name="perfil" id="perfil" class="form-control @error('perfil') is-invalid @enderror" value="{{ old('perfil') }}" onchange="mostrar(this)" >
                         <option value="{{old('perfil')}}">{{old('perfil')}}</option>                                   
                         <option value="Administrador">Administrador</option>
                         <option value="Operador">Operador</option>
@@ -116,11 +116,11 @@
                 </div>
             </div>
 
-            <div class="form-group row">
+            <div class="form-group row" id = "cargo_" style="display:none">
                 <label for="encargado" class="col-md-4 col-form-label">{{ __('Cargo') }}</label>
                 <div class="col-md-8">
                     
-                    <select id="cargo" type="text" class="form-control @error('cargo') is-invalid @enderror" name="cargo" value="{{ old('cargo') }}"  autofocus>
+                    <select id="cargo" type="text" class="form-control @error('cargo') is-invalid @enderror" name="cargo" value="{{ old('cargo') }}" autofocus>
                     <option value="{{ old('cargo') }}">{{ old('cargo') }}</option>
                         @foreach($especialidades as $especialidad)
                         <option value="{{$especialidad->id}}">{{$especialidad->Nombre}}</option>
@@ -217,4 +217,22 @@
     </form>
 </div>
 <div class="gradient"></div>
+
+<script type="text/javascript"> 
+
+function mostrar(op){
+    campo = document.getElementById("cargo_");
+    
+    if (op.value=="Operador"){
+        campo.style.display="";
+        console.log("holas");
+    }
+    else{
+        campo.style.display = "none";
+    }
+}
+
+//mostrar(document.getElementById("perfil"));
+</script>
+
 @endsection

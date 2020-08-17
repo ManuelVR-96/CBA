@@ -25,8 +25,8 @@ class CreateClientesTable extends Migration
             $table->date('fecha_de_nacimiento')->nullable();
             $table->date('fecha_de_ingreso')->nullable();
             $table->string('seguridad_social')->nullable();
-            $table->string('primer_acudiente')->nullable();
-            $table->string('segundo_acudiente')->nullable();
+            $table->text('primer_acudiente')->nullable();
+            $table->text('segundo_acudiente')->nullable();
             $table->string('servicio_funerario')->nullable();
             $table->string('entidad_funeraria')->nullable();
             $table->string('dependencia_económica')->nullable();

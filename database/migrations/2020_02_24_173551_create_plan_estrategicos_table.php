@@ -22,6 +22,7 @@ class CreatePlanEstrategicosTable extends Migration
             $table->foreign('creador')->references('id')->on('users')->onDelete('set null');
             $table->unsignedBigInteger('actualizado_por')->nullable();
             $table->foreign('actualizado_por')->references('id')->on('users')->onDelete('set null');
+            
 
         });
     }
