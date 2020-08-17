@@ -30,7 +30,8 @@ class UsuarioController extends Controller
     }
 
     public function busqueda(Request $request)
-    {  
+    {   
+        $route = Route::currentRouteName();
         $entrada= $request->busqueda;
         $tipo = $request->tipo_busqueda;
         if ($tipo=="Nombre"){
@@ -68,7 +69,7 @@ class UsuarioController extends Controller
                 $users = User::Where('estado', 'Activo')->where('nombres', $entrada)->paginate(10);
             
         }
-            return view('consultarUser', compact ('users'));
+            return view('consultarUser', compact ('users', 'route'));
     }
 
     /**
