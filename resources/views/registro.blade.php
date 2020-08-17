@@ -167,7 +167,7 @@
             <div class="form-group row">
                 <label for="primer_acudiente" class="col-md-4 col-form-label">{{ __('Primer Acudiente') }}</label>
                 <div class="col-md-8">
-                    <input id="primer_acudiente" type="text" class="form-control @error('primer_acudiente') is-invalid @enderror" name="primer_acudiente" value="{{ old('primer_acudiente') }}" autofocus>
+                    <textarea id="primer_acudiente" type="text" class="form-control @error('primer_acudiente') is-invalid @enderror" name="primer_acudiente" value="{{ old('primer_acudiente') }}" autofocus></textarea>
 
                     @error('primer_acudiente')
                         <span class="invalid-feedback" role="alert">
@@ -180,7 +180,7 @@
             <div class="form-group row">
                 <label for="segundo_acudiente" class="col-md-4 col-form-label">{{ __('Segundo Acudiente') }}</label>
                 <div class="col-md-8">
-                    <input id="segundo_acudiente" type="text" class="form-control @error('segundo_acudiente') is-invalid @enderror" name="segundo_acudiente" value="{{ old('segundo_acudiente') }}" autofocus>
+                    <textarea id="segundo_acudiente" type="text" class="form-control @error('segundo_acudiente') is-invalid @enderror" name="segundo_acudiente" value="{{ old('segundo_acudiente') }}" autofocus></textarea>
 
                     @error('segundo_acudiente')
                         <span class="invalid-feedback" role="alert">

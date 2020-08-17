@@ -69,6 +69,7 @@ class nutricionalInicialController extends Controller
         $nuevoNutricional->circunferencia_muñeca = $request->circunferencia_muñeca;
         $nuevoNutricional->contextura = $request->contextura;
         $nuevoNutricional->peso_ideal = $request->peso_ideal;
+        $nuevoNutricional->peso_habitual = $request->peso_habitual;
         $nuevoNutricional->peso_actual = $request->peso_actual;
         $nuevoNutricional->hallazgos_clinicos = $request->hallazgos_clinicos;
         $nuevoNutricional->diagnosticos_nutricional = $request->diagnosticos_nutricional;  

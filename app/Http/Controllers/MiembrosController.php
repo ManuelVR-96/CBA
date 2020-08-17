@@ -38,6 +38,7 @@ class MiembrosController extends Controller
     {  
         $entrada= $request->busqueda;
         $tipo = $request->tipo_busqueda;
+        $route = Route::currentRouteName();
         if ($tipo=="Nombre"){
         if ($entrada==''){
             $users = Cliente::where('estado', 'activo')->orderBy('nombres', 'ASC')->paginate(10);
@@ -74,7 +75,7 @@ class MiembrosController extends Controller
             
         }        
 
-            return view('consultarMiembro', compact ('users'));
+            return view('consultarMiembro', compact ('users', 'route'));
     }
     /**
      * Show the form for creating a new resource.

@@ -32,6 +32,7 @@ class CreateNutricionalInicialsTable extends Migration
             $table->integer('circunferencia_muñeca');
             $table->integer('contextura');// estatura cm/circunferencia muñeca
             $table->integer('peso_ideal');
+            $table->integer('peso_habitual');
             $table->integer('peso_actual');
             $table->text('hallazgos_clinicos');
             $table->text('diagnosticos_nutricional');

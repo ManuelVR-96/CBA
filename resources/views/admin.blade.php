@@ -104,7 +104,9 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
           <h6 class="dropdown-header">Opciones</h6>
+          @if (auth()->user()->rol=="Administrador")
           <a class="dropdown-item" href="{{ route('miembros.create') }}">Crear Miembro</a>
+          @endif
           <a class="dropdown-item" href="{{ route('miembros.index') }}">Consultar Miembros</a>
           @if (auth()->user()->rol=="Administrador")
           <a class="dropdown-item" href="{{route('inactivos')}}">Recuperar Miembros</a>

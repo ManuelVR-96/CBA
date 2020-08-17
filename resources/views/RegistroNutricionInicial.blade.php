@@ -221,6 +221,19 @@
         </div>
 
         <div class="form-group row">
+            <label for="peso_ideal" class="col-md-6 col-form-label ">{{ __('Peso habitual') }}</label>
+            <div class="col-md-6">
+                <input id="peso_habitual" type="integer" class="form-control @error('peso_habitual') is-invalid @enderror" name="peso_habitual" value="{{ old('peso_habitual') }}"  autofocus>
+
+                @error('peso_habitual')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+
+        <div class="form-group row">
             <label for="peso_actual" class="col-md-6 col-form-label ">{{ __('Peso actual') }}</label>
             <div class="col-md-6">
                 <input id="peso_actual" type="integer" class="form-control @error('peso_actual') is-invalid @enderror" name="peso_actual" value="{{ old('peso_actual') }}"  autofocus>
