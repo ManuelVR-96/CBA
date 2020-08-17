@@ -42,7 +42,7 @@ class deltaController extends Controller
         }
 
         else {
-            return "Ya existe";
+            return view ('ValoracionExiste');
         }
     }
 

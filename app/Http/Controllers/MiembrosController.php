@@ -36,6 +36,7 @@ class MiembrosController extends Controller
 
     public function busqueda(Request $request)
     {  
+        $route = Route::currentRouteName();
         $entrada= $request->busqueda;
         $tipo = $request->tipo_busqueda;
         if ($tipo=="Nombre"){
@@ -74,7 +75,7 @@ class MiembrosController extends Controller
             
         }        
 
-            return view('consultarMiembro', compact ('users'));
+            return view('consultarMiembro', compact ('users', 'route'));
     }
     /**
      * Show the form for creating a new resource.

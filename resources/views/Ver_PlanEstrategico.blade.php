@@ -15,7 +15,9 @@
         <div class="form-header">           
             <h1 class="form-tittle">{{ __('PLAN ESTRATÉGICO REGISTRADO') }}</h1>
         </div>
-    
+        @if ($has_file=="si")
+                <a href="{{ url('storage/'.$plan->archivo) }}" class="btn btn-primary">Descargar archivo</a>
+        @endif
         <div class="card-body">
             <fieldset disabled>
                 <div class="form-group row">
@@ -23,6 +25,18 @@
                     <div class="col-md-8">
                         <input id="titulo" type="text" class="form-control @error('titulo') is-invalid @enderror" name="titulo" value="{{ $plan->titulo }}" required autocomplete = "titulo" autofocus>
                         @error('titulo')
+                            <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="descripcion" class="col-md-4 col-form-label">{{ __('Descripción') }}</label>
+                    <div class="col-md-8">
+                        <Textarea id="descripcion" type="text" class="form-control @error('descripcion') is-invalid @enderror" name="descripcion" value="{{ $plan->descripcion }}" required autocompleta = "descripcion" autofocus>{{$plan->descripcion}}</textarea>
+                        @error('Descripción')
                             <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                             </span>
@@ -52,7 +66,9 @@
                             </span>
                         @enderror
                     </div>
-                </div>         
+                </div>  
+                
+                
             </fieldset>
         </div>
     </form>

@@ -31,23 +31,17 @@ class actividadInicialController extends Controller
     
     {
 
-        $exist = DB::table('actividad_inicials')->where('paciente', $id)->exists();
-        #return($exist);
-        
+        $exist = DB::table('actividad_inicials')->where('paciente', $id)->exists();        
         if ($exist !=1){
-
-        $nuevoCliente= Cliente::findOrFail($id);
-        $encargados= user::Where('estado','Activo');
-        
-        return view ('registroActividadInicial', compact("nuevoCliente"));
+            $nuevoCliente= Cliente::findOrFail($id);
+            $encargados= user::Where('estado','Activo');        
+            return view ('registroActividadInicial', compact("nuevoCliente"));
         }
 
         else {
-            return "Ya existe";
+            return view ('ValoracionExiste');
         }
-        
-        
-        
+
     }
 
     /**
@@ -76,9 +70,8 @@ class actividadInicialController extends Controller
        $nuevoActividad->encargado=Auth::user()->id;
        $nuevoActividad->save();
 
-
-        return back();
-
+       return back();
+       
     }
 
     /**
@@ -102,7 +95,7 @@ class actividadInicialController extends Controller
         }
 
         else {
-            return "No existe";
+            return view ('ValoracionNoExiste');
         }
     }
 

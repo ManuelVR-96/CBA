@@ -44,7 +44,16 @@ Route::get('/usuarios_inactivos', 'UsuarioController@inactivos')->name('usuarios
 
 
 
-
+Route::get('storage/{archivo}', function ($archivo) {
+     
+     if (Storage::exists($archivo))
+     {
+      return Storage::download($archivo);
+     }
+     //si no se encuentra lanzamos un error 404.
+     abort(404);
+     
+});
 
 Route::post('/programas', 'ProgramasController@busqueda')->name('lista_programas');
 Route::post('/valoraciones', 'ValoracionesController@busqueda')->name('lista_valoraciones');

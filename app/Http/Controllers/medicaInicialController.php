@@ -38,7 +38,7 @@ class medicaInicialController extends Controller
 
         else 
         {
-            return "Ya existe";
+            return view ('ValoracionExiste');
         }    
        
     }
@@ -80,7 +80,7 @@ class medicaInicialController extends Controller
         return view ('Ver_MedicaInicial', compact("medica_inicial", "nuevoCliente"));
         }
         else{
-            return "No existe";
+            return view ('ValoracionNoExiste');
         }
     }
 

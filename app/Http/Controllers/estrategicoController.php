@@ -43,6 +43,12 @@ class estrategicoController extends Controller
         $nuevoEstrategico->titulo=$request->titulo;
         $nuevoEstrategico->descripcion=$request->descripcion;
         $nuevoEstrategico->creador = Auth::user()->id;
+        if($request->hasFile('archivo')){
+        $file = $request->file('archivo');
+       $nombre = $file->getClientOriginalName();
+       \Storage::disk('local')->put($nombre,  \File::get($file));
+       $nuevoEstrategico->archivo = $nombre;
+        }
         $nuevoEstrategico->save();
         return back();
     }
@@ -53,11 +59,20 @@ class estrategicoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id){
+        
         $plan= planEstrategico::Where('id', $id)->first();
-        return view ('Ver_PlanEstrategico', compact('plan'));
+        if($plan->archivo==""){
+            $has_file = "no";
+        }
+        else{
+            $has_file = "si";
+        }
+       
+        return view ('Ver_PlanEstrategico', compact('has_file','plan'));
     }
+
+   
 
     /**
      * Show the form for editing the specified resource.
@@ -84,6 +99,12 @@ class estrategicoController extends Controller
         $plan->titulo=$request->titulo;
         $plan->descripcion=$request->descripcion;
         $plan->actualizado_por = Auth::user()->id;
+        if($request->hasFile('archivo')){
+            $file = $request->file('archivo');
+           $nombre = $file->getClientOriginalName();
+           \Storage::disk('local')->put($nombre,  \File::get($file));
+           $plan->archivo = $nombre;
+            }
         $plan->save();
         return back();
     }

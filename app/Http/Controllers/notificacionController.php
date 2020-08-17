@@ -19,19 +19,8 @@ class notificacionController extends Controller
      */
     public function index()
     {   
-        $especialidad = Auth::user()->cargo;
-        // $notificaciones = notificacion::orderBy('created_at', 'desc')->paginate(10);
-        // echo(get_class($notificaciones));
-        // echo('      ');
-     #$notificaciones = DB::table('notificacions')->where('especialidad', '=', $especialidad)->orderBy('created_at', 'desc')->paginate(10);
-     #echo(get_class($notificaciones));
-        // foreach($notificaciones as $item){
-        //     echo(get_class($item));
-        // }
-$notificaciones = notificacion::where('especialidad', $especialidad)->orderBy('created_at', 'desc')->paginate(10);
-#echo(get_class($notificaciones));
-
-
+        $especialidad = Auth::user()->cargo;      
+        $notificaciones = notificacion::where('especialidad', $especialidad)->orderBy('created_at', 'desc')->paginate(10);
         return view ('Consultar_Notificaciones', compact('notificaciones'));
         
     }
@@ -45,9 +34,7 @@ $notificaciones = notificacion::where('especialidad', $especialidad)->orderBy('c
     {
         $posibles_encargados = User::where('estado','Activo');
         $encargados = Auth::user();
-        $especialidades = Especialidad::all();
-        #$miembros = Cliente::all();
-        
+        $especialidades = Especialidad::all();     
         $miembros= Cliente::findOrFail($id);
         return view('RegistroNotificacion', compact('posibles_encargados', 'encargados', 'especialidades', 'miembros'));
     }

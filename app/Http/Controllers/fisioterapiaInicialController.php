@@ -40,7 +40,7 @@ class fisioterapiaInicialController extends Controller
         }
 
         else {
-            return "Ya existe";
+            return view ('ValoracionExiste');
         }
   
     }
@@ -198,7 +198,7 @@ class fisioterapiaInicialController extends Controller
         }
 
         else{
-            return "No existe";
+            return view ('ValoracionNoExiste');
         }
     }
 

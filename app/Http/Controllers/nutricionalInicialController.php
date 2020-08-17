@@ -41,7 +41,7 @@ class nutricionalInicialController extends Controller
         }
 
         else {
-            return "Ya existe";
+            return view ('ValoracionExiste');
         }        
     }
 
@@ -95,7 +95,7 @@ class nutricionalInicialController extends Controller
         }
 
         else {
-            return "No existe registro!";
+            return view ('ValoracionNoExiste');
         }
     }
 

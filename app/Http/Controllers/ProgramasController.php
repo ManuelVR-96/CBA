@@ -63,9 +63,7 @@ class ProgramasController extends Controller
         
                 $programas = Programa::where('nombre', $entrada)->paginate(10);
             
-        }
-        
-
+        }      
             return view('vistaPrograma', compact ('programas'));
     }
 

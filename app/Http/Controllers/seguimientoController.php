@@ -108,7 +108,7 @@ class seguimientoController extends Controller
 
         else 
         {
-            return "No existe registro!";
+            return view ('ValoracionNoExiste');
         }
     }
 

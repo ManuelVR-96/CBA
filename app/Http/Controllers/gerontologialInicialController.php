@@ -39,7 +39,7 @@ class gerontologialInicialController extends Controller
 
         else 
         {
-            return "Ya existe";
+            return view ('ValoracionExiste');
         } 
     }
 
@@ -124,7 +124,7 @@ class gerontologialInicialController extends Controller
         }
 
         else{
-            return "No existe";
+            return view ('ValoracionNoExiste');
         }
     }
 

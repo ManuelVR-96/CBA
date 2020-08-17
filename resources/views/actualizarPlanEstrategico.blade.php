@@ -8,7 +8,7 @@
 <div class="gradient"></div><br><br>
 
 <div class="container">
-    <form method="POST" class="form" action="{{route('estrategico.update', $plan->id)}}">
+    <form enctype="multipart/form-data" method="POST" class="form" action="{{route('estrategico.update', $plan->id)}}">
         
         <div class="form-header">           
             <h1 class="form-tittle">{{ __('ACTUALIZAR PLAN ESTRATÉGICO') }}</h1>
@@ -41,6 +41,19 @@
                     @enderror
                 </div>
             </div>
+
+            <div class="form-group row">
+                <label for="archivo" class="col-md-4 col-form-label">{{ __('Archivo (Opcional)') }}</label>
+                <div class="col-md-8">
+                    <input type="file" name="archivo" class="form-control">
+
+                    @error('archivo')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div><br>
 
             <button type="submit" class="btn-submit">
                 {{ __('ACTUALIZAR PLAN') }}
