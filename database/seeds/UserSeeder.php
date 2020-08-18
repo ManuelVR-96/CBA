@@ -13,7 +13,12 @@ class UserSeeder extends Seeder
     {
         {
             DB::table('users')->insert([
-                'title' => 'Desarrollador back-end',
+                'avatar'=>'default.jpg',
+                'nombres'=> "Claudia Elena",
+                'apellidos'=>"Arteaga",
+                'rol'=>"Administrador",
+                'email'=>"cbasanjosepereira@hotmail.com",            
+                'password' => bcrypt("admin2020"), 
             ]);
         }
     }
