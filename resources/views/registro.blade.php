@@ -152,7 +152,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="seguridad" class="col-md-4 col-form-label">{{ __('Seguridad Social') }}</label>
+                <label for="seguridad" class="col-md-4 col-form-label">{{ __('Servicio') }}</label>
                 <div class="col-md-8">
                     <input id="seguridad" type="text" class="form-control @error('seguridad') is-invalid @enderror" name="seguridad" value="{{ old('seguridad') }}" autofocus>
 
@@ -167,11 +167,7 @@
             <div class="form-group row">
                 <label for="primer_acudiente" class="col-md-4 col-form-label">{{ __('Primer Acudiente') }}</label>
                 <div class="col-md-8">
-<<<<<<< HEAD
-                    <Textarea id="primer_acudiente" type="text" class="form-control @error('primer_acudiente') is-invalid @enderror" name="primer_acudiente" value="{{ old('primer_acudiente') }}" autofocus>{{ old('primer_acudiente') }}</Textarea>
-=======
                     <textarea id="primer_acudiente" type="text" class="form-control @error('primer_acudiente') is-invalid @enderror" name="primer_acudiente" value="{{ old('primer_acudiente') }}" autofocus></textarea>
->>>>>>> 7fdf7cfffe979ecf3af3c04493a9f1e961b2506a
 
                     @error('primer_acudiente')
                         <span class="invalid-feedback" role="alert">
@@ -184,11 +180,7 @@
             <div class="form-group row">
                 <label for="segundo_acudiente" class="col-md-4 col-form-label">{{ __('Segundo Acudiente') }}</label>
                 <div class="col-md-8">
-<<<<<<< HEAD
-                    <Textarea id="segundo_acudiente" type="text" class="form-control @error('segundo_acudiente') is-invalid @enderror" name="segundo_acudiente" value="{{ old('segundo_acudiente') }}" autofocus>{{ old('segundo_acudiente') }}</Textarea>
-=======
                     <textarea id="segundo_acudiente" type="text" class="form-control @error('segundo_acudiente') is-invalid @enderror" name="segundo_acudiente" value="{{ old('segundo_acudiente') }}" autofocus></textarea>
->>>>>>> 7fdf7cfffe979ecf3af3c04493a9f1e961b2506a
 
                     @error('segundo_acudiente')
                         <span class="invalid-feedback" role="alert">
@@ -383,7 +375,7 @@
             
             <br>
             <button type="submit" class="btn-submit">
-                {{ __('REGISTRAR MIEMBRO') }}
+                {{ __('REGISTRAR RESIDENTE') }}
             </button>
             
         </div>
