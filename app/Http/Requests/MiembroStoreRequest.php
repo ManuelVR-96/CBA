@@ -27,7 +27,7 @@ class MiembroStoreRequest extends FormRequest
         return [
             'nombres' => ['required', 'string','regex:/^[\pL\s\-]+$/u', 'max:30'],
             'apellidos' => ['required', 'string','regex:/^[\pL\s\-]+$/u', 'max:30'],            
-            'cédula' =>['required', 'string', 'unique:clientes', 'digits_between:8,10', 'numeric' ],            
+            'cédula' =>['required', 'string', 'unique:clientes', 'digits_between:5,10', 'numeric' ],            
             'nivel'=> ['required', 'string','alpha', 'max:30'],
             'direccion' => ['required', 'string', 'max:60'],
             'telefono' =>['required', 'string', 'digits:10', 'starts_with:3'],

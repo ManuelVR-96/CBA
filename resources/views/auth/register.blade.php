@@ -116,7 +116,7 @@
                 </div>
             </div>
 
-            <div class="form-group row" id = "cargo_" style="display:none">
+            <div class="form-group row" id = "cargo_">
                 <label for="encargado" class="col-md-4 col-form-label">{{ __('Cargo') }}</label>
                 <div class="col-md-8">
                     
@@ -218,21 +218,6 @@
 </div>
 <div class="gradient"></div>
 
-<script type="text/javascript"> 
 
-function mostrar(op){
-    campo = document.getElementById("cargo_");
-    
-    if (op.value=="Operador"){
-        campo.style.display="";
-        console.log("holas");
-    }
-    else{
-        campo.style.display = "none";
-    }
-}
-
-//mostrar(document.getElementById("perfil"));
-</script>
 
 @endsection
