@@ -26,19 +26,18 @@ class medicaInicialController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
-    {
+    public function create($id){
+
     $exist = DB::table('medicina_inicials')->where('paciente', $id)->exists();    
         
         if ($exist !=1){
 
             $nuevoCliente= Cliente::findOrFail($id);       
-            return view ('RegistroMedicinaInicial', compact("nuevoCliente"));
+            return view ('Valoraciones/RegistroMedicinaInicial', compact("nuevoCliente"));
         }
 
-        else 
-        {
-            return view ('ValoracionExiste');
+        else {
+            return view ('Valoraciones/ValoracionExiste');
         }    
        
     }
@@ -49,8 +48,8 @@ class medicaInicialController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {   
+    public function store(Request $request){
+
         $nuevoMedica = new MedicinaInicial();
         $nuevoMedica->paciente = $request->miembro;
         $nuevoMedica->antecedentes_patologicos = $request->antecedentes_patologicos;
@@ -71,16 +70,16 @@ class medicaInicialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id){
+
         $exist = DB::table('medicina_inicials')->where('paciente', $id)->exists();
         if($exist==1){
-        $medica_inicial = MedicinaInicial::Where('paciente', $id)->first();
-        $nuevoCliente= Cliente::findOrFail($id);
-        return view ('Ver_MedicaInicial', compact("medica_inicial", "nuevoCliente"));
+            $medica_inicial = MedicinaInicial::Where('paciente', $id)->first();
+            $nuevoCliente= Cliente::findOrFail($id);
+            return view ('Valoraciones/Ver_MedicaInicial', compact("medica_inicial", "nuevoCliente"));
         }
         else{
-            return view ('ValoracionNoExiste');
+            return view ('Valoraciones/ValoracionNoExiste');
         }
     }
 
@@ -90,8 +89,7 @@ class medicaInicialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id){
         //
     }
 
@@ -102,8 +100,7 @@ class medicaInicialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
         //
     }
 
@@ -113,8 +110,7 @@ class medicaInicialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id){
         //
     }
 }

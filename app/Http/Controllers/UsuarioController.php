@@ -17,31 +17,33 @@ class UsuarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {   $route = Route::currentRouteName();
+    public function index(){   
+        
+        $route = Route::currentRouteName();
         $users = User::Where('estado', 'Activo')->orderBy('nombres', 'ASC')->paginate(10);
-        return view('consultarUser', compact ('users', 'route')); 
+        return view('Usuarios/consultarUser', compact ('users', 'route')); 
     }
 
-    public function inactivos()
-    {   $route = Route::currentRouteName();
+    public function inactivos(){   
+        
+        $route = Route::currentRouteName();
         $users = User::where('estado', 'inactivo')->orderBy('nombres', 'ASC')->paginate(10); 
-        return view('consultarUser', compact ('users', 'route')); 
+        return view('Usuarios/consultarUser', compact ('users', 'route')); 
     }
 
-    public function busqueda(Request $request)
-    {   
+    public function busqueda(Request $request){
+
         $route = Route::currentRouteName();
         $entrada= $request->busqueda;
         $tipo = $request->tipo_busqueda;
         if ($tipo=="Nombre"){
-        if ($entrada==''){
-            $users = User::Where('estado', 'Activo')->orderBy('nombres', 'ASC')->paginate(10);
-            }
-            else {
-                
-                $users = User::Where('estado', 'Activo')->where('nombres', 'like', '%' . $entrada . '%')->paginate(10);
-            }
+            if ($entrada==''){
+                $users = User::Where('estado', 'Activo')->orderBy('nombres', 'ASC')->paginate(10);
+                }
+                else {
+                    
+                    $users = User::Where('estado', 'Activo')->where('nombres', 'like', '%' . $entrada . '%')->paginate(10);
+                }
         }
 
         elseif ($tipo=="Cédula"){
@@ -65,11 +67,9 @@ class UsuarioController extends Controller
         }
 
         else{
-        
-                $users = User::Where('estado', 'Activo')->where('nombres', $entrada)->paginate(10);
-            
+                $users = User::Where('estado', 'Activo')->where('nombres', $entrada)->paginate(10);    
         }
-            return view('consultarUser', compact ('users', 'route'));
+            return view('Usuarios/consultarUser', compact ('users', 'route'));
     }
 
     /**
@@ -77,8 +77,9 @@ class UsuarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {   $especialidades = Especialidad::all();
+    public function create(){   
+        
+        $especialidades = Especialidad::all();
         return view ('auth.register', compact('especialidades'));
     }
 
@@ -88,8 +89,8 @@ class UsuarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
+
         $nuevoOp = new User();
 
         if($request->hasFile('avatar')){
@@ -124,11 +125,11 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id){
+
         $user= User::findOrFail($id);
 
-        return view('perfilUsuario', compact('user'));  
+        return view('Usuarios/perfilUsuario', compact('user'));  
     }
 
     /**
@@ -137,11 +138,11 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id){
+
         $usuario = User::findOrFail($id);
 
-        return view('actualizarUsuarios', compact('usuario'));
+        return view('Usuarios/actualizarUsuarios', compact('usuario'));
     }
 
     /**
@@ -151,8 +152,8 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {   
+    public function update(Request $request, $id){
+
         $nuevoOp = User::findOrFail($id);
                 
         if($request->hasFile('avatar')){
@@ -190,12 +191,8 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        // $user = User::findOrFail($id);
-        // $user->delete();
-        // $users = User::orderBy('nombres', 'ASC')->paginate(10);
-        // return redirect()->to('/usuarios');
+    public function destroy($id){
+
         $user = User::findOrFail($id);
         if($user->estado=='Activo'){
         $user->estado = 'Inactivo';

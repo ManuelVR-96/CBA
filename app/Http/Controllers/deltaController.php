@@ -28,21 +28,17 @@ class deltaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
-    {   #return $id;
-        $exist = DB::table('test_deltas')->where('paciente', $id)->exists();
-        #return((string)$exist);
-        
-        if ($exist !=1){
+    public function create($id){
 
+        $exist = DB::table('test_deltas')->where('paciente', $id)->exists();
+
+        if ($exist !=1){
         $nuevoCliente= Cliente::findOrFail($id);
         $encargados= user::where('estado', 'Activo');
-        
-        return view ('registroDeltaValoraciones', compact("encargados", "nuevoCliente"));
+        return view ('Valoraciones/registroDeltaValoraciones', compact("encargados", "nuevoCliente"));
         }
-
         else {
-            return view ('ValoracionExiste');
+            return view ('Valoraciones/ValoracionExiste');
         }
     }
 
@@ -52,8 +48,8 @@ class deltaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {   
+    public function store(Request $request){
+
         $nuevoDelta = new test_delta();
         $nuevoDelta->paciente = $request->miembro;
         $nuevoDelta->dependencia_movilizacion = $request->dependencia_movilizacion;
@@ -99,13 +95,12 @@ class deltaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id){
 
         $delta = test_delta::Where('paciente', $id)->first();
         $nuevoCliente= Cliente::findOrFail($id);
         
-        return view ('Ver_TestDelta', compact("delta", "nuevoCliente"));
+        return view ('Valoraciones/Ver_TestDelta', compact("delta", "nuevoCliente"));
     }
 
     /**
@@ -114,13 +109,13 @@ class deltaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id){
+
         $nuevoCliente= Cliente::findOrFail($id);
         $encargados= user::where('estado','Activo');
         $delta = test_delta::Where('paciente', $id)->first();
         
-        return view ('registroDeltaValoraciones', compact("encargados", "nuevoCliente", "delta"));
+        return view ('Miembros/registroDeltaValoraciones', compact("encargados", "nuevoCliente", "delta"));
     }
 
     /**
@@ -130,8 +125,8 @@ class deltaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
+
         $nuevoDelta = test_delta::Where('Paciente', $id)->first();
         $nuevoDelta->paciente = $request->miembro;
         $nuevoDelta->dependencia_movilizacion = $request->dependencia_movilizacion;
@@ -141,7 +136,6 @@ class deltaController extends Controller
         $nuevoDelta->dependencia_alimentacion = $request->dependencia_alimentacion;
         $nuevoDelta->dependencia_esfinteriana = $request->dependencia_esfinteriana;
         $nuevoDelta->dependencia_tratamientos = $request->dependencia_tratamientos;
-        //return($request->dependencia_movilizacion + $request->dependencia_deambulacion + $request->dependencia_aseo + $request->dependencia_vestido + $request->dependencia_alimentacion + $request->dependencia_esfinteriana + $request->dependencia_tratamientos);
         
         
         $nuevoDelta->encargado_general = $request->encargado_enfermeria;

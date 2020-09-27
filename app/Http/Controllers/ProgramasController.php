@@ -16,22 +16,21 @@ class ProgramasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(){
         $programas = Programa::orderBy('nombre', 'ASC')->paginate(10);
-        return view('vistaPrograma', compact ('programas'));
+        return view('Programas/vistaPrograma', compact ('programas'));
     }
 
-    public function busqueda(Request $request)
-    {  
+    public function busqueda(Request $request){
+
         $entrada= $request->busqueda;
         $tipo = $request->tipo_busqueda;
         if ($tipo=="Encargado"){
-        if ($entrada==''){
-            $programas = Programa::orderBy('encargado->nombres', 'ASC')->paginate(10);
-            }
-            else {
-                
+
+            if ($entrada==''){
+                $programas = Programa::orderBy('encargado->nombres', 'ASC')->paginate(10);
+                }
+            else { 
                 $programas = Programa::whereHas('encargado_', function($query) use($entrada){
                 $query->where('Nombres', 'like', '%' . $entrada . '%');
                 })->paginate(10);
@@ -39,16 +38,17 @@ class ProgramasController extends Controller
         }
 
         elseif ($tipo=="Nombre programa"){
+
             if ($entrada==''){
-            $programas = Programa::orderBy('Nombre', 'ASC')->paginate(10);
+                $programas = Programa::orderBy('Nombre', 'ASC')->paginate(10);
             }
             else {
-                
                 $programas = Programa::where('Nombre', 'like', '%' . $entrada . '%')->paginate(10);
             }
         }
 
         elseif ($tipo=="Especialidad"){
+
             if ($entrada==''){
             $programas = Programa::orderBy('especialidad->Nombre', 'ASC')->paginate(10);
             }
@@ -60,12 +60,11 @@ class ProgramasController extends Controller
             }
         }
 
-        else{
-        
+        else { 
                 $programas = Programa::where('nombre', $entrada)->paginate(10);
-            
         }      
-            return view('vistaPrograma', compact ('programas'));
+        
+        return view('Programas/vistaPrograma', compact ('programas'));
     }
 
     /**
@@ -73,10 +72,11 @@ class ProgramasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {   $encargados= user::Where('estado', 'Activo')->get();
+    public function create(){   
+        
+        $encargados= user::Where('estado', 'Activo')->get();
         $especialidades= Especialidad::all();
-        return view ('programa', compact("encargados", "especialidades"));
+        return view ('Programas/programa', compact("encargados", "especialidades"));
     }
 
     /**
@@ -85,8 +85,8 @@ class ProgramasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
+
         $nuevoPrograma = new Programa();
         $nuevoPrograma->nombre = $request->nombre;
         $nuevoPrograma->encargado = $request->encargado;
@@ -105,11 +105,11 @@ class ProgramasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id){
+
         $programas= Programa::findOrFail($id);
 
-        return view('perfilPrograma', compact('programas'));
+        return view('Programas/perfilPrograma', compact('programas'));
     }
 
     /**
@@ -118,13 +118,13 @@ class ProgramasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id){
+
         $encargados= user::where('estado', 'Activo');
         $especialidades= Especialidad::all();
         $programa = Programa::findOrFail($id);
                 
-        return view('actualizarProgramas', compact('encargados', 'especialidades', 'programa'));
+        return view('Programas/actualizarProgramas', compact('encargados', 'especialidades', 'programa'));
     }
 
     /**
@@ -134,8 +134,8 @@ class ProgramasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
+
         $Programa = Programa::findOrFail($id);
         $Programa->nombre = $request->nombre;            
         $Programa->encargado = $request->encargado;
@@ -153,8 +153,8 @@ class ProgramasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id){
+        
         $programa = Programa::findOrFail($id);
         $programa->delete();
         $programa = Programa::orderBy('nombre', 'ASC')->paginate(10);

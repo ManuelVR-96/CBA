@@ -27,21 +27,18 @@ class actividadInicialController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
-    
-    {
+    public function create($id){
 
         $exist = DB::table('actividad_inicials')->where('paciente', $id)->exists();        
+        
         if ($exist !=1){
             $nuevoCliente= Cliente::findOrFail($id);
             $encargados= user::Where('estado','Activo');        
-            return view ('registroActividadInicial', compact("nuevoCliente"));
+            return view ('Valoraciones/registroActividadInicial', compact("nuevoCliente"));
         }
-
         else {
-            return view ('ValoracionExiste');
+            return view ('Valoraciones/ValoracionExiste');
         }
-
     }
 
     /**
@@ -50,8 +47,9 @@ class actividadInicialController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {  $ds = implode(",", $request->get('desea_fisica'));
+    public function store(Request $request){  
+    
+       $ds = implode(",", $request->get('desea_fisica'));
        $nuevoActividad = new ActividadInicial();
        $nuevoActividad->paciente=$request->miembro;
        $nuevoActividad->trabajos=$request->trabajos;
@@ -80,22 +78,20 @@ class actividadInicialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id){
 
-    {
         $exist = DB::table('actividad_inicials')->where('paciente', $id)->exists();
         
         if ($exist==1){
-        $acti_Inicial = ActividadInicial::Where('paciente', $id)->first();
-        $nuevoCliente= Cliente::findOrFail($id);
-        $array_fisica=explode(",", $acti_Inicial->desea_fisica);
-        $array_recreacion=explode("," , $acti_Inicial->quiere_realizar_recreacion);
-        $b= in_array("Integraciones",$array_recreacion);
-        return view ('Ver_ActividadInicial', compact("acti_Inicial", "nuevoCliente", "array_recreacion","array_fisica"));
+            $acti_Inicial = ActividadInicial::Where('paciente', $id)->first();
+            $nuevoCliente= Cliente::findOrFail($id);
+            $array_fisica=explode(",", $acti_Inicial->desea_fisica);
+            $array_recreacion=explode("," , $acti_Inicial->quiere_realizar_recreacion);
+            $b= in_array("Integraciones",$array_recreacion);
+            return view ('Valoracioes/Ver_ActividadInicial', compact("acti_Inicial", "nuevoCliente", "array_recreacion","array_fisica"));
         }
-
         else {
-            return view ('ValoracionNoExiste');
+            return view ('Valoraciones/ValoracionNoExiste');
         }
     }
 

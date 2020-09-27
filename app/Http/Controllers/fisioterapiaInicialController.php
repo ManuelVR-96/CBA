@@ -30,17 +30,16 @@ class fisioterapiaInicialController extends Controller
     public function create($id)
     {
         $exist = DB::table('fisioterapia_inicials')->where('paciente', $id)->exists();
-        #return($exist);
         
         if ($exist !=1){
 
         $nuevoCliente= Cliente::findOrFail($id);
-       
-        return view ('RegistroFisioterapiaInicial', compact("nuevoCliente"));
+        return view ('Valoraciones/RegistroFisioterapiaInicial', compact("nuevoCliente"));
+
         }
 
         else {
-            return view ('ValoracionExiste');
+            return view ('Valoraciones/ValoracionExiste');
         }
   
     }
@@ -51,8 +50,9 @@ class fisioterapiaInicialController extends Controller
      * @param  \Illuminate\Http\$request  $$request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {   $nuevaFisioterapia = new FisioterapiaInicial();
+    public function store(Request $request){   
+        
+        $nuevaFisioterapia = new FisioterapiaInicial();
         $nuevaFisioterapia->paciente = $request->miembro;
         $nuevaFisioterapia->antecedentes= $request->antecedentes;
         $nuevaFisioterapia->situacion_salud= $request->situacion_salud;
@@ -186,9 +186,8 @@ class fisioterapiaInicialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    
-    {
+    public function show($id){
+        
         $exist = DB::table('fisioterapia_inicials')->where('paciente', $id)->exists();
 
         if($exist==1){
@@ -198,7 +197,7 @@ class fisioterapiaInicialController extends Controller
         }
 
         else{
-            return view ('ValoracionNoExiste');
+            return view ('Valoraciones/ValoracionNoExiste');
         }
     }
 
@@ -208,8 +207,7 @@ class fisioterapiaInicialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id){
         //
     }
 
@@ -220,8 +218,7 @@ class fisioterapiaInicialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
         
     }
 
@@ -231,8 +228,7 @@ class fisioterapiaInicialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id){
         //
     }
 }

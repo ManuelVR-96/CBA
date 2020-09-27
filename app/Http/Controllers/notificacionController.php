@@ -17,8 +17,8 @@ class notificacionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {   
+    public function index(){
+           
         $especialidad = Auth::user()->cargo;      
         $notificaciones = notificacion::where('especialidad', $especialidad)->orderBy('created_at', 'desc')->paginate(10);
         return view ('Consultar_Notificaciones', compact('notificaciones'));
@@ -30,8 +30,8 @@ class notificacionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
-    {
+    public function create($id){
+
         $posibles_encargados = User::where('estado','Activo');
         $encargados = Auth::user();
         $especialidades = Especialidad::all();     
@@ -45,8 +45,7 @@ class notificacionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $nuevoNotificacion = new notificacion();
         #return($request->miembro);
         $nuevoNotificacion->paciente= $request->miembro;
@@ -63,8 +62,8 @@ class notificacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id){
+
         $notificacion = notificacion::where('id', $id)->first();
         $notificacion->vista=True;
         $notificacion->save();
@@ -77,8 +76,7 @@ class notificacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id){
         //
     }
 
@@ -89,8 +87,7 @@ class notificacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
         //
     }
 
@@ -100,8 +97,7 @@ class notificacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id){
         //
     }
 }

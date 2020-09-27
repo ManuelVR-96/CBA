@@ -16,8 +16,7 @@ class seguimientoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(){
         //
     }
 
@@ -26,8 +25,7 @@ class seguimientoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create(){
         //
     }
 
@@ -37,8 +35,8 @@ class seguimientoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
+
         $nuevoSeguimiento->paciente=$request->paciente;
         $nuevoSeguimiento->perfil_medico=$request->perfil_medico;
         $nuevoSeguimiento->diagnostico_medico=$request->diagnostico_medico;
@@ -96,19 +94,16 @@ class seguimientoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id){
+
         $exist = DB::table('seguimiento_miembros')->where('paciente', $id)->exists();        
-        if ($exist ==1)
-        {
+        if ($exist ==1){
             $seguimiento = seguimiento_miembro::Where('paciente', $id)->first();
             $nuevoCliente= Cliente::findOrFail($id);
-            return view ('Ver_Seguimiento', compact("seguimiento", "nuevoCliente"));
+            return view ('Valoraciones/Ver_Seguimiento', compact("seguimiento", "nuevoCliente"));
         }
-
-        else 
-        {
-            return view ('ValoracionNoExiste');
+        else{
+            return view ('Valoraciones/ValoracionNoExiste');
         }
     }
 
@@ -118,11 +113,10 @@ class seguimientoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    { 
+    public function edit($id){ 
         $miembro = Cliente::findOrFail($id);
         $Seguimiento = seguimiento_miembro::Where('paciente', $id)->first();
-        return view ('RegistroSeguimiento', compact("miembro", "Seguimiento"));  
+        return view ('Valoraciones/RegistroSeguimiento', compact("miembro", "Seguimiento"));  
     }
 
     /**
@@ -132,8 +126,8 @@ class seguimientoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
+
         $nuevoSeguimiento = seguimiento_miembro::Where('paciente', $id)->first();
         $nuevoSeguimiento->paciente=$request->paciente;
         $nuevoSeguimiento->perfil_medico=$request->perfil_medico;
@@ -194,8 +188,7 @@ class seguimientoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id){
         //
     }
 }

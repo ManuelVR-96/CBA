@@ -17,8 +17,7 @@ class psicologicaInicialController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(){
         //
     }
 
@@ -27,20 +26,18 @@ class psicologicaInicialController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
-    {   
+    public function create($id){
+
         $exist = DB::table('psicologica_inicials')->where('paciente', $id)->exists();
         #return($exist);
         
-        if ($exist !=1)
-        {
+        if ($exist !=1){
             $nuevoCliente= Cliente::findOrFail($id);       
-            return view ('RegistroPsicologiaInicial', compact("nuevoCliente"));
+            return view ('Valoraciones/RegistroPsicologiaInicial', compact("nuevoCliente"));
         }
 
-        else 
-        {
-            return view ('ValoracionExiste');
+        else {
+            return view ('Valoraciones/ValoracionExiste');
         }
       
     }
@@ -51,8 +48,8 @@ class psicologicaInicialController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {   
+    public function store(Request $request){
+
         $nuevoPsicologica = new PsicologicaInicial();
         $yesavage_total = $request->yesavage_uno + $request->yesavage_dos + $request->yesavage_tres + $request->yesavage_cuatro + $request->yesavage_cinco + $request->yesavage_seis + $request->yesavage_siete + $request->yesavage_ocho + $request->yesavage_nueve + $request->yesavage_diez + $request->yesavage_once + $request->yesavage_doce + $request->yesavage_trece + $request->yesavage_catorce + $request->yesavage_quince;
         $nuevoPsicologica->paciente = $request->miembro;
@@ -96,21 +93,19 @@ class psicologicaInicialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id){
+
         $exist = DB::table('psicologica_inicials')->where('paciente', $id)->exists();
         #return((string)$exist);
         
-        if ($exist ==1)
-        {
+        if ($exist ==1){
             $psico_inicial = PsicologicaInicial::Where('paciente', $id)->first();
             $nuevoCliente= Cliente::findOrFail($id);
-            return view ('Ver_PsicologicaInicial', compact("psico_inicial", "nuevoCliente"));
+            return view ('Valoraciones/Ver_PsicologicaInicial', compact("psico_inicial", "nuevoCliente"));
         }
 
-        else 
-        {
-            return view ('ValoracionNoExiste');
+        else{
+            return view ('Valoraciones/ValoracionNoExiste');
         }
     }
 
@@ -120,8 +115,7 @@ class psicologicaInicialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id){
         
     }
 
@@ -132,8 +126,7 @@ class psicologicaInicialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
         //
     }
 
@@ -143,8 +136,7 @@ class psicologicaInicialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id){
         //
     }
 }

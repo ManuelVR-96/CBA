@@ -16,8 +16,7 @@ class gerontologialInicialController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(){
         //
     }
 
@@ -26,20 +25,19 @@ class gerontologialInicialController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
-    {
+    public function create($id){
+
         $exist = DB::table('gerontologia_inicials')->where('paciente', $id)->exists();
         #return($exist);
         
-        if ($exist !=1)
-        {
+        if ($exist !=1){
+
             $nuevoCliente= Cliente::findOrFail($id);       
-            return view ('RegistroGerontologiaInicial', compact("nuevoCliente"));
+            return view ('Valoraciones/RegistroGerontologiaInicial', compact("nuevoCliente"));
         }
 
-        else 
-        {
-            return view ('ValoracionExiste');
+        else {
+            return view ('Valoraciones/ValoracionExiste');
         } 
     }
 
@@ -49,8 +47,9 @@ class gerontologialInicialController extends Controller
      * @param  \Illuminate\Http\Request  $request->
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {   $nuevaGerontologia = new GerontologiaInicial();
+    public function store(Request $request){   
+        
+        $nuevaGerontologia = new GerontologiaInicial();
         $nuevaGerontologia->paciente=$request->miembro;
         $participacion_total = $request->participacion_uno + $request->participacion_dos + $request->participacion_tres + $request->participacion_cuatro + $request->participacion_cinco + $request->participacion_seis + $request->participacion_siete + $request->participacion_ocho;
         $quehacer_total = $request->quehacer_uno + $request->quehacer_dos + $request->quehacer_tres + $request->quehacer_cuatro + $request->quehacer_cinco + $request->quehacer_seis + $request->quehacer_siete + $request->quehacer_ocho;
@@ -113,18 +112,18 @@ class gerontologialInicialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id){
+        
         $exist = DB::table('gerontologia_inicials')->where('paciente', $id)->exists();
 
         if($exist==1){
             $geron_inicial = GerontologiaInicial::Where('paciente', $id)->first();
             $nuevoCliente= Cliente::findOrFail($id);
-            return view ('Ver_GeronInicial', compact("geron_inicial", "nuevoCliente"));
+            return view ('Valoraciones/Ver_GeronInicial', compact("geron_inicial", "nuevoCliente"));
         }
 
         else{
-            return view ('ValoracionNoExiste');
+            return view ('Valoraciones/ValoracionNoExiste');
         }
     }
 
@@ -134,8 +133,7 @@ class gerontologialInicialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id){
         //
     }
 
@@ -146,8 +144,7 @@ class gerontologialInicialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
         
     }
 
@@ -157,8 +154,7 @@ class gerontologialInicialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id){
         //
     }
 }

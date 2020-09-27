@@ -15,10 +15,10 @@ class estrategicoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(){
+        
         $planes = planEstrategico::orderBy('created_at', 'ASC')->paginate(10);
-        return view('ConsultarPlanes', compact('planes'));
+        return view('Planes/ConsultarPlanes', compact('planes'));
     }
 
     /**
@@ -26,9 +26,9 @@ class estrategicoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('RegistroPlanEstrategico');
+    public function create(){
+
+        return view('Planes/RegistroPlanEstrategico');
     }
 
     /**
@@ -37,17 +37,17 @@ class estrategicoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {   
+    public function store(Request $request){
+
         $nuevoEstrategico = new planEstrategico();
         $nuevoEstrategico->titulo=$request->titulo;
         $nuevoEstrategico->descripcion=$request->descripcion;
         $nuevoEstrategico->creador = Auth::user()->id;
         if($request->hasFile('archivo')){
-        $file = $request->file('archivo');
-       $nombre = $file->getClientOriginalName();
-       \Storage::disk('local')->put($nombre,  \File::get($file));
-       $nuevoEstrategico->archivo = $nombre;
+            $file = $request->file('archivo');
+            $nombre = $file->getClientOriginalName();
+            \Storage::disk('local')->put($nombre,  \File::get($file));
+            $nuevoEstrategico->archivo = $nombre;
         }
         $nuevoEstrategico->save();
         return back();
@@ -62,6 +62,7 @@ class estrategicoController extends Controller
     public function show($id){
         
         $plan= planEstrategico::Where('id', $id)->first();
+
         if($plan->archivo==""){
             $has_file = "no";
         }
@@ -69,7 +70,7 @@ class estrategicoController extends Controller
             $has_file = "si";
         }
        
-        return view ('Ver_PlanEstrategico', compact('has_file','plan'));
+        return view ('Planes/Ver_PlanEstrategico', compact('has_file','plan'));
     }
 
    
@@ -80,10 +81,10 @@ class estrategicoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id){
+
         $plan = planEstrategico::Where('id', $id)->first();
-        return view('actualizarPlanEstrategico', compact('plan'));
+        return view('Planes/actualizarPlanEstrategico', compact('plan'));
     }
 
     /**
@@ -93,8 +94,8 @@ class estrategicoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
+        
         $plan = planEstrategico::Where('id', $id)->first();
         $plan->titulo=$request->titulo;
         $plan->descripcion=$request->descripcion;

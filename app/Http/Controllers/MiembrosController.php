@@ -18,35 +18,34 @@ class MiembrosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {   $route = Route::currentRouteName();
+    public function index(){   
+        
+        $route = Route::currentRouteName();
         $users = Cliente::where('estado', 'activo')->orderBy('nombres', 'ASC')->paginate(10);
         
-        return view('consultarMiembro', compact ('users', 'route')); 
+        return view('Miembros/consultarMiembro', compact ('users', 'route')); 
     }
 
-    public function inactivos()
-    {   $route = Route::currentRouteName();
+    public function inactivos(){   
         
-
+        $route = Route::currentRouteName();
         $users = Cliente::where('estado', 'inactivo')->orderBy('nombres', 'ASC')->paginate(10);
         
-        return view('consultarMiembro', compact ('users', 'route')); 
+        return view('Miembros/consultarMiembro', compact ('users', 'route')); 
     }
 
-    public function busqueda(Request $request)
-    {  
+    public function busqueda(Request $request){
+
         $route = Route::currentRouteName();
         $entrada= $request->busqueda;
         $tipo = $request->tipo_busqueda;
         $route = Route::currentRouteName();
         if ($tipo=="Nombre"){
-        if ($entrada==''){
-            $users = Cliente::where('estado', 'activo')->orderBy('nombres', 'ASC')->paginate(10);
-            }
-            else {
-                
-                $users = Cliente::where('estado', 'activo')->where('nombres', 'like', '%' . $entrada . '%')->paginate(10);
+            if ($entrada==''){
+                $users = Cliente::where('estado', 'activo')->orderBy('nombres', 'ASC')->paginate(10);
+                }
+            else {    
+                    $users = Cliente::where('estado', 'activo')->where('nombres', 'like', '%' . $entrada . '%')->paginate(10);
             }
         }
 
@@ -54,8 +53,7 @@ class MiembrosController extends Controller
             if ($entrada==''){
             $users = Cliente::where('estado', 'activo')->orderBy('cédula', 'ASC')->paginate(10);
             }
-            else {
-                
+            else {    
                 $users = Cliente::where('estado', 'activo')->where('cédula', $entrada)->paginate(10);
             }
         }
@@ -65,27 +63,23 @@ class MiembrosController extends Controller
             $users = Cliente::where('estado', 'activo')->orderBy('apellidos', 'ASC')->paginate(10);
             }
             else {
-                
                 $users = Cliente::where('estado', 'activo')->where('apellidos', 'like', '%' . $entrada . '%')->paginate(10);
             }
         }
 
         else{
-        
-                $users = Cliente::where('estado', 'activo')->where('nombres', $entrada)->paginate(10);
-            
+                $users = Cliente::where('estado', 'activo')->where('nombres', $entrada)->paginate(10); 
         }        
 
-            return view('consultarMiembro', compact ('users', 'route'));
+        return view('Miembros/consultarMiembro', compact ('users', 'route'));
     }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('registro');
+    public function create(){
+        return view('Miembros/registro');
     }
 
     /**
@@ -94,8 +88,7 @@ class MiembrosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MiembroStoreRequest $request)
-    {  
+    public function store(MiembroStoreRequest $request){  
         $nuevoCliente = new Cliente();
         
         if($request->hasFile('avatar')){
@@ -136,7 +129,7 @@ class MiembrosController extends Controller
         $nuevoSeguimiento->save();
         $nuevoDelta->save();
 
-        return redirect()->route('delta.edit', [$nuevoCliente]);
+        return redirect()->route('Miembros/delta.edit', [$nuevoCliente]);
 
         #return  view('registroDelta', compact ($nuevoCliente));
     }
@@ -147,10 +140,9 @@ class MiembrosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id){
         $user= Cliente::findOrFail($id);
-        return view('perfilMiembro', compact('user'));
+        return view('Miembros/perfilMiembro', compact('user'));
     }
 
     /**
@@ -159,10 +151,9 @@ class MiembrosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id){
         $miembro = Cliente::findOrFail($id);
-        return view('actualizarMiembros', compact('miembro'));
+        return view('Miembros/actualizarMiembros', compact('miembro'));
     }
 
     /**
@@ -172,10 +163,9 @@ class MiembrosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        $miembro = Cliente::findOrFail($id);
+    public function update(Request $request, $id){
 
+        $miembro = Cliente::findOrFail($id);
         $miembro->cédula = $request->cédula;
         if($request->hasFile('avatar')){
             $avatar = $request->file('avatar');
@@ -219,15 +209,11 @@ class MiembrosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        // $user = Cliente::findOrFail($id);
-        // $user->delete();
-        // $users = Cliente::orderBy('nombres', 'ASC')->paginate(10);
-        // return redirect()->to('/miembros');
+    public function destroy($id){
+
         $user = Cliente::findOrFail($id);
         if($user->estado=='Activo'){
-        $user->estado = 'Inactivo';
+            $user->estado = 'Inactivo';
         }
         else{
             $user->estado='Activo';

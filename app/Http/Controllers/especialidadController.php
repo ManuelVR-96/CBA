@@ -12,8 +12,7 @@ class especialidadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(){
         $especialidad = Especialidad::orderBy('Nombre','ASC')->paginate(10);
     }
 
@@ -22,8 +21,7 @@ class especialidadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create(){
         return view ('RegistroEspecialidad');
     }
 
@@ -33,12 +31,13 @@ class especialidadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
+
      $nuevaEspecialidad = new Especialidad();
      $nuevaEspecialidad->Nombre = $request->Nombre;
      $nuevaEspecialidad->save();
      return back();
+
     }
 
     /**
@@ -47,8 +46,7 @@ class especialidadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id){
         //
     }
 
@@ -58,8 +56,7 @@ class especialidadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id){
         //
     }
 
@@ -70,8 +67,7 @@ class especialidadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
         //
     }
 
@@ -81,8 +77,7 @@ class especialidadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id){
         //
     }
 }

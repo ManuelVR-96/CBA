@@ -17,8 +17,7 @@ class nutricionalInicialController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(){
         //
     }
 
@@ -27,21 +26,21 @@ class nutricionalInicialController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
-    {
-    $exist = DB::table('nutricional_inicials')->where('paciente', $id)->exists();
-        #return((string)$exist);
-        
+    public function create($id){
+
+        $exist = DB::table('nutricional_inicials')->where('paciente', $id)->exists();
+            #return((string)$exist);
+            
         if ($exist !=1){
 
-        $nuevoCliente= Cliente::findOrFail($id);
-        $encargados= user::where('estado','Activo');
-        
-        return view ('registroNutricionInicial', compact("encargados", "nuevoCliente"));
+            $nuevoCliente= Cliente::findOrFail($id);
+            $encargados= user::where('estado','Activo');
+            
+            return view ('Valoraciones/registroNutricionInicial', compact("encargados", "nuevoCliente"));
         }
 
         else {
-            return view ('ValoracionExiste');
+            return view ('Valoraciones/ValoracionExiste');
         }        
     }
 
@@ -51,8 +50,9 @@ class nutricionalInicialController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {   $nuevoNutricional = new NutricionalInicial();
+    public function store(Request $request){   
+        
+        $nuevoNutricional = new NutricionalInicial();
         $nuevoNutricional->paciente = $request->miembro;
         $nuevoNutricional->cantidad_comida = $request->cantidad_comida;
         $nuevoNutricional->perdida_peso = $request->perdida_peso;
@@ -84,19 +84,19 @@ class nutricionalInicialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id){
+
         $exist = DB::table('nutricional_inicials')->where('paciente', $id)->exists();
         #return((string)$exist);
         
         if ($exist ==1){
-        $nutricional_inicial = NutricionalInicial::Where('paciente', $id)->first();
-        $nuevoCliente= Cliente::findOrFail($id);
-        return view ('Ver_NutricionalInicial', compact("nutricional_inicial", "nuevoCliente"));
+            $nutricional_inicial = NutricionalInicial::Where('paciente', $id)->first();
+            $nuevoCliente= Cliente::findOrFail($id);
+            return view ('Valoraciones/Ver_NutricionalInicial', compact("nutricional_inicial", "nuevoCliente"));
         }
 
         else {
-            return view ('ValoracionNoExiste');
+            return view ('Valoraciones/ValoracionNoExiste');
         }
     }
 
@@ -106,8 +106,7 @@ class nutricionalInicialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id){
         //
     }
 
@@ -118,8 +117,7 @@ class nutricionalInicialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
         //
     }
 
@@ -129,8 +127,7 @@ class nutricionalInicialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id){
         //
     }
 }

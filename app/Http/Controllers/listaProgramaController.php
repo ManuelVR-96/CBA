@@ -14,9 +14,9 @@ class listaProgramaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('Agregar_Miembros');
+    public function index(){
+
+        return view('Programas/Agregar_Miembros');
     }
 
     /**
@@ -24,16 +24,16 @@ class listaProgramaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id_programa)
-    {   
+    public function create($id_programa){
+
         $programa= Programa::Where('id',$id_programa)->first();
         $miembros= Cliente::Where('estado', 'Activo')->get();
         $miembros_vinculados_ = programa_cliente::where('programa', $id_programa)->get(['paciente'])->toArray();
         $miembros_vinculados = [];
         foreach($miembros_vinculados_ as $array){
-            #print_r($array);
-            #print_r(array_values($array));
+
             $miembros_vinculados2 = array_values($array);
+            
             foreach($miembros_vinculados2 as $value){
                 array_push($miembros_vinculados, $value);
             }
@@ -42,7 +42,7 @@ class listaProgramaController extends Controller
         
 
         #return (string)in_array(1, $miembros_vinculados);
-        return view('Agregar_Miembros', compact ('programa', 'miembros', 'miembros_vinculados'));
+        return view('Programas/Agregar_Miembros', compact ('programa', 'miembros', 'miembros_vinculados'));
     }
 
     /**
@@ -51,47 +51,48 @@ class listaProgramaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
+
         $miembros=$request->miembros;
-        
         $programa = $request->programa;
-        
         $miembros_vinculados_ = programa_cliente::where('programa', $programa)->get(['paciente'])->toArray();
         $miembros_vinculados = [];
+
         foreach($miembros_vinculados_ as $array){
             $miembros_vinculados2 = array_values($array);
             foreach($miembros_vinculados2 as $value){
                 array_push($miembros_vinculados, $value);
             }
         }
+
         if (!empty($miembros)){
-        foreach($miembros as $miembro){
-            print($miembro);
-            if(!in_array($miembro, $miembros_vinculados)){
-            $vinculacion= new programa_cliente();
-            $vinculacion->programa=$programa;
-            $vinculacion->paciente=$miembro;
-            $vinculacion->save();
+
+            foreach($miembros as $miembro){
+                print($miembro);
+                if(!in_array($miembro, $miembros_vinculados)){
+                $vinculacion= new programa_cliente();
+                $vinculacion->programa=$programa;
+                $vinculacion->paciente=$miembro;
+                $vinculacion->save();
+                }
             }
-        }
-    }
+         }
         
  
-            if(empty($miembros)){
-                $borrar = programa_cliente::where('programa', $programa);
-                $borrar->delete();
-            }
-            else{
-
-                foreach($miembros_vinculados as $miembro){
-
-            if(!in_array($miembro, $miembros)){
-                $borrar = programa_cliente::where('programa', $programa)->where('paciente', $miembro);
-                $borrar->delete();
+        if(empty($miembros)){
+            $borrar = programa_cliente::where('programa', $programa);
+            $borrar->delete();
         }
-    }
-}
+        else{
+
+            foreach($miembros_vinculados as $miembro){
+
+                if(!in_array($miembro, $miembros)){
+                    $borrar = programa_cliente::where('programa', $programa)->where('paciente', $miembro);
+                    $borrar->delete();
+                }
+            }
+        }
         return back();
         
     }
@@ -102,8 +103,7 @@ class listaProgramaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id){
         //
     }
 
@@ -113,8 +113,7 @@ class listaProgramaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id){
         
     }
 
@@ -125,8 +124,7 @@ class listaProgramaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
         //
     }
 
@@ -136,8 +134,7 @@ class listaProgramaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id){
         //
     }
 }
